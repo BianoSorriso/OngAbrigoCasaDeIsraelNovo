@@ -1,0 +1,99 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- Timeline -->
+  <line x1="100" y1="100" x2="100" y2="400" stroke="#0d6efd" stroke-width="4"/>
+  
+  <!-- Timeline Nodes -->
+  <circle cx="100" cy="150" r="15" fill="#0d6efd"/>
+  <circle cx="100" cy="250" r="15" fill="#0d6efd"/>
+  <circle cx="100" cy="350" r="15" fill="#0d6efd"/>
+  
+  <!-- Timeline Content -->
+  <g transform="translate(150, 130)">
+    <rect width="200" height="40" fill="#0d6efd" rx="5" ry="5"/>
+    <text x="100" y="25" font-family="Comic Sans MS, Comic Sans, cursive" font-size="16" fill="white" text-anchor="middle" dominant-baseline="middle">Fundação</text>
+  </g>
+  
+  <g transform="translate(150, 230)">
+    <rect width="200" height="40" fill="#0d6efd" rx="5" ry="5"/>
+    <text x="100" y="25" font-family="Comic Sans MS, Comic Sans, cursive" font-size="16" fill="white" text-anchor="middle" dominant-baseline="middle">Crescimento</text>
+  </g>
+  
+  <g transform="translate(150, 330)">
+    <rect width="200" height="40" fill="#0d6efd" rx="5" ry="5"/>
+    <text x="100" y="25" font-family="Comic Sans MS, Comic Sans, cursive" font-size="16" fill="white" text-anchor="middle" dominant-baseline="middle">Impacto Atual</text>
+  </g>
+  
+  <!-- People Icons -->
+  <g transform="translate(400, 100)">
+    <!-- Group of people -->
+    <circle cx="50" cy="30" r="20" fill="#FFC107"/>
+    <circle cx="90" cy="30" r="20" fill="#0d6efd"/>
+    <circle cx="130" cy="30" r="20" fill="#28a745"/>
+    <circle cx="70" cy="60" r="20" fill="#dc3545"/>
+    <circle cx="110" cy="60" r="20" fill="#6610f2"/>
+    
+    <!-- Faces -->
+    <circle cx="45" cy="25" r="3" fill="#343a40"/>
+    <circle cx="55" cy="25" r="3" fill="#343a40"/>
+    <path d="M42,35 Q50,40 58,35" stroke="#343a40" stroke-width="2" fill="none"/>
+    
+    <circle cx="85" cy="25" r="3" fill="#343a40"/>
+    <circle cx="95" cy="25" r="3" fill="#343a40"/>
+    <path d="M82,35 Q90,40 98,35" stroke="#343a40" stroke-width="2" fill="none"/>
+    
+    <circle cx="125" cy="25" r="3" fill="#343a40"/>
+    <circle cx="135" cy="25" r="3" fill="#343a40"/>
+    <path d="M122,35 Q130,40 138,35" stroke="#343a40" stroke-width="2" fill="none"/>
+    
+    <circle cx="65" cy="55" r="3" fill="#343a40"/>
+    <circle cx="75" cy="55" r="3" fill="#343a40"/>
+    <path d="M62,65 Q70,70 78,65" stroke="#343a40" stroke-width="2" fill="none"/>
+    
+    <circle cx="105" cy="55" r="3" fill="#343a40"/>
+    <circle cx="115" cy="55" r="3" fill="#343a40"/>
+    <path d="M102,65 Q110,70 118,65" stroke="#343a40" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Building with growth -->
+  <g transform="translate(450, 200)">
+    <!-- Building base -->
+    <rect x="0" y="100" width="200" height="100" fill="#6c757d"/>
+    
+    <!-- Windows -->
+    <rect x="20" y="120" width="30" height="30" fill="#f8f9fa"/>
+    <rect x="70" y="120" width="30" height="30" fill="#f8f9fa"/>
+    <rect x="120" y="120" width="30" height="30" fill="#f8f9fa"/>
+    <rect x="170" y="120" width="30" height="30" fill="#f8f9fa"/>
+    
+    <rect x="20" y="160" width="30" height="30" fill="#f8f9fa"/>
+    <rect x="70" y="160" width="30" height="30" fill="#f8f9fa"/>
+    <rect x="120" y="160" width="30" height="30" fill="#f8f9fa"/>
+    <rect x="170" y="160" width="30" height="30" fill="#f8f9fa"/>
+    
+    <!-- Door -->
+    <rect x="85" y="170" width="30" height="30" fill="#343a40"/>
+    
+    <!-- Growth arrows -->
+    <path d="M100,100 L100,50 L90,60 M100,50 L110,60" fill="none" stroke="#28a745" stroke-width="4"/>
+    <path d="M150,100 L150,30 L140,40 M150,30 L160,40" fill="none" stroke="#28a745" stroke-width="4"/>
+    <path d="M50,100 L50,70 L40,80 M50,70 L60,80" fill="none" stroke="#28a745" stroke-width="4"/>
+  </g>
+  
+  <!-- Impact numbers -->
+  <g transform="translate(450, 350)">
+    <rect width="80" height="50" fill="#dc3545" rx="5" ry="5"/>
+    <text x="40" y="30" font-family="Comic Sans MS, Comic Sans, cursive" font-size="20" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">1500+</text>
+    
+    <rect x="100" width="80" height="50" fill="#28a745" rx="5" ry="5"/>
+    <text x="140" y="30" font-family="Comic Sans MS, Comic Sans, cursive" font-size="20" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">50+</text>
+    
+    <rect x="200" width="80" height="50" fill="#0d6efd" rx="5" ry="5"/>
+    <text x="240" y="30" font-family="Comic Sans MS, Comic Sans, cursive" font-size="20" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">200+</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Comic Sans MS, Comic Sans, cursive" font-size="24" font-weight="bold" fill="#343a40" text-anchor="middle">Nossa História</text>
+</svg>

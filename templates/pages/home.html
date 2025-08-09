@@ -1,0 +1,228 @@
+{% extends 'base/base.html' %}
+
+{% block title %}CABI - Início{% endblock %}
+
+{% block content %}
+<!-- Banner Principal -->
+<section class="secao-destaque">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Transformando vidas através da solidariedade</h1>
+                <p class="lead mb-4">Junte-se a nós nessa missão de levar esperança e oportunidades para quem mais precisa.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'doacoes' %}" class="btn btn-primary btn-lg">Faça uma Doação</a>
+                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary btn-lg">Seja Voluntário</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <img src="/static/images/CABI01.jpg" alt="Pessoas se ajudando" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Números e Impacto -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="cartao-impacto p-4 h-100">
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                    <h2 class="numero-impacto fw-bold">50+</h2>
+                    <p class="lead">Crianças Beneficiadas</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="cartao-impacto p-4 h-100">
+                    <i class="fas fa-hands-helping fa-3x text-primary mb-3"></i>
+                    <h2 class="numero-impacto fw-bold">10+</h2>
+                    <p class="lead">Projetos Realizados</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cartao-impacto p-4 h-100">
+                    <i class="fas fa-heart fa-3x text-primary mb-3"></i>
+                    <h2 class="numero-impacto fw-bold">30+</h2>
+                    <p class="lead">Voluntários Ativos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projetos em Destaque -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="titulo-secao">Projetos em Destaque</h2>
+                <p class="subtitulo-secao">Conheça algumas de nossas iniciativas que estão transformando vidas</p>
+            </div>
+        </div>
+        <div class="row">
+            {% if projetos %}
+                {% for projeto in projetos %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 cartao-projeto">
+                        {% if projeto.imagem %}
+                        <img src="{{ projeto.imagem.url }}" class="card-img-top" alt="{{ projeto.titulo }}">
+                        {% else %}
+                        <img src="/static/images/projeto-placeholder.svg" class="card-img-top" alt="{{ projeto.titulo }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ projeto.titulo }}</h5>
+                            <p class="card-text">{{ projeto.descricao|truncatewords:20 }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <a href="{% url 'projetos' %}" class="btn btn-outline-primary">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <p>Não há projetos cadastrados no momento.</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'projetos' %}" class="btn btn-primary">Ver Todos os Projetos</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Como Ajudar -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Como Você Pode Ajudar</h2>
+                <p class="section-subtitle">Existem várias maneiras de fazer a diferença</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 help-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-hand-holding-heart fa-4x text-primary mb-3"></i>
+                        <h4 class="card-title">Faça uma Doação</h4>
+                        <p class="card-text">Sua contribuição financeira ajuda a manter nossos projetos e alcançar mais pessoas necessitadas.</p>
+                        <a href="{% url 'doacoes' %}" class="btn btn-outline-primary mt-3">Doar Agora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 help-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-friends fa-4x text-primary mb-3"></i>
+                        <h4 class="card-title">Seja Voluntário</h4>
+                        <p class="card-text">Doe seu tempo e habilidades. Temos diversas áreas onde você pode contribuir e fazer a diferença.</p>
+                        <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary mt-3">Cadastre-se</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 help-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-bullhorn fa-4x text-primary mb-3"></i>
+                        <h4 class="card-title">Divulgue Nosso Trabalho</h4>
+                        <p class="card-text">Compartilhe nossas ações nas redes sociais e ajude a ampliar nosso alcance e impacto social.</p>
+                        <div class="social-share mt-3">
+                            <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="btn btn-outline-primary mx-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn btn-outline-primary"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Depoimentos -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Depoimentos</h2>
+                <p class="section-subtitle">O que dizem sobre nosso trabalho</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4">
+                    <div class="testimonial-content">
+                        <p class="mb-3">"o CABI transformou minha vida. Graças ao projeto de capacitação profissional, hoje tenho um emprego e consigo sustentar minha família."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Maria Silva</h5>
+                                <small class="text-muted">Beneficiária</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4">
+                    <div class="testimonial-content">
+                        <p class="mb-3">"Ser voluntário no CABI é uma experiência incrível. Cada sorriso que ajudamos a proporcionar é uma recompensa que não tem preço."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">João Santos</h5>
+                                <small class="text-muted">Voluntário</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4">
+                    <div class="testimonial-content">
+                        <p class="mb-3">"Nossa empresa tem orgulho de apoiar o CABI. O trabalho sério e transparente que realizam faz toda a diferença na comunidade."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Ana Oliveira</h5>
+                                <small class="text-muted">Parceira</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2>Fique por dentro das nossas ações</h2>
+                <p class="lead">Assine nossa newsletter e receba novidades sobre nossos projetos e eventos.</p>
+            </div>
+            <div class="col-lg-6">
+                <form class="row g-3">
+                    <div class="col-md-8">
+                        <input type="email" class="form-control form-control-lg" placeholder="Seu e-mail" required>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-light btn-lg w-100">Assinar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends 'base/base.html' %}
+
+{% block title %}CABI - Quem Somos{% endblock %}
+
+{% block content %}
+<!-- Banner da página -->
+<section class="page-banner bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">Quem Somos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Início</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Quem Somos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nossa História -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="/static/images/historia.JPG" alt="Nossa História" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="section-title">Nossa História</h2>
+                <p> A Casa de Amparo Abrigo de Israel (CABI) nasceu em xxx, a partir da iniciativa da dona (colocar o nome da fundadora) que percebeu a necessidade de ações sociais mais efetivas em comunidades carentes da região.</p>
+                <p>O que começou como pequenas ações pontuais de distribuição de alimentos e roupas, cresceu e se transformou em uma organização estruturada, com projetos permanentes nas áreas de educação, saúde, cultura e geração de renda.</p>
+                <p>Ao longo desses anos, já impactamos positivamente a vida de mais de 70 crianças, sempre com o compromisso de promover a dignidade humana e o desenvolvimento sustentável das comunidades onde atuamos.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Missão, Visão e Valores -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Missão, Visão e Valores</h2>
+                <p class="section-subtitle">Os pilares que norteiam nosso trabalho</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 mvv-card">
+                    <div class="card-body text-center">
+                        <div class="icon-circle mb-4">
+                            <i class="fas fa-bullseye fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Missão</h3>
+                        <p class="card-text">Promover a transformação social através de ações que desenvolvam o potencial humano, garantindo dignidade e oportunidades para todos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 mvv-card">
+                    <div class="card-body text-center">
+                        <div class="icon-circle mb-4">
+                            <i class="fas fa-eye fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Visão</h3>
+                        <p class="card-text">Ser reconhecida como uma organização de referência em projetos sociais transformadores, ampliando continuamente nosso impacto positivo na sociedade.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 mvv-card">
+                    <div class="card-body text-center">
+                        <div class="icon-circle mb-4">
+                            <i class="fas fa-heart fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="card-title">Valores</h3>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="fas fa-check text-primary me-2"></i> Solidariedade</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Respeito à diversidade</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Transparência</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Compromisso social</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Ética</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nossa Equipe -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Nossa Equipe</h2>
+                <p class="section-subtitle">Conheça as pessoas que fazem a diferença</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                    </div>
+                    <h4>Carlos Oliveira</h4>
+                    <p class="text-muted">Diretor Presidente</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                    </div>
+                    <h4>Mariana Santos</h4>
+                    <p class="text-muted">Coordenadora de Projetos</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                    </div>
+                    <h4>Pedro Almeida</h4>
+                    <p class="text-muted">Coordenador Financeiro</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="team-card text-center">
+                    <div class="team-img mb-3">
+                        <i class="fas fa-user-circle fa-5x text-primary"></i>
+                    </div>
+                    <h4>Juliana Costa</h4>
+                    <p class="text-muted">Coordenadora de Voluntários</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-primary me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-primary"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Parceiros -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Nossos Parceiros</h2>
+                <p class="section-subtitle">Empresas e instituições que acreditam em nosso trabalho</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="row align-items-center text-center">
+                    <div class="col-4 col-md-2 mb-4">
+                        <div class="partner-logo p-3">
+                            <i class="fas fa-building fa-3x text-primary"></i>
+                            <p class="mt-2 mb-0">Empresa A</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-2 mb-4">
+                        <div class="partner-logo p-3">
+                            <i class="fas fa-university fa-3x text-primary"></i>
+                            <p class="mt-2 mb-0">Instituição B</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-2 mb-4">
+                        <div class="partner-logo p-3">
+                            <i class="fas fa-store fa-3x text-primary"></i>
+                            <p class="mt-2 mb-0">Empresa C</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-2 mb-4">
+                        <div class="partner-logo p-3">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                            <p class="mt-2 mb-0">Escola D</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-2 mb-4">
+                        <div class="partner-logo p-3">
+                            <i class="fas fa-hospital fa-3x text-primary"></i>
+                            <p class="mt-2 mb-0">Hospital E</p>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-2 mb-4">
+                        <div class="partner-logo p-3">
+                            <i class="fas fa-landmark fa-3x text-primary"></i>
+                            <p class="mt-2 mb-0">Fundação F</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p>Quer ser nosso parceiro? <a href="{% url 'contato' %}" class="text-primary">Entre em contato</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transparência -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                <img src="/static/images/transparencia.svg" alt="Transparência" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <h2 class="section-title">Transparência</h2>
+                <p>No CABI, acreditamos que a transparência é fundamental para construir e manter a confiança de nossos apoiadores, parceiros e beneficiários.</p>
+                <p>Por isso, disponibilizamos regularmente relatórios de atividades e prestação de contas, detalhando como os recursos são utilizados e os resultados alcançados em cada projeto.</p>
+                <p>Nossos relatórios anuais e demonstrativos financeiros são auditados por empresa independente e podem ser acessados por qualquer pessoa interessada.</p>
+                <a href="#" class="btn btn-primary mt-3">Acessar Relatórios</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,414 @@
+{% extends 'base/base.html' %}
+
+{% block title %}CABI - Doações{% endblock %}
+
+{% block content %}
+<!-- Banner da página -->
+<section class="page-banner bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">Faça uma Doação para o CABI</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Início</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Doações</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Impacto -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="section-title">Seu Apoio Transforma Vidas</h2>
+                <p class="lead">Cada contribuição faz a diferença na vida de quem mais precisa.</p>
+                <p>Na Casa de Amparo Beneficente Israel (CABI), trabalhamos incansavelmente para transformar a realidade de crianças e adolescentes através de projetos de educação, cultura, saúde e cidadania. Sua doação, independente do valor, é fundamental para mantermos e expandirmos nossas ações.</p>
+                <div class="impact-numbers mt-4">
+                    <div class="row">
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="impact-card text-center p-3">
+                                <h3 class="impact-number">+500</h3>
+                                <p class="impact-text">Crianças atendidas mensalmente</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="impact-card text-center p-3">
+                                <h3 class="impact-number">12</h3>
+                                <p class="impact-text">Projetos ativos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="impact-card text-center p-3">
+                                <h3 class="impact-number">95%</h3>
+                                <p class="impact-text">Dos recursos aplicados diretamente nos projetos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/static/images/doacao.svg" alt="Doação" class="img-fluid rounded shadow" style="margin-left: 20px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formas de Doação -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Como Doar</h2>
+                <p class="section-subtitle">Escolha a forma que melhor se adapta a você</p>
+            </div>
+        </div>
+        
+        <div class="row equal-height">
+            <!-- Doação Financeira -->
+            <div class="col-md-4 mb-4">
+                <div class="donation-card h-100">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-primary text-white text-center py-3">
+                            <h3 class="mb-0"><i class="fas fa-hand-holding-usd me-2"></i> Doação Financeira</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <p>Contribua com qualquer valor para ajudar a manter nossos projetos. Você pode fazer uma doação única ou tornar-se um doador recorrente.</p>
+                            
+                            <div class="donation-info mb-4">
+                                <p>Faça sua doação diretamente via PIX para o CABI. Basta escanear o QR Code abaixo com o aplicativo do seu banco.</p>
+                            </div>
+                            
+                            <div class="payment-methods mb-4">
+                                <h5>Forma de Pagamento</h5>
+                                <div class="d-flex align-items-center mb-3">
+                                    <span class="payment-icon me-2"><i class="fab fa-pix fa-2x text-primary"></i></span>
+                                    <span>PIX - Forma de pagamento instantânea</span>
+                                </div>
+                                
+                                <div id="pix-qrcode-container" class="text-center mb-3">
+                                    <div class="card p-3 mb-3">
+                                        <h6 class="mb-3">Escaneie o QR Code para fazer sua doação</h6>
+                                        <div id="pix-qrcode" class="mx-auto mb-3">
+                                            {% if config and config.qr_code_pix %}
+                                                <img src="{{ config.qr_code_pix.url }}" alt="QR Code PIX CABI" class="img-fluid" style="max-width: 250px;">
+                                            {% else %}
+                                                <img src="/static/images/qrcode-placeholder.svg" alt="QR Code PIX" class="img-fluid" style="max-width: 250px;">
+                                                <p class="text-danger">QR Code ainda não configurado. Por favor, contate o administrador.</p>
+                                            {% endif %}
+                                        </div>
+                                        {% if config %}
+                                            <p class="mb-2"><strong>Chave PIX:</strong> {{ config.chave_pix }}</p>
+                                            <p class="mb-0"><strong>Beneficiário:</strong> {{ config.nome_beneficiario }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <p class="mb-3">Sua contribuição é muito importante para nós!</p>
+                                <p class="small">Após realizar a doação, se desejar um recibo, entre em contato conosco.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doação de Materiais -->
+            <div class="col-md-4 mb-4">
+                <div class="donation-card h-100">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-success text-white text-center py-3">
+                            <h3 class="mb-0"><i class="fas fa-box-open me-2"></i> Doação de Materiais</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <p>Você pode doar materiais que são essenciais para nossos projetos. Confira abaixo os itens que estamos precisando atualmente:</p>
+                            
+                            <ul class="donation-items-list mb-4">
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Material escolar</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Livros infantis e juvenis</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Brinquedos educativos</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Equipamentos de informática</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Instrumentos musicais</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i> Materiais para oficinas de arte</li>
+                            </ul>
+                            
+                            <div class="delivery-info mb-4">
+                                <h5>Pontos de Entrega</h5>
+                                <p><i class="fas fa-map-marker-alt text-danger me-2"></i> Sede da CABI: Rua das Flores, 123 - Centro</p>
+                                <p><i class="fas fa-clock text-primary me-2"></i> Segunda a sexta, das 9h às 18h</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="{% url 'contato' %}" class="btn btn-success btn-lg w-100">Entrar em Contato</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doação de Tempo -->
+            <div class="col-md-4 mb-4">
+                <div class="donation-card h-100">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-info text-white text-center py-3">
+                            <h3 class="mb-0"><i class="fas fa-clock me-2"></i> Doação de Tempo</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <p>Seu tempo e habilidades são valiosos! Torne-se um voluntário e contribua diretamente com nossas atividades e projetos.</p>
+                            
+                            <div class="volunteer-areas mb-4">
+                                <h5>Áreas para Voluntariado</h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-user-graduate text-info me-2"></i> Educação</li>
+                                            <li><i class="fas fa-palette text-info me-2"></i> Cultura</li>
+                                            <li><i class="fas fa-heartbeat text-info me-2"></i> Saúde</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-laptop-code text-info me-2"></i> Tecnologia</li>
+                                            <li><i class="fas fa-bullhorn text-info me-2"></i> Comunicação</li>
+                                            <li><i class="fas fa-hands-helping text-info me-2"></i> Assistência</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="volunteer-benefits mb-4">
+                                <h5>Benefícios</h5>
+                                <p>Além de ajudar quem precisa, você terá a oportunidade de desenvolver novas habilidades, conhecer pessoas e receber certificado de voluntariado.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <a href="{% url 'area_voluntarios' %}" class="btn btn-info btn-lg w-100">Seja Voluntário</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulário de Doação -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Formulário de Doação</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="lead">Preencha o formulário abaixo para registrar sua intenção de doação. Nossa equipe entrará em contato para fornecer mais informações.</p>
+                        
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="{{ form.nome_doador.id_for_label }}" class="form-label">Nome completo</label>
+                                    {{ form.nome_doador }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.email_doador.id_for_label }}" class="form-label">E-mail</label>
+                                    {{ form.email_doador }}
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="{{ form.tipo.id_for_label }}" class="form-label">Tipo de doação</label>
+                                    {{ form.tipo }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.valor.id_for_label }}" class="form-label">Valor (se aplicável)</label>
+                                    {{ form.valor }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="{{ form.descricao.id_for_label }}" class="form-label">Mensagem (opcional)</label>
+                                {{ form.descricao }}
+                                <div class="form-text">Descreva detalhes sobre sua doação ou tire dúvidas.</div>
+                            </div>
+                            
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="receberNoticias">
+                                <label class="form-check-label" for="receberNoticias">
+                                    Desejo receber notícias sobre os projetos e ações da ONG
+                                </label>
+                            </div>
+                            
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Registrar Doação</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prestação de Contas -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Transparência</h2>
+                <p class="section-subtitle">Saiba como utilizamos os recursos</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-chart-pie text-primary me-2"></i> Distribuição dos Recursos</h4>
+                        <div class="resource-distribution">
+                            <div class="resource-item d-flex justify-content-between align-items-center mb-3">
+                                <span>Projetos Sociais</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-primary">70%</span>
+                            </div>
+                            <div class="resource-item d-flex justify-content-between align-items-center mb-3">
+                                <span>Infraestrutura</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-success">15%</span>
+                            </div>
+                            <div class="resource-item d-flex justify-content-between align-items-center mb-3">
+                                <span>Administrativo</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-info">10%</span>
+                            </div>
+                            <div class="resource-item d-flex justify-content-between align-items-center">
+                                <span>Captação</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-warning">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fas fa-file-alt text-primary me-2"></i> Relatórios e Documentos</h4>
+                        <p>Disponibilizamos todos os nossos relatórios financeiros e de atividades para consulta pública, reforçando nosso compromisso com a transparência.</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Relatório Anual 2023</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Balanço Financeiro 2023</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Estatuto da ONG</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Certificações e Registros</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Depoimentos de Doadores -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <h2 class="section-title">Depoimentos de Doadores</h2>
+                <p class="section-subtitle">O que dizem nossos apoiadores</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4">
+                    <div class="testimonial-content">
+                        <p class="mb-3">"Contribuir mensalmente com a CABI me dá a certeza de que estou fazendo a diferença. Os relatórios de prestação de contas são transparentes e mostram exatamente como minha doação é utilizada."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Ana Paula Silva</h5>
+                                <small class="text-muted">Doadora mensal há 3 anos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4">
+                    <div class="testimonial-content">
+                        <p class="mb-3">"Nossa empresa escolheu o CABI como parceira social pelos resultados concretos que apresentam. É gratificante ver o impacto positivo que nosso apoio gera na comunidade."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">
+                                <i class="fas fa-building fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Empresa XYZ</h5>
+                                <small class="text-muted">Parceira há 2 anos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4">
+                    <div class="testimonial-content">
+                        <p class="mb-3">"Faço doações de materiais regularmente e sempre sou recebido com muito carinho. É emocionante visitar os projetos e ver como pequenas contribuições transformam vidas."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Roberto Almeida</h5>
+                                <small class="text-muted">Doador há 1 ano</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <h2 class="section-title text-white">Junte-se a Nós Nessa Causa</h2>
+                <p class="lead mb-0">Sua contribuição, seja ela qual for, faz toda a diferença na vida de quem mais precisa. Doe agora e ajude a transformar realidades!</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="#" class="btn btn-light btn-lg">Doar Agora</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

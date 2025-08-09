@@ -1,0 +1,247 @@
+{% extends 'base/base.html' %}
+
+{% block title %}CABI - Projetos{% endblock %}
+
+{% block content %}
+<!-- Banner da página -->
+<section class="page-banner bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 class="page-title">Nossos Projetos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Início</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Projetos</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Áreas de Atuação -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="titulo-secao">Áreas de Atuação</h2>
+                <p class="subtitulo-secao">Conheça os principais focos do nosso trabalho</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="area-card text-center p-4 h-100">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-graduation-cap fa-2x text-primary"></i>
+                    </div>
+                    <h4>Educação</h4>
+                    <p>Projetos de reforço escolar, alfabetização de adultos e cursos profissionalizantes.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="area-card text-center p-4 h-100">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-heartbeat fa-2x text-primary"></i>
+                    </div>
+                    <h4>Saúde</h4>
+                    <p>Campanhas de prevenção, atendimento básico e orientação sobre cuidados com a saúde.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="area-card text-center p-4 h-100">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-paint-brush fa-2x text-primary"></i>
+                    </div>
+                    <h4>Cultura</h4>
+                    <p>Oficinas de arte, música, dança e outras expressões culturais para todas as idades.</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="area-card text-center p-4 h-100">
+                    <div class="icon-circle mb-3">
+                        <i class="fas fa-coins fa-2x text-primary"></i>
+                    </div>
+                    <h4>Geração de Renda</h4>
+                    <p>Capacitação profissional e apoio ao empreendedorismo para autonomia financeira.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projetos -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="titulo-secao">Projetos em Andamento</h2>
+                <p class="subtitulo-secao">Conheça nossas iniciativas atuais</p>
+            </div>
+        </div>
+        
+        {% if projetos %}
+        <div class="row">
+            {% for projeto in projetos %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 projeto-card">
+                    {% if projeto.imagem %}
+                    <img src="{{ projeto.imagem.url }}" class="card-img-top" alt="{{ projeto.titulo }}">
+                    {% else %}
+                    <img src="/static/images/projeto-placeholder.svg" class="card-img-top" alt="{{ projeto.titulo }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ projeto.titulo }}</h5>
+                        <p class="card-text">{{ projeto.descricao|truncatewords:30 }}</p>
+                        <p class="text-muted"><i class="far fa-calendar-alt me-2"></i>Início: {{ projeto.data_inicio|date:"d/m/Y" }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projetoModal{{ projeto.id }}">
+                            Saiba mais
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal para detalhes do projeto -->
+            <div class="modal fade" id="projetoModal{{ projeto.id }}" tabindex="-1" aria-labelledby="projetoModalLabel{{ projeto.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="projetoModalLabel{{ projeto.id }}">{{ projeto.titulo }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% if projeto.imagem %}
+                            <img src="{{ projeto.imagem }}" class="img-fluid rounded mb-4" alt="{{ projeto.titulo }}">
+                            {% else %}
+                            <img src="/static/images/projeto-placeholder.svg" class="img-fluid rounded mb-4" alt="{{ projeto.titulo }}">
+                            {% endif %}
+                            <p><strong>Data de início:</strong> {{ projeto.data_inicio|date:"d/m/Y" }}</p>
+                            <p>{{ projeto.descricao }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <a href="{% url 'doacoes' %}" class="btn btn-primary">Apoiar este projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <p class="mb-0">Não há projetos cadastrados no momento. Em breve teremos novidades!</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Resultados -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h2 class="titulo-secao">Resultados Alcançados</h2>
+                <p class="subtitulo-secao">O impacto do nosso trabalho em números</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-4 text-center">
+                <div class="cartao-resultado p-4 h-100">
+                    <div class="icone-resultado mb-3">
+                        <i class="fas fa-user-graduate fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="numero-resultado">500+</h3>
+                    <p>Crianças e adolescentes com acesso à educação complementar</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 text-center">
+                <div class="cartao-resultado p-4 h-100">
+                    <div class="icone-resultado mb-3">
+                        <i class="fas fa-briefcase fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="numero-resultado">300+</h3>
+                    <p>Pessoas capacitadas e inseridas no mercado de trabalho</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 text-center">
+                <div class="cartao-resultado p-4 h-100">
+                    <div class="icone-resultado mb-3">
+                        <i class="fas fa-home fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="numero-resultado">50+</h3>
+                    <p>Famílias com melhorias em suas moradias</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 text-center">
+                <div class="cartao-resultado p-4 h-100">
+                    <div class="icone-resultado mb-3">
+                        <i class="fas fa-utensils fa-3x text-primary"></i>
+                    </div>
+                    <h3 class="numero-resultado">10.000+</h3>
+                    <p>Refeições distribuídas anualmente</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Como Participar -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="/static/images/como-participar.svg" alt="Como Participar" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="section-title">Como Participar</h2>
+                <p class="lead">Existem várias maneiras de contribuir com nossos projetos:</p>
+                <ul class="list-unstyled participation-list">
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-hand-holding-heart text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>Doações</h5>
+                                <p>Contribua financeiramente ou com doações de materiais, alimentos e roupas.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mb-3">
+                        <div class="d-flex">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-hands-helping text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>Voluntariado</h5>
+                                <p>Doe seu tempo e habilidades para ajudar em nossos projetos e atividades.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex">
+                            <div class="icon-box me-3">
+                                <i class="fas fa-building text-primary"></i>
+                            </div>
+                            <div>
+                                <h5>Parcerias</h5>
+                                <p>Empresas e instituições podem se tornar parceiras e apoiar nossas iniciativas.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <a href="{% url 'doacoes' %}" class="btn btn-primary me-2">Fazer Doação</a>
+                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary">Ser Voluntário</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

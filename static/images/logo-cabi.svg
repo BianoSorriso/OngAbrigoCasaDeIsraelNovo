@@ -1,0 +1,28 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo do logo -->
+  <rect width="200" height="80" rx="10" fill="#FFDE59"/>
+  
+  <!-- Letras CABI com cores vivas -->
+  <path d="M40 20C40 15.5817 43.5817 12 48 12H52C56.4183 12 60 15.5817 60 20V60C60 64.4183 56.4183 68 52 68H48C43.5817 68 40 64.4183 40 60V20Z" fill="#FF5757"/>
+  <path d="M65 20C65 15.5817 68.5817 12 73 12H77C81.4183 12 85 15.5817 85 20V60C85 64.4183 81.4183 68 77 68H73C68.5817 68 65 64.4183 65 60V20Z" fill="#33D1FF"/>
+  <path d="M90 20C90 15.5817 93.5817 12 98 12H102C106.418 12 110 15.5817 110 20V60C110 64.4183 106.418 68 102 68H98C93.5817 68 90 64.4183 90 60V20Z" fill="#4CD964"/>
+  <path d="M115 20C115 15.5817 118.582 12 123 12H127C131.418 12 135 15.5817 135 20V60C135 64.4183 131.418 68 127 68H123C118.582 68 115 64.4183 115 60V20Z" fill="#5B4CF5"/>
+  
+  <!-- Texto CABI -->
+  <text x="50" y="48" font-family="Arial" font-size="28" font-weight="bold" fill="white">C</text>
+  <text x="75" y="48" font-family="Arial" font-size="28" font-weight="bold" fill="white">A</text>
+  <text x="100" y="48" font-family="Arial" font-size="28" font-weight="bold" fill="white">B</text>
+  <text x="125" y="48" font-family="Arial" font-size="28" font-weight="bold" fill="white">I</text>
+  
+  <!-- Texto Casa de Amparo Beneficente de Israel -->
+  <text x="100" y="78" text-anchor="middle" font-family="Arial" font-size="8" font-weight="bold" fill="#5B4CF5">Casa de Amparo Beneficente de Israel</text>
+  
+  <!-- Elementos decorativos infantis -->
+  <circle cx="30" cy="25" r="8" fill="#FF5757"/>
+  <circle cx="30" cy="55" r="8" fill="#33D1FF"/>
+  <circle cx="170" cy="25" r="8" fill="#4CD964"/>
+  <circle cx="170" cy="55" r="8" fill="#5B4CF5"/>
+  
+  <!-- Estrela no topo -->
+  <path d="M150 15L153.09 24.91L163 28L153.09 31.09L150 41L146.91 31.09L137 28L146.91 24.91L150 15Z" fill="#FF5757"/>
+</svg>

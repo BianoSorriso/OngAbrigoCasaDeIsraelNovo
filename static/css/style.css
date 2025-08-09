@@ -1,0 +1,418 @@
+/* Estilos Gerais */
+:root {
+    --primary-color: #4e9af1; /* Azul mais claro e vibrante */
+    --secondary-color: #ff6b6b; /* Vermelho mais vibrante */
+    --accent-color: #ffcf4a; /* Amarelo mais vibrante */
+    --dark-color: #5a5c69;
+    --light-color: #f8f4ff; /* Fundo lilás bem claro */
+    --danger-color: #ff6b6b; /* Vermelho mais suave */
+    --info-color: #4ecdc4; /* Turquesa mais vibrante */
+    --background-pattern: url('/static/images/pattern.svg');
+    --purple-color: #9c6ade; /* Roxo para elementos infantis */
+    --green-color: #63d471; /* Verde vibrante */
+    --pink-color: #ff70a6; /* Rosa vibrante */
+}
+
+/* Estilo para mapa responsivo */
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/* Estilo para o botão de logout */
+.dropdown-item button.dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    color: #212529;
+}
+
+.dropdown-item button.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #16181b;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: var(--light-color);
+    background-image: var(--background-pattern), 
+                      radial-gradient(circle at 10% 20%, rgba(255, 207, 74, 0.05) 0%, rgba(78, 154, 241, 0.05) 90%);
+    background-attachment: fixed;
+    background-size: 200px, cover;
+    background-repeat: repeat, no-repeat;
+    background-blend-mode: overlay;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-size: 2.2rem;
+    color: var(--purple-color);
+}
+
+h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+}
+
+.titulo-secao {
+    position: relative;
+    margin-bottom: 1.5rem;
+    color: var(--purple-color);
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.titulo-secao:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.subtitulo-secao {
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 0.8rem 0;
+    background-color: white;
+    border-bottom: 5px solid;
+    border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1;
+    animation: rainbow-border 8s linear infinite;
+}
+
+@keyframes rainbow-border {
+    0% { border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1; }
+    25% { border-image: linear-gradient(to right, var(--primary-color), var(--purple-color), var(--pink-color), var(--accent-color)) 1; }
+    50% { border-image: linear-gradient(to right, var(--purple-color), var(--pink-color), var(--accent-color), var(--primary-color)) 1; }
+    75% { border-image: linear-gradient(to right, var(--pink-color), var(--accent-color), var(--primary-color), var(--purple-color)) 1; }
+    100% { border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1; }
+}
+
+.navbar-brand {
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-shadow: 1px 1px 0 var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    color: var(--purple-color);
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--pink-color);
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link.active:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+}
+
+.navbar .btn-primary {
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
+    border: none;
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(45deg, var(--purple-color), var(--primary-color));
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+    color: #fff;
+    padding: 3rem 0 1rem;
+    border-top: 5px solid;
+    border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/pattern.svg');
+    background-size: 150px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+}
+
+footer .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    position: relative;
+    display: inline-block;
+}
+
+footer .nav-link:hover {
+    color: #fff;
+    text-decoration: none;
+    transform: translateX(5px);
+}
+
+footer .nav-link:before {
+    content: '•';
+    position: absolute;
+    left: -15px;
+    color: var(--accent-color);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+footer .nav-link:hover:before {
+    opacity: 1;
+    left: -10px;
+}
+
+/* Cards de Doação */
+.donation-card {
+    transition: all 0.3s ease;
+}
+
+.donation-card:hover {
+    transform: translateY(-10px);
+}
+
+.donation-card .card {
+    border-radius: 15px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.donation-card .card-header {
+    border-bottom: none;
+    padding: 1.5rem;
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.donation-card .card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajuste para igualar altura dos cards */
+.row.equal-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row.equal-height > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.row.equal-height .card {
+    height: 100%;
+}
+
+/* Estilo para os botões */
+.btn {
+    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
+    border: none;
+}
+
+.btn-success {
+    background: linear-gradient(45deg, var(--green-color), var(--info-color));
+    border: none;
+}
+
+.btn-info {
+    background: linear-gradient(45deg, var(--info-color), var(--primary-color));
+    border: none;
+    color: white;
+}
+
+/* Estilo para o banner da página */
+.page-banner {
+    background: linear-gradient(135deg, rgba(78, 154, 241, 0.1), rgba(156, 106, 222, 0.1));
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, var(--accent-color), var(--primary-color)) 1;
+}
+
+.page-banner:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/pattern.svg');
+    background-size: 150px;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+.page-banner .page-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-banner .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.page-banner .breadcrumb-item a {
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-banner .breadcrumb-item a:hover {
+    color: var(--purple-color);
+    text-decoration: none;
+}
+
+.page-banner .breadcrumb-item.active {
+    color: var(--dark-color);
+}
+
+.page-banner .breadcrumb-item + .breadcrumb-item::before {
+    content: '•';
+    color: var(--accent-color);
+}
+
+
+.bg-primary {
+    background-color: rgba(48, 51, 54, 0.8) !important;
+}
+
+.bg-info {
+    --bs-bg-opacity: 1;
+    background-color: rgb(35, 41, 41) !important;
+}
+
+
+
+/* Doação Financeira */
+.card-header:has(.fa-hand-holding-usd) h3 {
+    color: var(--accent-color) !important; /* Amarelo vibrante */
+}
+
+/* Doação de Materiais */
+.card-header:has(.fa-box-open) h3 {
+    color: rgb(44, 42, 42) /* Rosa vibrante */
+}
+
+/* Doação de Tempo */
+.card-header:has(.fa-clock) h3 {
+    color: rgb(248, 246, 246) !important; /* Verde vibrante */
+}
