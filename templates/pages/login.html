@@ -3,19 +3,19 @@
 {% block title %}Login | CABI{% endblock %}
 
 {% block content %}
-<section class="py-5 bg-light">
+<section class="padding-y-5 bg-light">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow-sm">
-                    <div class="card-body p-5">
-                        <h2 class="text-center mb-4">Entrar</h2>
+        <div class="flex-row justify-center">
+            <div class="col-6">
+                <div class="cartao shadow-sm">
+                    <div class="cartao-corpo padding-5">
+                        <h2 class="text-center margin-bottom-4">Entrar</h2>
                         
                         <form method="post" class="needs-validation" novalidate>
                             {% csrf_token %}
                             
                             {% if form.errors %}
-                            <div class="alert alert-danger">
+                            <div class="alerta alerta-perigo">
                                 <p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
                             </div>
                             {% endif %}
@@ -24,22 +24,22 @@
                                 <input type="hidden" name="next" value="{{ next }}">
                             {% endif %}
                             
-                            <div class="mb-3">
+                            <div class="margin-bottom-3">
                                 <label for="id_username" class="form-label">Nome de usuário</label>
-                                <input type="text" name="username" id="id_username" class="form-control" required>
+                                <input type="text" name="username" id="id_username" class="campo-formulario" required>
                             </div>
                             
-                            <div class="mb-3">
+                            <div class="margin-bottom-3">
                                 <label for="id_password" class="form-label">Senha</label>
-                                <input type="password" name="password" id="id_password" class="form-control" required>
+                                <input type="password" name="password" id="id_password" class="campo-formulario" required>
                             </div>
                             
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+                            <div class="grid gap-2">
+                                <button type="submit" class="botao botao-primario botao-grande">Entrar</button>
                             </div>
                         </form>
                         
-                        <div class="mt-4 text-center">
+                        <div class="margin-top-4 text-center">
                             <p>Não tem uma conta? Entre em contato com a administração da ONG.</p>
                         </div>
                     </div>

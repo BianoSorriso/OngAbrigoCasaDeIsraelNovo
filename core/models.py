@@ -29,6 +29,24 @@ class Projeto(models.Model):
     
     def __str__(self):
         return self.titulo
+        
+    def save(self, *args, **kwargs):
+        # Salva primeiro para ter o arquivo disponível para processamento
+        super().save(*args, **kwargs)
+        
+        # Se houver uma imagem, redimensiona para o tamanho padrão
+        if self.imagem:
+            from PIL import Image
+            import os
+            from django.conf import settings
+            
+            img_path = os.path.join(settings.MEDIA_ROOT, self.imagem.name)
+            if os.path.exists(img_path):
+                img = Image.open(img_path)
+                # Definindo o tamanho padrão para as imagens de projetos
+                output_size = (800, 600)
+                img.thumbnail(output_size, Image.LANCZOS)
+                img.save(img_path)
 
 class Voluntario(models.Model):
     # Mantendo o campo usuario para compatibilidade com registros existentes
@@ -74,7 +92,7 @@ class Doacao(models.Model):
     )
     
     nome_doador = models.CharField(max_length=100)
-    email_doador = models.EmailField(blank=True, null=True)
+    email_doador = models.EmailField(blank=False)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     descricao = models.TextField(blank=True, null=True)
     valor = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)

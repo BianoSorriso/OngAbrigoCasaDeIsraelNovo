@@ -4,15 +4,15 @@
 
 {% block content %}
 <!-- Banner da página -->
-<section class="page-banner bg-light py-5">
+<section class="page-banner bg-light padding-y-md">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
+        <div class="flex-row">
+            <div class="col-12 text-center">
                 <h1 class="page-title">Nossos Projetos</h1>
                 <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Início</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Projetos</li>
+                    <ol class="nav-path justify-center">
+                        <li class="nav-path-item"><a href="{% url 'home' %}">Início</a></li>
+                        <li class="nav-path-item active" aria-current="page">Projetos</li>
                     </ol>
                 </nav>
             </div>
@@ -21,82 +21,99 @@
 </section>
 
 <!-- Áreas de Atuação -->
-<section class="py-5">
+<section class="padding-y-5">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-12 text-center">
+        <div class="flex-row margin-bottom-5">
+            <div class="col-12 text-center">
                 <h2 class="titulo-secao">Áreas de Atuação</h2>
                 <p class="subtitulo-secao">Conheça os principais focos do nosso trabalho</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="area-card text-center p-4 h-100">
-                    <div class="icon-circle mb-3">
+
+
+
+    <div class="flex-row justify-center">
+            <div class="col-4 margin-bottom-4">
+                <div class="area-card text-center padding-4 h-100">
+                    <div class="icon-circle margin-bottom-3">
                         <i class="fas fa-graduation-cap fa-2x text-primary"></i>
                     </div>
                     <h4>Educação</h4>
                     <p>Projetos de reforço escolar, alfabetização de adultos e cursos profissionalizantes.</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="area-card text-center p-4 h-100">
-                    <div class="icon-circle mb-3">
+            <div class="col-4 margin-bottom-4">
+                <div class="area-card text-center padding-4 h-100">
+                    <div class="icon-circle margin-bottom-3">
                         <i class="fas fa-heartbeat fa-2x text-primary"></i>
                     </div>
                     <h4>Saúde</h4>
                     <p>Campanhas de prevenção, atendimento básico e orientação sobre cuidados com a saúde.</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
-                <div class="area-card text-center p-4 h-100">
-                    <div class="icon-circle mb-3">
+            <div class="col-4 margin-bottom-4">
+                <div class="area-card text-center padding-4 h-100">
+                    <div class="icon-circle margin-bottom-3">
                         <i class="fas fa-paint-brush fa-2x text-primary"></i>
                     </div>
                     <h4>Cultura</h4>
                     <p>Oficinas de arte, música, dança e outras expressões culturais para todas as idades.</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
+            
+
+
+
+            
+            <!-- <div class="col-md-3 mb-4">
                 <div class="area-card text-center p-4 h-100">
                     <div class="icon-circle mb-3">
                         <i class="fas fa-coins fa-2x text-primary"></i>
                     </div>
+
                     <h4>Geração de Renda</h4>
                     <p>Capacitação profissional e apoio ao empreendedorismo para autonomia financeira.</p>
-                </div>
+                </div> -->
+
+                
             </div>
         </div>
     </div>
 </section>
 
+
+
+
+
 <!-- Projetos -->
-<section class="py-5 bg-light">
+<section class="padding-y-5 bg-light">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-12 text-center">
+        <div class="flex-row margin-bottom-5">
+            <div class="col-12 text-center">
                 <h2 class="titulo-secao">Projetos em Andamento</h2>
                 <p class="subtitulo-secao">Conheça nossas iniciativas atuais</p>
             </div>
         </div>
         
         {% if projetos %}
-        <div class="row">
+        <div class="flex-row justify-center">
             {% for projeto in projetos %}
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 projeto-card">
-                    {% if projeto.imagem %}
-                    <img src="{{ projeto.imagem.url }}" class="card-img-top" alt="{{ projeto.titulo }}">
-                    {% else %}
-                    <img src="/static/images/projeto-placeholder.svg" class="card-img-top" alt="{{ projeto.titulo }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ projeto.titulo }}</h5>
-                        <p class="card-text">{{ projeto.descricao|truncatewords:30 }}</p>
-                        <p class="text-muted"><i class="far fa-calendar-alt me-2"></i>Início: {{ projeto.data_inicio|date:"d/m/Y" }}</p>
+            <div class="col-4 margin-bottom-4">
+                <div class="cartao h-100 projeto-card">
+                    <div class="cartao-img-container">
+                        {% if projeto.imagem %}
+                        <img src="{{ projeto.imagem.url }}" class="cartao-img-topo" alt="{{ projeto.titulo }}">
+                        {% else %}
+                        <img src="/static/images/projeto-placeholder.svg" class="cartao-img-topo" alt="{{ projeto.titulo }}">
+                        {% endif %}
                     </div>
-                    <div class="card-footer bg-transparent border-0">
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#projetoModal{{ projeto.id }}">
+                    <div class="cartao-corpo">
+                        <h5 class="cartao-titulo">{{ projeto.titulo }}</h5>
+                        <p class="cartao-texto">{{ projeto.descricao|truncatewords:30 }}</p>
+                        <p class="text-secondary"><i class="far fa-calendar-alt margin-right-sm"></i>Início: {{ projeto.data_inicio|date:"d/m/Y" }}</p>
+                    </div>
+                    <div class="cartao-rodape border-0">
+                        <button type="button" class="botao botao-outline" data-modal="#projetoModal{{ projeto.id }}">
                             Saiba mais
                         </button>
                     </div>
@@ -104,25 +121,25 @@
             </div>
             
             <!-- Modal para detalhes do projeto -->
-            <div class="modal fade" id="projetoModal{{ projeto.id }}" tabindex="-1" aria-labelledby="projetoModalLabel{{ projeto.id }}" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+            <div class="modal" id="projetoModal{{ projeto.id }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="projetoModalLabel{{ projeto.id }}">{{ projeto.titulo }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title">{{ projeto.titulo }}</h5>
+                            <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">&times;</button>
                         </div>
                         <div class="modal-body">
                             {% if projeto.imagem %}
-                            <img src="{{ projeto.imagem }}" class="img-fluid rounded mb-4" alt="{{ projeto.titulo }}">
+                            <img src="{{ projeto.imagem }}" class="img-fluid rounded margin-bottom-md" alt="{{ projeto.titulo }}">
                             {% else %}
-                            <img src="/static/images/projeto-placeholder.svg" class="img-fluid rounded mb-4" alt="{{ projeto.titulo }}">
+                            <img src="/static/images/projeto-placeholder.svg" class="img-fluid rounded margin-bottom-md" alt="{{ projeto.titulo }}">
                             {% endif %}
                             <p><strong>Data de início:</strong> {{ projeto.data_inicio|date:"d/m/Y" }}</p>
                             <p>{{ projeto.descricao }}</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <a href="{% url 'doacoes' %}" class="btn btn-primary">Apoiar este projeto</a>
+                            <button type="button" class="botao botao-secundario" data-dismiss="modal">Fechar</button>
+                            <a href="{% url 'doacoes' %}" class="botao botao-primario">Apoiar este projeto</a>
                         </div>
                     </div>
                 </div>
@@ -130,10 +147,10 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="row">
+        <div class="flex-row">
             <div class="col-12 text-center">
-                <div class="alert alert-info">
-                    <p class="mb-0">Não há projetos cadastrados no momento. Em breve teremos novidades!</p>
+                <div class="alerta alerta-info">
+                    <p class="margin-bottom-0">Não há projetos cadastrados no momento. Em breve teremos novidades!</p>
                 </div>
             </div>
         </div>
@@ -142,25 +159,32 @@
 </section>
 
 <!-- Resultados -->
-<section class="py-5">
+<section class="padding-y-5">
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-12 text-center">
+        <div class="flex-row margin-bottom-5">
+            <div class="col-12 text-center">
                 <h2 class="titulo-secao">Resultados Alcançados</h2>
                 <p class="subtitulo-secao">O impacto do nosso trabalho em números</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 mb-4 text-center">
-                <div class="cartao-resultado p-4 h-100">
-                    <div class="icone-resultado mb-3">
+
+
+
+        <div class="flex-row justify-center">
+
+
+            <div class="col-4 margin-bottom-4 text-center">
+                <div class="cartao-resultado padding-4 h-100">
+                    <div class="icone-resultado margin-bottom-3">
                         <i class="fas fa-user-graduate fa-3x text-primary"></i>
                     </div>
                     <h3 class="numero-resultado">500+</h3>
                     <p>Crianças e adolescentes com acesso à educação complementar</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-4 text-center">
+            
+            
+           <!-- <div class="col-md-3 mb-4 text-center">
                 <div class="cartao-resultado p-4 h-100">
                     <div class="icone-resultado mb-3">
                         <i class="fas fa-briefcase fa-3x text-primary"></i>
@@ -168,19 +192,21 @@
                     <h3 class="numero-resultado">300+</h3>
                     <p>Pessoas capacitadas e inseridas no mercado de trabalho</p>
                 </div>
-            </div>
-            <div class="col-md-3 mb-4 text-center">
-                <div class="cartao-resultado p-4 h-100">
-                    <div class="icone-resultado mb-3">
+            </div> -->
+
+
+            <div class="col-4 margin-bottom-4 text-center">
+                <div class="cartao-resultado padding-4 h-100">
+                    <div class="icone-resultado margin-bottom-3">
                         <i class="fas fa-home fa-3x text-primary"></i>
                     </div>
                     <h3 class="numero-resultado">50+</h3>
                     <p>Famílias com melhorias em suas moradias</p>
                 </div>
             </div>
-            <div class="col-md-3 mb-4 text-center">
-                <div class="cartao-resultado p-4 h-100">
-                    <div class="icone-resultado mb-3">
+            <div class="col-4 margin-bottom-4 text-center">
+                <div class="cartao-resultado padding-4 h-100">
+                    <div class="icone-resultado margin-bottom-3">
                         <i class="fas fa-utensils fa-3x text-primary"></i>
                     </div>
                     <h3 class="numero-resultado">10.000+</h3>
@@ -192,19 +218,19 @@
 </section>
 
 <!-- Como Participar -->
-<section class="py-5 bg-light">
+<section class="padding-y-5 bg-light">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="/static/images/como-participar.svg" alt="Como Participar" class="img-fluid rounded shadow">
+        <div class="flex-row align-center">
+            <div class="col-6 margin-bottom-4 margin-bottom-lg-0">
+                <img src="/static/images/TRANSPARENCIA1.jpg" alt="Como Participar" class="img-fluid rounded sombra">
             </div>
-            <div class="col-lg-6">
-                <h2 class="section-title">Como Participar</h2>
-                <p class="lead">Existem várias maneiras de contribuir com nossos projetos:</p>
-                <ul class="list-unstyled participation-list">
-                    <li class="mb-3">
-                        <div class="d-flex">
-                            <div class="icon-box me-3">
+            <div class="col-6">
+                <h2 class="titulo-secao">Como Participar</h2>
+                <p class="texto-destaque">Existem várias maneiras de contribuir com nossos projetos:</p>
+                <ul class="lista-sem-estilo participation-list">
+                    <li class="margin-bottom-3">
+                        <div class="flex">
+                            <div class="icon-box margin-right-3">
                                 <i class="fas fa-hand-holding-heart text-primary"></i>
                             </div>
                             <div>
@@ -213,9 +239,9 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mb-3">
-                        <div class="d-flex">
-                            <div class="icon-box me-3">
+                    <li class="margin-bottom-3">
+                        <div class="flex">
+                            <div class="icon-box margin-right-3">
                                 <i class="fas fa-hands-helping text-primary"></i>
                             </div>
                             <div>
@@ -225,8 +251,8 @@
                         </div>
                     </li>
                     <li>
-                        <div class="d-flex">
-                            <div class="icon-box me-3">
+                        <div class="flex">
+                            <div class="icon-box margin-right-3">
                                 <i class="fas fa-building text-primary"></i>
                             </div>
                             <div>
@@ -236,9 +262,9 @@
                         </div>
                     </li>
                 </ul>
-                <div class="mt-4">
-                    <a href="{% url 'doacoes' %}" class="btn btn-primary me-2">Fazer Doação</a>
-                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary">Ser Voluntário</a>
+                <div class="margin-top-4">
+                    <a href="{% url 'doacoes' %}" class="botao botao-primario margin-right-2">Fazer Doação</a>
+                    <a href="{% url 'area_voluntarios' %}" class="botao botao-outline-primario">Ser Voluntário</a>
                 </div>
             </div>
         </div>

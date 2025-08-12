@@ -1,8 +1,11 @@
-/* Estilos Gerais */
+/* Variáveis de cores e estilos específicos */
 :root {
     --primary-color: #4e9af1; /* Azul mais claro e vibrante */
+    --primary-rgb: 78, 154, 241; /* Valores RGB do azul primário */
     --secondary-color: #ff6b6b; /* Vermelho mais vibrante */
+    --secondary-rgb: 255, 107, 107; /* Valores RGB do vermelho secundário */
     --accent-color: #ffcf4a; /* Amarelo mais vibrante */
+    --accent-rgb: 255, 207, 74; /* Valores RGB do amarelo de destaque */
     --dark-color: #5a5c69;
     --light-color: #f8f4ff; /* Fundo lilás bem claro */
     --danger-color: #ff6b6b; /* Vermelho mais suave */
@@ -13,41 +16,8 @@
     --pink-color: #ff70a6; /* Rosa vibrante */
 }
 
-/* Estilo para mapa responsivo */
-.map-responsive {
-    overflow: hidden;
-    padding-bottom: 56.25%; /* Proporção 16:9 */
-    position: relative;
-    height: 0;
-}
-
-.map-responsive iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-
-/* Estilo para o botão de logout */
-.dropdown-item button.dropdown-item {
-    background: none;
-    border: none;
-    text-align: left;
-    width: 100%;
-    padding: 0.25rem 1rem;
-    color: #212529;
-}
-
-.dropdown-item button.dropdown-item:hover {
-    background-color: #f8f9fa;
-    color: #16181b;
-}
-
+/* Estilos específicos que não foram modularizados */
 body {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    line-height: 1.6;
     background-color: var(--light-color);
     background-image: var(--background-pattern), 
                       radial-gradient(circle at 10% 20%, rgba(255, 207, 74, 0.05) 0%, rgba(78, 154, 241, 0.05) 90%);
@@ -57,68 +27,7 @@ body {
     background-blend-mode: overlay;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
-}
-
-h1 {
-    font-size: 2.5rem;
-    background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-h2 {
-    font-size: 2.2rem;
-    color: var(--purple-color);
-}
-
-h3 {
-    font-size: 1.8rem;
-    color: var(--secondary-color);
-}
-
-.titulo-secao {
-    position: relative;
-    margin-bottom: 1.5rem;
-    color: var(--purple-color);
-    font-size: 2.2rem;
-    text-align: center;
-}
-
-.titulo-secao:after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-    margin: 15px auto 0;
-    border-radius: 2px;
-}
-
-.subtitulo-secao {
-    font-size: 1.2rem;
-    color: var(--dark-color);
-    margin-bottom: 2rem;
-    text-align: center;
-    font-weight: 500;
-}
-
-/* Navbar */
-.navbar {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    padding: 0.8rem 0;
-    background-color: white;
-    border-bottom: 5px solid;
-    border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1;
-    animation: rainbow-border 8s linear infinite;
-}
-
+/* Animação do border rainbow */
 @keyframes rainbow-border {
     0% { border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1; }
     25% { border-image: linear-gradient(to right, var(--primary-color), var(--purple-color), var(--pink-color), var(--accent-color)) 1; }
@@ -127,79 +36,16 @@ h3 {
     100% { border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1; }
 }
 
-.navbar-brand {
-    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
-    font-size: 2rem;
-    color: var(--primary-color);
-    text-shadow: 1px 1px 0 var(--accent-color);
-    transition: all 0.3s ease;
-}
-
-.navbar-brand:hover {
-    transform: scale(1.05);
-    color: var(--purple-color);
-}
-
-.navbar-nav .nav-link {
-    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-    position: relative;
-}
-
-.navbar-nav .nav-link:hover {
-    color: var(--pink-color);
-    transform: translateY(-2px);
-}
-
-.navbar-nav .nav-link.active {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.navbar-nav .nav-link.active:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 3px;
-    background-color: var(--accent-color);
-    border-radius: 10px;
-}
-
-.navbar .btn-primary {
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    background: linear-gradient(45deg, var(--primary-color), var(--purple-color));
-    border: none;
-    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.navbar .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    background: linear-gradient(45deg, var(--purple-color), var(--primary-color));
-}
-
-/* Footer */
-footer {
-    background: linear-gradient(135deg, var(--primary-color), var(--purple-color));
+/* Estilos do Footer */
+.footer {
+    background-color: var(--primary-color);
     color: #fff;
-    padding: 3rem 0 1rem;
-    border-top: 5px solid;
-    border-image: linear-gradient(to right, var(--accent-color), var(--primary-color), var(--purple-color), var(--pink-color)) 1;
     position: relative;
-    overflow: hidden;
+    padding: 3rem 0;
+    margin-top: 3rem;
 }
 
-footer:before {
+.footer:before {
     content: '';
     position: absolute;
     top: 0;
@@ -212,7 +58,7 @@ footer:before {
     pointer-events: none;
 }
 
-footer h5 {
+.footer h5 {
     color: #fff;
     font-weight: 600;
     margin-bottom: 1.5rem;
@@ -221,22 +67,33 @@ footer h5 {
     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
-footer .nav-link {
-    color: rgba(255, 255, 255, 0.9);
+.footer .row > div:nth-child(2) {
+    padding-left: 2rem;
+}
+
+.footer .row > div:nth-child(3) {
+    padding-left: 4rem;
+}
+
+.footer .text-light {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.footer a.text-light {
+    display: inline-block;
     padding: 0.5rem 0;
     transition: all 0.3s ease;
     font-size: 1.1rem;
     position: relative;
-    display: inline-block;
 }
 
-footer .nav-link:hover {
-    color: #fff;
+.footer a.text-light:hover {
+    color: #fff !important;
     text-decoration: none;
     transform: translateX(5px);
 }
 
-footer .nav-link:before {
+.footer a.text-light:before {
     content: '•';
     position: absolute;
     left: -15px;
@@ -245,9 +102,26 @@ footer .nav-link:before {
     transition: all 0.3s ease;
 }
 
-footer .nav-link:hover:before {
+.footer a.text-light:hover:before {
     opacity: 1;
     left: -10px;
+}
+
+.footer .social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
 
 /* Cards de Doação */
@@ -362,6 +236,9 @@ footer .nav-link:hover:before {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    width: 100%;
+    text-align: center;
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
 }
 
 .page-banner .breadcrumb {
@@ -415,4 +292,22 @@ footer .nav-link:hover:before {
 /* Doação de Tempo */
 .card-header:has(.fa-clock) h3 {
     color: rgb(248, 246, 246) !important; /* Verde vibrante */
+}
+
+
+/* estilizando icones voluntário */
+
+.avatar-img {
+    width: 48px;         /* mesmo tamanho do ícone */
+    height: 48px;
+    object-fit: cover;   /* mantém proporção cortando o excesso */
+    border-radius: 50%;  /* deixa redondo */
+    display: block;
+}
+
+
+/*ajustando imagem transparencia*/
+
+.img-direita img {
+    transform: translateX(80px); /* empurra 20px para a direita */
 }

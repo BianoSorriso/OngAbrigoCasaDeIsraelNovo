@@ -1,15 +1,60 @@
 // Espera o DOM ser carregado completamente
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializa os tooltips do Bootstrap
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
+    // Inicializa tooltips personalizados
+    const tooltipTriggerList = document.querySelectorAll('[data-tooltip]');
+    tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+        tooltipTriggerEl.addEventListener('mouseenter', function() {
+            const tooltipText = this.getAttribute('data-tooltip');
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = tooltipText;
+            document.body.appendChild(tooltip);
+            
+            const rect = this.getBoundingClientRect();
+            tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+            tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+            tooltip.classList.add('show');
+            
+            this.addEventListener('mouseleave', function() {
+                tooltip.remove();
+            }, { once: true });
+        });
     });
-
-    // Inicializa os popovers do Bootstrap
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl);
+    
+    // Inicializa popovers personalizados
+    const popoverTriggerList = document.querySelectorAll('[data-popover]');
+    popoverTriggerList.forEach(function(popoverTriggerEl) {
+        popoverTriggerEl.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove qualquer popover existente
+            const existingPopovers = document.querySelectorAll('.popover');
+            existingPopovers.forEach(p => p.remove());
+            
+            const popoverTitle = this.getAttribute('data-popover-title') || '';
+            const popoverContent = this.getAttribute('data-popover');
+            
+            const popover = document.createElement('div');
+            popover.className = 'popover';
+            popover.innerHTML = `
+                ${popoverTitle ? `<div class="popover-header">${popoverTitle}</div>` : ''}
+                <div class="popover-body">${popoverContent}</div>
+            `;
+            document.body.appendChild(popover);
+            
+            const rect = this.getBoundingClientRect();
+            popover.style.top = rect.bottom + 10 + 'px';
+            popover.style.left = rect.left + (rect.width / 2) - (popover.offsetWidth / 2) + 'px';
+            popover.classList.add('show');
+            
+            // Fechar popover ao clicar fora
+            document.addEventListener('click', function closePopover(event) {
+                if (!popover.contains(event.target) && event.target !== popoverTriggerEl) {
+                    popover.remove();
+                    document.removeEventListener('click', closePopover);
+                }
+            });
+        });
     });
 
     // Adiciona classe 'active' ao link de navegação atual
@@ -82,18 +127,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Validação de formulários
-    const forms = document.querySelectorAll('.needs-validation');
+    // Validação de formulários personalizada
+    const forms = document.querySelectorAll('form');
     if (forms.length > 0) {
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
+                let isValid = true;
+                
+                // Verificar campos obrigatórios
+                const requiredFields = form.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                        
+                        // Mostrar mensagem de erro se não existir
+                        let errorContainer = field.nextElementSibling;
+                        if (!errorContainer || !errorContainer.classList.contains('invalid-feedback')) {
+                            errorContainer = document.createElement('div');
+                            errorContainer.className = 'invalid-feedback';
+                            errorContainer.textContent = 'Este campo é obrigatório.';
+                            field.parentNode.insertBefore(errorContainer, field.nextSibling);
+                        }
+                    } else {
+                        field.classList.remove('is-invalid');
+                        field.classList.add('is-valid');
+                    }
+                });
+                
+                // Verificar campos de email
+                const emailFields = form.querySelectorAll('input[type="email"]');
+                emailFields.forEach(field => {
+                    if (field.value.trim() && !validateEmail(field.value)) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                        
+                        // Mostrar mensagem de erro se não existir
+                        let errorContainer = field.nextElementSibling;
+                        if (!errorContainer || !errorContainer.classList.contains('invalid-feedback')) {
+                            errorContainer = document.createElement('div');
+                            errorContainer.className = 'invalid-feedback';
+                            errorContainer.textContent = 'Por favor, insira um endereço de e-mail válido.';
+                            field.parentNode.insertBefore(errorContainer, field.nextSibling);
+                        }
+                    }
+                });
+                
+                if (!isValid) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
+                
                 form.classList.add('was-validated');
             }, false);
+            
+            // Limpar validação ao digitar
+            const formFields = form.querySelectorAll('input, textarea, select');
+            formFields.forEach(field => {
+                field.addEventListener('input', function() {
+                    if (this.value.trim()) {
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            });
         });
+    }
+    
+    // Função para validar email
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 
     // Contador de caracteres para campos de texto
