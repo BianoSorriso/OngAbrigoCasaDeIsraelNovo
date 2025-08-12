@@ -15,6 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const expanded = this.getAttribute('aria-expanded') === 'true' || false;
             this.setAttribute('aria-expanded', !expanded);
         });
+        
+        // Fechar menu ao clicar em um link
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                // Apenas fecha o menu em telas pequenas
+                if (window.innerWidth <= 1199.98) {
+                    navMenu.classList.remove('show');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
     }
 
     // Gerenciar dropdowns
@@ -45,6 +58,18 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
                 menu.classList.remove('show');
             });
+        }
+    });
+    
+    // Fechar menu ao redimensionar a janela
+    window.addEventListener('resize', function() {
+        const navMenu = document.querySelector('.nav-menu');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (navMenu && menuToggle && navMenu.classList.contains('show')) {
+            navMenu.classList.remove('show');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
         }
     });
 
