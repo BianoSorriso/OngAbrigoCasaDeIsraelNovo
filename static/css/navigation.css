@@ -30,17 +30,17 @@
 
 .navbar-dark .nav-link:hover, 
 .navbar-dark .nav-link:focus {
-    color: white;
-    background-color: var(--accent-color);
+    color: #ffffff;
+    background-color: #ff0000;
     border-radius: 4px;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
 }
 
 .navbar-dark .nav-link.active {
-    color: white;
+    color: #ffffff;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #ff0000;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
 }
 
