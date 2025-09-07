@@ -13,12 +13,26 @@
     <!-- CSS Modular -->
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/layout.css">
-    <link rel="stylesheet" href="/static/css/navigation.css">
+    <link rel="stylesheet" href="/static/css/navigation.css?v=8">
     <link rel="stylesheet" href="/static/css/forms.css">
     <link rel="stylesheet" href="/static/css/components.css">
     <link rel="stylesheet" href="/static/css/refatoracao.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <!-- CSS Responsivo -->
+    <link rel="stylesheet" href="/static/css/responsive.css?v=11">
     {% block extra_css %}{% endblock %}
+    <style>
+        /* Compensar navbar fixa */
+        body {
+            padding-top: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 3.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -28,11 +42,7 @@
                 <img src="/static/images/logo-cabi.svg" alt="Logo CABI" class="logo-img">
                 <span class="text-white bold"></span>
             </a>
-            <button class="menu-toggle" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-list">
                     <li class="nav-item">
@@ -95,50 +105,43 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="row justify-center">
-                <div class="col-md-4 col-12 margin-bottom-4 padding-x-3">
-                    <h5 class="margin-bottom-3">Casa de Amparo Beneficente de Israel</h5>
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h5>Casa de Amparo Beneficente de Israel</h5>
                     <p class="text-light">Transformando vidas através da solidariedade e do amor ao próximo.</p>
-                    <div class="social-icons margin-top-3">
-                        <a href="#" class="light-text margin-right-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="#" class="light-text margin-right-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="light-text margin-right-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="light-text"><i class="fab fa-youtube fa-lg"></i></a>
+                    <div class="social-icons">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4 col-12 margin-bottom-4 padding-x-3">
-                    <h5 class="margin-bottom-3">Links Rápidos</h5>
-                    <ul class="no-list-style">
-                        <li class="margin-bottom-2"><a href="{% url 'home' %}" class="light-text">Início</a></li>
-                        <li class="margin-bottom-2"><a href="{% url 'sobre' %}" class="light-text">Quem Somos</a></li>
-                        <li class="margin-bottom-2"><a href="{% url 'projetos' %}" class="light-text">Projetos</a></li>
-                        <li class="margin-bottom-2"><a href="{% url 'doacoes' %}" class="light-text">Doações</a></li>
-                        <li class="margin-bottom-2"><a href="{% url 'contato' %}" class="light-text">Contato</a></li>
+                <div class="footer-section">
+                    <h5>Links Rápidos</h5>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}" class="footer-link">Início</a></li>
+                        <li><a href="{% url 'sobre' %}" class="footer-link">Quem Somos</a></li>
+                        <li><a href="{% url 'projetos' %}" class="footer-link">Projetos</a></li>
+                        <li><a href="{% url 'doacoes' %}" class="footer-link">Doações</a></li>
+                        <li><a href="{% url 'contato' %}" class="footer-link">Contato</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 col-12 margin-bottom-4 padding-x-3">
-                    <h5 class="margin-bottom-3">Contato</h5>
-                    <ul class="no-list-style">
-                        <li class="margin-bottom-2"><i class="fas fa-map-marker-alt margin-right-2"></i> Estrada da Cachoeira, 466 - Nova Iguaçu, RJ</li>
-                        <li class="margin-bottom-2"><i class="fas fa-phone margin-right-2"></i> (00) 1234-5678</li>
-                        <li class="margin-bottom-2"><i class="fas fa-envelope margin-right-2"></i> contato@abrigocabi.org</li>
+                <div class="footer-section">
+                    <h5>Contato</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Estrada da Cachoeira, 466 - Nova Iguaçu, RJ</span></li>
+                        <li><i class="fas fa-phone"></i> <span>(00) 1234-5678</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>contato@abrigocabi.org</span></li>
                     </ul>
                 </div>
             </div>
-            <hr class="bg-light">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="text-light margin-bottom-0">&copy; {% now "Y" %} CABI. Todos os direitos reservados.</p>
-                </div>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; {% now "Y" %} CABI. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts personalizados -->
-    <script src="/static/js/main.js"></script>
-    <script src="/static/js/navigation.js"></script>
-    <script src="/static/js/modal.js"></script>
-    <script src="/static/js/accordion.js"></script>
+    <!-- Scripts -->
     {% block extra_js %}{% endblock %}
 </body>
 </html>

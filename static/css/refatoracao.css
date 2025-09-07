@@ -197,7 +197,7 @@
 .cartao-cabecalho {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgb(212, 203, 69);
     border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -426,7 +426,7 @@
     height: 1rem;
     overflow: hidden;
     font-size: 0.75rem;
-    background-color: #e9ecef;
+    background-color: #e9efe9;
     border-radius: 0.25rem;
 }
 
@@ -443,6 +443,41 @@
 
 /* Etiquetas */
 .etiqueta {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+
+/* Classes de cores de fundo para barras de progresso */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-success {
+    background-color: var(--green-color) !important;
+}
+
+.bg-info {
+    background-color: var(--info-color) !important;
+}
+
+.bg-warning {
+    background-color: var(--accent-color) !important;
+}
+
+.bg-danger {
+    background-color: var(--danger-color) !important;
+}
+
+/* Classes de badge com cores */
+.badge {
     display: inline-block;
     padding: 0.25em 0.4em;
     font-size: 75%;
@@ -472,8 +507,10 @@
 
 /* Texto Destaque */
 .texto-destaque {
-    font-size: 1.25rem;
-    font-weight: 300;
+    font-size: 1.05rem ;
+   
+    margin-bottom: 0.5rem;
+    padding-left: 20px;
 }
 
 /* Alinhamento de texto */
@@ -633,12 +670,20 @@
 }
 
 /* Flex Utilities */
+.flex {
+    display: flex;
+}
+
 .justify-between {
     justify-content: space-between;
 }
 
 .align-center {
     align-items: center;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
 }
 
 /* Testimonial Cards */
@@ -842,6 +887,10 @@
     text-align: right;
 }
 
+
+.footer-content .footer-section:nth-child(2) {
+    margin-left: 100px; /* ajuste o valor para o quanto quiser afastar */
+}
 
 
 

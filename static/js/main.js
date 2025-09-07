@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adiciona classe 'active' ao link de navegação atual
     
     const currentLocation = location.pathname;
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navLinks.forEach(link => {
+    const mainNavLinks = document.querySelectorAll('.navbar-nav .nav-link');
+mainNavLinks.forEach(link => {
         if (link.getAttribute('href') === currentLocation) {
             link.classList.add('active');
         }

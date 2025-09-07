@@ -1,22 +1,33 @@
 /* Layout CSS */
 
-/* Grid System */
-.row {
+/* ========================================
+   SISTEMA DE GRID RESPONSIVO
+   ======================================== */
+
+/* Container principal */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Sistema de linhas flexível */
+.row, .flex-row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+    margin: 0 -0.75rem;
+    width: 100%;
 }
 
+/* Colunas base */
 .col {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    flex: 1;
+    padding: 0 0.75rem;
+    min-width: 0;
 }
 
-/* Column sizes */
+/* Sistema de colunas responsivo */
 .col-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
 .col-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
 .col-3 { flex: 0 0 25%; max-width: 25%; }
@@ -30,8 +41,50 @@
 .col-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
 .col-12 { flex: 0 0 100%; max-width: 100%; }
 
-/* Medium devices (tablets) */
-@media (min-width: 768px) {
+/* Colunas com padding */
+[class*="col-"] {
+    padding: 0 0.75rem;
+    min-width: 0;
+}
+
+/* ========================================
+   BREAKPOINTS RESPONSIVOS
+   ======================================== */
+
+/* Mobile pequeno - até 480px */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .row, .flex-row {
+        margin: 0 -0.5rem;
+    }
+    
+    [class*="col-"] {
+        padding: 0 0.5rem;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* Mobile grande - 481px até 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+    .col-sm-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* Tablets - 769px até 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 750px;
+    }
+    
     .col-md-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
     .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
     .col-md-3 { flex: 0 0 25%; max-width: 25%; }
@@ -46,8 +99,12 @@
     .col-md-12 { flex: 0 0 100%; max-width: 100%; }
 }
 
-/* Large devices (desktops) */
-@media (min-width: 992px) {
+/* Notebooks/Desktops - 1025px até 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .container {
+        max-width: 1200px;
+    }
+    
     .col-lg-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
     .col-lg-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
     .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
@@ -60,6 +117,26 @@
     .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
     .col-lg-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
     .col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* Telas muito grandes - acima de 1440px */
+@media (min-width: 1441px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .col-xl-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+    .col-xl-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-xl-3 { flex: 0 0 25%; max-width: 25%; }
+    .col-xl-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-xl-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-xl-6 { flex: 0 0 50%; max-width: 50%; }
+    .col-xl-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-xl-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-xl-9 { flex: 0 0 75%; max-width: 75%; }
+    .col-xl-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-xl-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-xl-12 { flex: 0 0 100%; max-width: 100%; }
 }
 
 /* Section layouts */
@@ -321,7 +398,7 @@ section {
 
 /* Utilitários de texto */
 .text-center { text-align: center !important; }
-.text-white { color: #fff !important; }
+.text-white { color: #0c0c0c !important; }
 .text-light { color: rgba(255, 255, 255, 0.9) !important; }
 .text-primary { color: var(--primary-color) !important; }
 .fw-bold { font-weight: 700 !important; }
