@@ -1036,7 +1036,7 @@ body {
     display: none;
 }
 
-@media screen and (max-width: 489px) {
+@media screen and (max-width: 768px) {
     /* LOGO MOBILE FIXA NO TOPO */
     .mobile-logo-header {
         display: flex !important;
