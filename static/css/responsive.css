@@ -152,7 +152,7 @@ p {
    NAVEGAÇÃO RESPONSIVA
    ======================================== */
 
-.main-navbar {
+.navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -277,12 +277,14 @@ p {
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: var(--font-size-lg);
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: var(--font-size-lg) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     /* Controle de zoom - tamanho máximo da marca */
     max-height: 80px !important;
     max-width: 300px !important;
@@ -290,10 +292,13 @@ p {
 }
 
 .logo-img {
-    height: 60px;
-    width: auto;
-    margin-right: var(--spacing-sm);
+    height: 60px !important;
+    width: auto !important;
+    margin-right: var(--spacing-sm) !important;
     transition: height 0.3s ease;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     /* Controle de zoom - tamanho máximo absoluto */
     max-height: 80px !important;
     max-width: 200px !important;
@@ -796,6 +801,15 @@ p {
         max-height: 40px !important;
         max-width: 100px !important;
         height: 40px !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .brand {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .brand {
@@ -865,6 +879,9 @@ p {
     .logo-img {
         max-height: 70px !important;
         max-width: 180px !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     .main-navbar {
@@ -879,6 +896,9 @@ p {
     .brand {
         max-height: 70px !important;
         font-size: 1rem !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
     
     /* Cards em zoom médio */
@@ -2176,11 +2196,11 @@ p {
         padding: 0 0.5rem;
     }
     
-    .main-navbar .nav-list {
+    .navbar .nav-list {
         display: none;
     }
     
-    .main-navbar .menu-toggle {
+    .navbar .menu-toggle {
         display: block;
     }
     
@@ -2213,11 +2233,11 @@ p {
         padding: 0 0.5rem;
     }
     
-    .main-navbar .nav-list {
+    .navbar .nav-list {
         display: none !important;
     }
     
-    .main-navbar .menu-toggle {
+    .navbar .menu-toggle {
         display: block !important;
     }
     
