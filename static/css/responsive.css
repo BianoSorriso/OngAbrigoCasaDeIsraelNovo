@@ -205,7 +205,7 @@ p {
     }
     
     }
-}
+
 
 @media (max-width: 768px) {
     /* Navegação mobile simples */
@@ -264,7 +264,7 @@ p {
         flex: 0 0 50% !important;
         max-width: 50% !important;
     }
-}
+
 
 .main-navbar .container {
     display: flex;

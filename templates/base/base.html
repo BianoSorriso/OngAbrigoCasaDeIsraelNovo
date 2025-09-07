@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome Fallback -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
     <!-- CSS Modular -->
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/layout.css">
@@ -35,11 +38,17 @@
     </style>
 </head>
 <body>
+    <!-- LOGO MOBILE FIXA -->
+    <div class="mobile-logo-header">
+        <img src="{% static 'images/logo-cabi.svg' %}" alt="Logo CABI" class="mobile-logo">
+        <span class="mobile-title">Casa de Amparo Beneficente de Israel</span>
+    </div>
+    
     <!-- Navbar -->
-    <nav class="main-navbar">
+    <nav class="navbar">
         <div class="container">
             <a class="brand" href="{% url 'home' %}">
-                <img src="/static/images/logo-cabi.svg" alt="Logo CABI" class="logo-img">
+                <img src="{% static 'images/logo-cabi.svg' %}" alt="Logo CABI" class="logo-img">
                 <span class="text-white bold"></span>
             </a>
 
@@ -81,6 +90,36 @@
                     </li>
                     {% endif %}
                 </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tab Navigation para Mobile -->
+    <nav class="tab-nav">
+        <div class="tab-nav-container">
+            <div class="tab-nav-item">
+                <a href="{% url 'home' %}" class="tab-nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                    <i class="fas fa-home tab-nav-icon"></i>
+                    <span class="tab-nav-text">Início</span>
+                </a>
+            </div>
+            <div class="tab-nav-item">
+                <a href="{% url 'sobre' %}" class="tab-nav-link {% if request.resolver_match.url_name == 'sobre' %}active{% endif %}">
+                    <i class="fas fa-info-circle tab-nav-icon"></i>
+                    <span class="tab-nav-text">Sobre</span>
+                </a>
+            </div>
+            <div class="tab-nav-item">
+                 <a href="{% url 'projetos' %}" class="tab-nav-link {% if request.resolver_match.url_name == 'projetos' %}active{% endif %}">
+                     <i class="fas fa-project-diagram tab-nav-icon"></i>
+                     <span class="tab-nav-text">Projetos</span>
+                 </a>
+             </div>
+            <div class="tab-nav-item">
+                <a href="{% url 'contato' %}" class="tab-nav-link {% if request.resolver_match.url_name == 'contato' %}active{% endif %}">
+                    <i class="fas fa-envelope tab-nav-icon"></i>
+                    <span class="tab-nav-text">Contato</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -142,6 +181,41 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Menu Mobile Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', function() {
+                    menuToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Fechar menu ao clicar em um link
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+                
+                // Fechar menu ao clicar fora
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                        menuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html>

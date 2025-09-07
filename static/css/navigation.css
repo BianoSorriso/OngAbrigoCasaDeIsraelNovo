@@ -1031,6 +1031,53 @@ body {
     transform: translateY(-3px);
 }
 
+/* LOGO MOBILE SEPARADA - SEMPRE VISÍVEL */
+.mobile-logo-header {
+    display: none;
+}
+
+@media screen and (max-width: 489px) {
+    /* LOGO MOBILE FIXA NO TOPO */
+    .mobile-logo-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        background: linear-gradient(135deg, #6f42c1 0%, #007bff 100%) !important;
+        padding: 15px 20px !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 10000 !important;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    }
+    
+    .mobile-logo {
+        height: 50px !important;
+        width: auto !important;
+        display: block !important;
+    }
+    
+    .mobile-title {
+        color: white !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        text-align: center !important;
+    }
+    
+    /* Esconde a navbar original no mobile */
+    .navbar {
+        display: none !important;
+    }
+    
+    /* Ajusta o body para compensar a logo fixa */
+    body {
+        padding-top: 90px !important;
+    }
+}
+
 /* Animações */
 @keyframes slideInLeft {
     to {
