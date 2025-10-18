@@ -224,11 +224,36 @@
             top: -15px;
         }
         
-        /* Apenas trocar cor do texto para mobile */
+        /* Menu hambúrguer responsivo simples */
         @media (max-width: 991.98px) {
-            .navbar-collapse.show .navbar-nav .nav-link,
-            .navbar-collapse.collapsing .navbar-nav .nav-link {
-                color: #000000 !important; /* Texto preto para mobile */
+            .navbar-collapse {
+                position: absolute !important;
+                top: 100% !important;
+                left: auto !important;
+                right: 0 !important;
+                width: 250px !important;
+                background: var(--primary-color) !important;
+                border-radius: 0 0 8px 8px !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+                z-index: 1000 !important;
+                padding: 10px 0 !important;
+                border: 2px solid rgba(255,255,255,0.2) !important;
+            }
+            
+            .navbar-nav {
+                flex-direction: column !important;
+            }
+            
+            .navbar-nav .nav-link {
+                color: white !important;
+                padding: 12px 20px !important;
+                border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+                font-weight: 500 !important;
+            }
+            
+            .navbar-nav .nav-link:hover {
+                background: rgba(255,255,255,0.2) !important;
+                transform: translateX(5px) !important;
             }
         }
         
@@ -258,6 +283,8 @@
             padding: 12px 0; /* Mais padding */
             margin-top: 5px;
             min-width: 180px;
+            max-height: none !important; /* Remove altura máxima */
+            overflow: visible !important; /* Remove barra de rolagem */
             animation: dropdownFadeIn 0.2s ease-out;
             opacity: 1 !important;
             z-index: 99999 !important;
@@ -491,8 +518,11 @@
             <!-- BOTÃO HAMBÚRGUER À DIREITA -->
             <button class="navbar-toggler ms-auto" 
                     type="button" 
-                    data-toggle="collapse" 
-                    data-target="#navbarNav">
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
