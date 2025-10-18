@@ -228,30 +228,30 @@
             .navbar-collapse.show .navbar-nav .nav-link,
             .navbar-collapse.collapsing .navbar-nav .nav-link {
                 color: #212529 !important; /* Texto escuro para mobile */
-                background: rgba(255, 255, 255, 0.95) !important;
-                margin: 5px 15px;
-                padding: 15px 20px !important;
-                border-radius: 8px;
-                border-left: 4px solid #007bff;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                background: transparent !important;
+                margin: 0;
+                padding: 12px 20px !important;
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
                 font-size: 16px;
-                font-weight: 600;
+                font-weight: 500;
+                position: static;
+                top: 0;
             }
             
             .navbar-collapse.show .navbar-nav .nav-link:hover,
             .navbar-collapse.show .navbar-nav .nav-link.active {
-                background: linear-gradient(135deg, #007bff, #0056b3) !important;
-                color: white !important;
-                transform: translateX(5px);
-                border-left: 4px solid #ffffff;
+                background: rgba(0, 123, 255, 0.1) !important;
+                color: #007bff !important;
             }
             
             .navbar-collapse {
-                background: rgba(248, 249, 250, 0.98) !important;
+                background: rgba(255, 255, 255, 0.98) !important;
                 backdrop-filter: blur(10px);
                 border-radius: 0 0 15px 15px;
                 margin-top: 10px;
-                padding: 20px 0;
+                padding: 15px 0;
                 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             }
         }
