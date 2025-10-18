@@ -1,6 +1,109 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
-{% block title %}CABI - Projetos{% endblock %}
+{% block title %}Projetos - CABI{% endblock %}
+
+{% block extra_js %}
+<script>
+// SCRIPT FUNCIONAL PARA O MODAL DE PROJETOS - BASEADO NO MODAL PIX QUE FUNCIONA!
+console.log('🔥 Carregando modal de projetos - VERSÃO QUE FUNCIONA!');
+
+function configurarModalProjetos() {
+    // Encontrar todos os botões "Saiba mais"
+    const botoesModal = document.querySelectorAll('[data-toggle="modal"]');
+    
+    console.log(`📋 Encontrados ${botoesModal.length} botões de modal`);
+    
+    botoesModal.forEach(function(btnModal) {
+        const targetId = btnModal.getAttribute('data-target');
+        const modalElement = document.querySelector(targetId);
+        
+        if (btnModal && modalElement) {
+            console.log(`✅ Configurando modal: ${targetId}`);
+            
+            // Remover eventos anteriores
+            btnModal.removeAttribute('data-toggle');
+            btnModal.removeAttribute('data-target');
+            
+            // Configurar evento de clique
+            btnModal.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log(`🚀 ABRINDO MODAL: ${targetId}!`);
+                
+                // Forçar modal aparecer
+                modalElement.style.display = 'block';
+                modalElement.style.opacity = '1';
+                modalElement.style.visibility = 'visible';
+                modalElement.style.zIndex = '9999';
+                modalElement.classList.add('show');
+                modalElement.setAttribute('aria-hidden', 'false');
+                
+                // Adicionar backdrop
+                let backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.remove();
+                }
+                
+                backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                backdrop.style.zIndex = '9998';
+                backdrop.style.position = 'fixed';
+                backdrop.style.top = '0';
+                backdrop.style.left = '0';
+                backdrop.style.width = '100%';
+                backdrop.style.height = '100%';
+                backdrop.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                document.body.appendChild(backdrop);
+                
+                // Fechar modal
+                const botoesFechar = modalElement.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
+                botoesFechar.forEach(btnClose => {
+                    btnClose.onclick = function(e) {
+                        e.preventDefault();
+                        console.log('🔒 Fechando modal...');
+                        modalElement.style.display = 'none';
+                        modalElement.classList.remove('show');
+                        modalElement.setAttribute('aria-hidden', 'true');
+                        if (backdrop && backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                        }
+                    };
+                });
+                
+                // Fechar clicando no backdrop
+                if (backdrop) {
+                    backdrop.onclick = function() {
+                        console.log('🔒 Fechando modal via backdrop...');
+                        modalElement.style.display = 'none';
+                        modalElement.classList.remove('show');
+                        modalElement.setAttribute('aria-hidden', 'true');
+                        if (backdrop && backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                        }
+                    };
+                }
+                
+                console.log('✅ MODAL ABERTO COM SUCESSO!');
+                return false;
+            };
+        }
+    });
+    
+    console.log('✅ Todos os modais configurados com sucesso!');
+}
+
+// Executar quando DOM carregar
+document.addEventListener('DOMContentLoaded', configurarModalProjetos);
+
+// Executar também após um tempo para garantir
+setTimeout(configurarModalProjetos, 500);
+setTimeout(configurarModalProjetos, 1000);
+
+console.log('🔥 Script do modal de projetos carregado!');
+</script>
+{% endblock %}
 
 {% block content %}
 <!-- Banner da página -->
@@ -127,7 +230,7 @@
                         </div>
                         <div class="modal-body">
                             {% if projeto.imagem %}
-                            <img src="{{ projeto.imagem }}" class="img-fluid rounded mb-3" alt="{{ projeto.titulo }}">
+                            <img src="{{ projeto.imagem.url }}" class="img-fluid rounded mb-3" alt="{{ projeto.titulo }}">
                             {% else %}
                             <img src="/static/images/projeto-placeholder.svg" class="img-fluid rounded mb-3" alt="{{ projeto.titulo }}">
                             {% endif %}

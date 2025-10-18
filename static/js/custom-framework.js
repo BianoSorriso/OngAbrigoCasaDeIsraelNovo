@@ -3,84 +3,8 @@
  * Sistema de componentes interativos desenvolvido especificamente para este projeto
  */
 
-// ========== MODAL FUNCTIONALITY ==========
-class CustomModal {
-    constructor(element) {
-        this.modal = element;
-        this.backdrop = null;
-        this.isOpen = false;
-        this.init();
-    }
-
-    init() {
-        // Criar backdrop
-        this.createBackdrop();
-        
-        // Event listeners para botões de fechar
-        const closeButtons = this.modal.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
-        closeButtons.forEach(btn => {
-            btn.addEventListener('click', () => this.hide());
-        });
-
-        // Fechar ao clicar no backdrop
-        this.backdrop.addEventListener('click', (e) => {
-            if (e.target === this.backdrop) {
-                this.hide();
-            }
-        });
-
-        // Fechar com ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) {
-                this.hide();
-            }
-        });
-    }
-
-    createBackdrop() {
-        this.backdrop = document.createElement('div');
-        this.backdrop.className = 'modal-backdrop';
-        this.backdrop.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-            display: none;
-        `;
-        document.body.appendChild(this.backdrop);
-    }
-
-    show() {
-        this.isOpen = true;
-        this.backdrop.style.display = 'block';
-        this.modal.style.display = 'block';
-        this.modal.style.zIndex = '1050';
-        document.body.style.overflow = 'hidden';
-        
-        // Animação de entrada
-        setTimeout(() => {
-            this.backdrop.style.opacity = '1';
-            this.modal.style.opacity = '1';
-            this.modal.style.transform = 'translateY(0)';
-        }, 10);
-    }
-
-    hide() {
-        this.isOpen = false;
-        this.backdrop.style.opacity = '0';
-        this.modal.style.opacity = '0';
-        this.modal.style.transform = 'translateY(-50px)';
-        
-        setTimeout(() => {
-            this.backdrop.style.display = 'none';
-            this.modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }, 300);
-    }
-}
+// ========== MODAL FUNCTIONALITY REMOVED ==========
+// Modal functionality moved to modal.js to avoid conflicts
 
 // ========== ACCORDION FUNCTIONALITY ==========
 class CustomAccordion {
@@ -261,28 +185,7 @@ class CustomAlert {
 
 // ========== INITIALIZATION ==========
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar Modais
-    const modals = document.querySelectorAll('.modal');
-    const modalInstances = new Map();
-    
-    modals.forEach(modal => {
-        const instance = new CustomModal(modal);
-        modalInstances.set(modal.id, instance);
-    });
-
-    // Event listeners para botões que abrem modais
-    document.addEventListener('click', function(e) {
-        const trigger = e.target.closest('[data-toggle="modal"], [data-target]');
-        if (trigger) {
-            e.preventDefault();
-            const targetId = trigger.getAttribute('data-target')?.replace('#', '') || 
-                           trigger.getAttribute('href')?.replace('#', '');
-            const modalInstance = modalInstances.get(targetId);
-            if (modalInstance) {
-                modalInstance.show();
-            }
-        }
-    });
+    // Modal functionality removed - handled by modal.js
 
     // Inicializar Accordions
     const accordions = document.querySelectorAll('.accordion');
@@ -311,17 +214,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ========== UTILITY FUNCTIONS ==========
 window.CustomFramework = {
-    showModal: function(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal && modal.customModal) {
-            modal.customModal.show();
-        }
-    },
-    
-    hideModal: function(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal && modal.customModal) {
-            modal.customModal.hide();
-        }
-    }
+    // Modal functions removed - use modal.js instead
 };

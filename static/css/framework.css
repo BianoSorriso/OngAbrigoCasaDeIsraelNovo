@@ -763,7 +763,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1055;
+    z-index: 1060;
     display: none;
     width: 100%;
     height: 100%;
@@ -773,14 +773,28 @@
 }
 
 .modal.show {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-dialog {
     position: relative;
-    width: auto;
-    margin: 0.5rem;
+    width: 90%;
+    max-width: 500px;
+    margin: 0;
     pointer-events: none;
+}
+
+.modal-lg .modal-dialog {
+    max-width: 600px;
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        width: 95%;
+        max-width: none;
+    }
 }
 
 .modal-content {
@@ -794,6 +808,7 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.5rem;
     outline: 0;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
 .modal-backdrop {
@@ -803,8 +818,13 @@
     z-index: 1050;
     width: 100vw;
     height: 100vh;
-    background-color: #000;
-    opacity: 0.5;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0;
 }
 
 .modal-header {
@@ -812,7 +832,7 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid #dee2e6;
     border-top-left-radius: calc(0.5rem - 1px);
     border-top-right-radius: calc(0.5rem - 1px);
@@ -820,13 +840,21 @@
 
 .modal-title {
     margin-bottom: 0;
-    line-height: 1.5;
+    line-height: 1.4;
+    font-size: 1.1rem;
 }
 
 .modal-body {
     position: relative;
     flex: 1 1 auto;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-body img {
+    max-height: 300px;
+    object-fit: cover;
 }
 
 .modal-footer {
@@ -835,10 +863,11 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: flex-end;
-    padding: 0.75rem;
+    padding: 0.5rem 1rem;
     border-top: 1px solid #dee2e6;
     border-bottom-right-radius: calc(0.5rem - 1px);
     border-bottom-left-radius: calc(0.5rem - 1px);
+    gap: 0.5rem;
 }
 
 .btn-close {
