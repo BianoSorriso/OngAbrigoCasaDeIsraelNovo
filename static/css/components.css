@@ -1404,7 +1404,7 @@
     list-style: none;
 }
 
-.carousel-indicators [data-bs-target] {
+.carousel-indicators [data-target] {
     box-sizing: content-box;
     flex: 0 1 auto;
     width: 30px;

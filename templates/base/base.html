@@ -430,8 +430,8 @@
             <!-- BOTÃO HAMBÚRGUER À DIREITA -->
             <button class="navbar-toggler ms-auto" 
                     type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#navbarNav">
+                    data-toggle="collapse" 
+                    data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -458,7 +458,7 @@
                     <li class="nav-item">
                         {% if user.is_authenticated %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-user-circle me-1"></i>{{ user.username }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -514,7 +514,7 @@
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <button type="button" class="btn-close" data-dismiss="alert"></button>
         </div>
         {% endfor %}
     </div>
@@ -562,6 +562,7 @@
     </footer>
 
     <!-- JavaScript Files -->
+    <script src="{% static 'js/custom-framework.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/modal.js' %}"></script>
     <script src="{% static 'js/accordion.js' %}"></script>

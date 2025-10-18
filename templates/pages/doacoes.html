@@ -9,7 +9,7 @@ console.log('🔥 Carregando modal PIX - VERSÃO QUE FUNCIONA!');
 
 function configurarModalPIX() {
     // Encontrar elementos
-    const btnDoacao = document.querySelector('[data-bs-target="#modalQRCodePIX"]');
+    const btnDoacao = document.querySelector('[data-target="#modalQRCodePIX"]');
     const modalElement = document.getElementById('modalQRCodePIX');
     
     console.log('Botão encontrado:', !!btnDoacao);
@@ -19,8 +19,8 @@ function configurarModalPIX() {
         console.log('✅ Elementos encontrados! Configurando...');
         
         // Remover eventos anteriores
-        btnDoacao.removeAttribute('data-bs-toggle');
-        btnDoacao.removeAttribute('data-bs-target');
+        btnDoacao.removeAttribute('data-toggle');
+        btnDoacao.removeAttribute('data-target');
         
         // Configurar evento de clique
         btnDoacao.onclick = function(e) {
@@ -53,7 +53,7 @@ function configurarModalPIX() {
             }
             
             // Fechar modal
-            const botoesFechar = modalElement.querySelectorAll('[data-bs-dismiss="modal"], .btn-close, .btn-secondary');
+            const botoesFechar = modalElement.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
             botoesFechar.forEach(btnClose => {
                 btnClose.onclick = function(e) {
                     e.preventDefault();
@@ -512,7 +512,7 @@ console.log('🔥 Script do modal PIX carregado!');
                 <p class="lead">Cada contribuição, independente do valor ou forma, faz diferença na vida de muitas famílias.</p>
             </div>
             <div class="col-lg-4 col-md-12 text-lg-end text-center">
-                <button type="button" class="btn btn-primary btn-lg me-2 mb-2" data-bs-toggle="modal" data-bs-target="#modalQRCodePIX">
+                <button type="button" class="btn btn-primary btn-lg me-2 mb-2" data-toggle="modal" data-target="#modalQRCodePIX">
                     <i class="fas fa-qrcode me-2"></i>Fazer Doação
                 </button>
                 <a href="{% url 'area_voluntarios' %}" class="btn btn-light btn-lg mb-2">
@@ -531,7 +531,7 @@ console.log('🔥 Script do modal PIX carregado!');
                 <h5 class="modal-title" id="modalQRCodePIXLabel">
                     <i class="fas fa-qrcode me-2"></i>Doação via PIX
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
                 <div class="row align-items-center">
@@ -586,8 +586,8 @@ console.log('🔥 Script do modal PIX carregado!');
                         Obrigado por apoiar a Casa de Amparo Beneficente de Israel!
                     </small>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <a href="#form-doacao" class="btn btn-outline-primary" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <a href="#form-doacao" class="btn btn-outline-primary" data-dismiss="modal">
                             <i class="fas fa-edit me-2"></i>Preencher Formulário
                         </a>
                     </div>
