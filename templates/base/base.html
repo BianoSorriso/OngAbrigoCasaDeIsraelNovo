@@ -148,6 +148,7 @@
             min-height: 85px !important;
             position: relative;
             overflow: visible;
+            z-index: 1050 !important; /* Garantir que navbar fique acima de tudo */
         }
         
         .navbar .container {
@@ -249,17 +250,48 @@
         }
         
         .dropdown-menu {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important; /* Gradiente suave */
-            backdrop-filter: blur(15px);
-            border: 3px solid #007bff !important; /* Borda azul destacada */
-            border-radius: 12px;
-            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.3) !important; /* Sombra azul */
-            padding: 12px 0;
-            margin-top: 8px;
-            min-width: 220px;
-            animation: dropdownFadeIn 0.3s ease-out;
+            background: rgba(255, 255, 255, 0.98) !important; /* Fundo mais opaco */
+            backdrop-filter: blur(10px);
+            border: 2px solid #007bff !important; /* Borda azul mais forte */
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.15) !important; /* Sombra azul */
+            padding: 12px 0; /* Mais padding */
+            margin-top: 5px;
+            min-width: 180px;
+            animation: dropdownFadeIn 0.2s ease-out;
             opacity: 1 !important;
-            z-index: 10000 !important;
+            z-index: 99999 !important;
+            position: absolute !important;
+        }
+        
+        /* Forçar z-index alto para mobile */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                z-index: 99999 !important;
+                position: absolute !important; /* Mudança: de fixed para absolute */
+                top: 100% !important; /* Posicionar logo abaixo do botão */
+                left: auto !important;
+                right: 0 !important; /* Alinhar à direita do container pai */
+                margin-top: 2px !important;
+                min-width: 160px;
+                transform: none !important; /* Remover transformações que podem causar sobreposição */
+            }
+            
+            .navbar-collapse.show {
+                z-index: 99998 !important;
+                position: relative !important;
+            }
+            
+            .navbar-nav .nav-link {
+                z-index: 99997 !important;
+                position: relative !important;
+                pointer-events: auto !important;
+            }
+            
+            /* Garantir que o dropdown não sobreponha o conteúdo da página */
+            .dropdown {
+                position: relative !important;
+            }
         }
         
         @keyframes dropdownFadeIn {
@@ -274,23 +306,39 @@
         }
         
         .dropdown-item {
-            color: #495057 !important; /* Cor cinza escuro bem visível */
-            font-weight: 600; /* Mais negrito */
-            padding: 15px 25px; /* Mais espaçamento */
-            border-radius: 8px;
-            margin: 3px 12px;
+            color: #007bff !important; /* Azul destacado */
+            font-weight: 600 !important; /* Mais negrito */
+            padding: 12px 20px; /* Mais padding */
+            border-radius: 6px;
+            margin: 3px 8px;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            background-color: transparent !important;
-            font-size: 16px; /* Fonte maior */
+            background-color: rgba(0, 123, 255, 0.05) !important; /* Fundo azul claro */
+            font-size: 15px; /* Ligeiramente maior */
+            font-family: inherit;
+            border: 1px solid rgba(0, 123, 255, 0.1); /* Borda sutil */
+            text-decoration: none !important;
+            position: relative;
+        }
+        
+        /* Separador visual entre itens */
+        .dropdown-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 15px;
+            right: 15px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.2), transparent);
         }
         
         .dropdown-item:hover {
-            background: linear-gradient(135deg, #007bff, #0056b3) !important; /* Gradiente azul */
-            color: white !important;
-            transform: translateX(6px) scale(1.02); /* Efeito mais pronunciado */
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4); /* Sombra no hover */
+            background: #007bff !important; /* Fundo azul sólido no hover */
+            color: white !important; /* Texto branco no hover */
+            transform: translateX(3px); /* Leve movimento */
+            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3); /* Sombra azul */
+            border-color: #007bff !important;
         }
         
         .dropdown-item i {
@@ -470,18 +518,20 @@
                     </li>
                     <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user-circle me-1"></i>{{ user.username }}
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" href="/admin/"><i class="fas fa-cog me-2"></i>Portal do Admin</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
-                                </ul>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle me-1"></i>{{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="/admin/"><i class="fas fa-cog me-2"></i>Portal do Admin</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                            </ul>
+                        </li>
                         {% else %}
+                        <li class="nav-item">
                             <a class="nav-link" href="/admin/">Entrar</a>
+                        </li>
                         {% endif %}
                     </li>
                 </ul>
@@ -534,7 +584,7 @@
     {% endif %}
 
     <!-- Conteúdo principal -->
-    <main style="margin-top: 45px;">
+    <main style="margin-top: 100px; padding-top: 20px;"> <!-- Aumentar margem para evitar sobreposição -->
         {% block content %}{% endblock %}
     </main>
 
