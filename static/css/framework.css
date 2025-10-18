@@ -689,7 +689,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000;
+    z-index: 9999 !important; /* Aumentado para ficar acima de outros elementos */
     display: none;
     min-width: 10rem;
     padding: 0.5rem 0;
@@ -698,15 +698,17 @@
     color: #212529;
     text-align: left;
     list-style: none;
-    background-color: #fff;
+    background-color: #fff !important; /* Forçar fundo branco sólido */
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.375rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3); /* Sombra mais forte */
+    opacity: 1 !important; /* Garantir opacidade total */
 }
 
 .dropdown-menu.show {
     display: block;
+    opacity: 1 !important;
 }
 
 .dropdown-item {
@@ -726,7 +728,7 @@
 .dropdown-item:hover,
 .dropdown-item:focus {
     color: #1e2125;
-    background-color: #e9ecef;
+    background-color: #e9ecef !important; /* Forçar cor de hover */
 }
 
 /* Modal */
