@@ -1,0 +1,152 @@
+<svg width="1000" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .actor {
+        fill: #E8F4FD;
+        stroke: #2196F3;
+        stroke-width: 2;
+      }
+      .actor-text {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        fill: #1976D2;
+        font-weight: bold;
+      }
+      .usecase {
+        fill: #FFF3E0;
+        stroke: #FF9800;
+        stroke-width: 2;
+      }
+      .usecase-text {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        fill: #E65100;
+      }
+      .association {
+        stroke: #424242;
+        stroke-width: 1.5;
+      }
+      .include-extend {
+        stroke: #9C27B0;
+        stroke-width: 1.5;
+        stroke-dasharray: 5,5;
+      }
+      .relationship-text {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        text-anchor: middle;
+        fill: #9C27B0;
+        font-style: italic;
+      }
+      .title {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
+        fill: #1976D2;
+      }
+      .legend-text {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        fill: #424242;
+      }
+    </style>
+  </defs>
+  
+  <!-- Título -->
+  <text x="500" y="30" class="title">Diagrama de Casos de Uso - Administrador</text>
+  
+  <!-- Ator: Administrador -->
+  <ellipse cx="100" cy="400" rx="40" ry="80" class="actor"/>
+  <circle cx="100" cy="360" r="15" class="actor"/>
+  <line x1="100" y1="375" x2="100" y2="420" class="actor" stroke-width="3"/>
+  <line x1="80" y1="400" x2="120" y2="400" class="actor" stroke-width="3"/>
+  <line x1="100" y1="420" x2="85" y2="450" class="actor" stroke-width="3"/>
+  <line x1="100" y1="420" x2="115" y2="450" class="actor" stroke-width="3"/>
+  <text x="100" y="500" class="actor-text">Administrador</text>
+  
+  <!-- Casos de Uso do Administrador - Espaçamento Vertical Otimizado -->
+  
+  <!-- Coluna 1 -->
+  <ellipse cx="350" cy="120" rx="90" ry="30" class="usecase"/>
+  <text x="350" y="120" class="usecase-text">Gerenciar</text>
+  <text x="350" y="135" class="usecase-text">Voluntários</text>
+  
+  <ellipse cx="350" cy="220" rx="80" ry="30" class="usecase"/>
+  <text x="350" y="225" class="usecase-text">Aprovar</text>
+  <text x="350" y="240" class="usecase-text">Cadastros</text>
+  
+  <ellipse cx="350" cy="320" rx="80" ry="30" class="usecase"/>
+  <text x="350" y="325" class="usecase-text">Gerenciar</text>
+  <text x="350" y="340" class="usecase-text">Usuários</text>
+  
+  <ellipse cx="350" cy="420" rx="80" ry="30" class="usecase"/>
+  <text x="350" y="425" class="usecase-text">Gerenciar</text>
+  <text x="350" y="440" class="usecase-text">Doações</text>
+  
+  <!-- Coluna 2 -->
+  <ellipse cx="600" cy="120" rx="80" ry="30" class="usecase"/>
+  <text x="600" y="125" class="usecase-text">Gerenciar</text>
+  <text x="600" y="140" class="usecase-text">Atividades</text>
+  
+  <ellipse cx="600" cy="220" rx="80" ry="30" class="usecase"/>
+  <text x="600" y="225" class="usecase-text">Visualizar</text>
+  <text x="600" y="240" class="usecase-text">Relatórios</text>
+  
+  <ellipse cx="600" cy="320" rx="90" ry="30" class="usecase"/>
+  <text x="600" y="320" class="usecase-text">Configurar</text>
+  <text x="600" y="335" class="usecase-text">Sistema</text>
+  
+  <ellipse cx="600" cy="420" rx="80" ry="30" class="usecase"/>
+  <text x="600" y="425" class="usecase-text">Gerar</text>
+  <text x="600" y="440" class="usecase-text">Relatórios</text>
+  
+  <!-- Associações do Administrador - Sem Sobreposição -->
+  
+  <!-- Para Coluna 1 - Ângulos diferentes -->
+  <line x1="140" y1="360" x2="260" y2="120" class="association"/>
+  <line x1="140" y1="380" x2="270" y2="220" class="association"/>
+  <line x1="140" y1="400" x2="270" y2="320" class="association"/>
+  <line x1="140" y1="420" x2="270" y2="420" class="association"/>
+  
+  <!-- Para Coluna 2 - Ângulos diferentes -->
+  <line x1="140" y1="370" x2="520" y2="120" class="association"/>
+  <line x1="140" y1="390" x2="520" y2="220" class="association"/>
+  <line x1="140" y1="410" x2="510" y2="320" class="association"/>
+  <line x1="140" y1="430" x2="520" y2="420" class="association"/>
+  
+  <!-- Relacionamentos Include/Extend -->
+  
+  <!-- Gerenciar Voluntários inclui Aprovar Cadastros -->
+  <line x1="350" y1="150" x2="350" y2="190" class="include-extend"/>
+  <text x="370" y="170" class="relationship-text">«include»</text>
+  
+  <!-- Gerenciar Atividades estende Visualizar Relatórios -->
+  <line x1="600" y1="150" x2="600" y2="190" class="include-extend"/>
+  <text x="620" y="170" class="relationship-text">«extend»</text>
+  
+  <!-- Gerenciar Doações estende Gerar Relatórios -->
+  <line x1="430" y1="420" x2="520" y2="420" class="include-extend"/>
+  <text x="475" y="410" class="relationship-text">«extend»</text>
+  
+  <!-- Configurar Sistema estende Visualizar Relatórios -->
+  <line x1="600" y1="290" x2="600" y2="250" class="include-extend"/>
+  <text x="620" y="270" class="relationship-text">«extend»</text>
+  
+  <!-- Legenda -->
+  <rect x="50" y="600" width="200" height="120" fill="none" stroke="#666" stroke-width="1"/>
+  <text x="60" y="620" class="legend-text" font-weight="bold">Legenda:</text>
+  <ellipse cx="70" cy="635" rx="8" ry="8" class="actor"/>
+  <text x="90" y="640" class="legend-text">Ator</text>
+  <ellipse cx="70" cy="655" rx="15" ry="8" class="usecase"/>
+  <text x="100" y="660" class="legend-text">Caso de Uso</text>
+  <line x1="60" y1="675" x2="90" y2="675" class="association"/>
+  <text x="100" y="680" class="legend-text">Associação</text>
+  <line x1="60" y1="695" x2="90" y2="695" class="include-extend"/>
+  <text x="100" y="700" class="legend-text">Include/Extend</text>
+  
+</svg>

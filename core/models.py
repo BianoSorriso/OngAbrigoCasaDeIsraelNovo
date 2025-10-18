@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class ConfiguracaoSite(models.Model):
-    qr_code_pix = models.ImageField(upload_to='qr_codes/', verbose_name='QR Code PIX')
+    qr_code_pix = models.ImageField(upload_to='qr_codes/', verbose_name='QR Code PIX', blank=True, null=True)
     chave_pix = models.CharField(max_length=255, verbose_name='Chave PIX')
     nome_beneficiario = models.CharField(max_length=255, verbose_name='Nome do Beneficiário')
+    cidade = models.CharField(max_length=100, verbose_name='Cidade', default='São Paulo')
     
     class Meta:
         verbose_name = 'Configuração do Site'
@@ -13,11 +14,57 @@ class ConfiguracaoSite(models.Model):
     def __str__(self):
         return 'Configurações do Site'
     
+    def gerar_qr_code_pix(self):
+        """Gera um novo QR Code PIX baseado na chave PIX configurada"""
+        from .utils import gerar_qr_code_pix
+        
+        if self.chave_pix and self.nome_beneficiario:
+            qr_file = gerar_qr_code_pix(
+                chave_pix=self.chave_pix,
+                nome_beneficiario=self.nome_beneficiario,
+                cidade=self.cidade
+            )
+            
+            # Remove o QR Code antigo se existir
+            if self.qr_code_pix:
+                self.qr_code_pix.delete(save=False)
+            
+            # Salva o novo QR Code
+            self.qr_code_pix.save(
+                f'qr_pix_{self.pk or "novo"}.png',
+                qr_file,
+                save=False
+            )
+            return True
+        return False
+    
     def save(self, *args, **kwargs):
         # Garantir que só exista uma instância
         if ConfiguracaoSite.objects.exists() and not self.pk:
             raise ValueError('Já existe uma configuração do site')
-        return super().save(*args, **kwargs)
+        
+        # Gera QR Code automaticamente se não existir ou se a chave PIX mudou
+        gerar_qr = False
+        if self.pk:
+            try:
+                old_instance = ConfiguracaoSite.objects.get(pk=self.pk)
+                if (old_instance.chave_pix != self.chave_pix or 
+                    old_instance.nome_beneficiario != self.nome_beneficiario or
+                    not self.qr_code_pix):
+                    gerar_qr = True
+            except ConfiguracaoSite.DoesNotExist:
+                gerar_qr = True
+        else:
+            gerar_qr = True
+        
+        # Salva primeiro para ter o ID disponível
+        super().save(*args, **kwargs)
+        
+        # Gera o QR Code se necessário
+        if gerar_qr:
+            self.gerar_qr_code_pix()
+            # Salva novamente com o QR Code
+            super().save(update_fields=['qr_code_pix'])
 
 class Projeto(models.Model):
     titulo = models.CharField(max_length=200)
@@ -92,7 +139,7 @@ class Doacao(models.Model):
     )
     
     nome_doador = models.CharField(max_length=100)
-    email_doador = models.EmailField(blank=False)
+    email_doador = models.EmailField(blank=True, null=True)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     descricao = models.TextField(blank=True, null=True)
     valor = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)

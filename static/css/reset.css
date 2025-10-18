@@ -52,7 +52,22 @@ button {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 1rem;
+}
+
+/* Correção específica para mobile - centralização perfeita */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 0.75rem;
+        margin: 0 auto;
+    }
+    
+    /* Garantir que todos os elementos filhos sejam centralizados */
+    .container > .row,
+    .container > div {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .text-center {

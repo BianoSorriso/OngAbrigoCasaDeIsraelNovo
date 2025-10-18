@@ -45,7 +45,7 @@ body {
 
 /* Botões de ação */
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
-    background: var(--primary-color);
+    background: var(--purple-color);
     border-radius: 4px;
     font-weight: 600;
     text-transform: uppercase;
@@ -56,7 +56,7 @@ body {
 
 /* Botões de ação - hover */
 .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
-    background: var(--purple-color);
+    background: var(--primary-color);
 }
 
 /* Botão de exclusão */
@@ -71,12 +71,12 @@ body {
 
 /* Links */
 a:link, a:visited {
-    color: var(--primary-color);
+    color: blue;
 }
 
 /* Links - hover */
 a:hover {
-    color: var(--purple-color);
+    color: blue;
 }
 
 /* Fontes */

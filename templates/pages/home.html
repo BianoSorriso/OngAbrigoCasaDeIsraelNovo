@@ -4,47 +4,61 @@
 
 {% block content %}
 <!-- Banner Principal -->
-<section class="secao-destaque padding-y-5">
+<section class="py-5 bg-light">
     <div class="container">
-        <div class="flex-row align-center">
-            <div class="col-6">
-                <h1 class="display-4 font-bold margin-bottom-4">Casa de Amparo Beneficente de Israel</h1>
-                <p class="texto-destaque margin-bottom-4">Transformando vidas através da solidariedade e do amor ao próximo.</p>
-                <div class="flex gap-3 margin-top-5">
-                    <a href="{% url 'doacoes' %}" class="botao botao-primario botao-grande">Faça uma Doação</a>
-                    <a href="{% url 'area_voluntarios' %}" class="botao botao-outline-primario botao-grande">Seja Voluntário</a>
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                <h1 class="display-4 fw-bold mb-4 text-primary hero-title">Casa de Amparo Beneficente de Israel</h1>
+                <p class="lead mb-4 text-muted">Transformando vidas através da solidariedade e do amor ao próximo.</p>
+                <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+                    <a href="{% url 'doacoes' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-heart me-2"></i>Faça uma Doação
+                    </a>
+                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-hands-helping me-2"></i>Seja Voluntário
+                    </a>
                 </div>
             </div>
-            <div class="col-6 margin-top-5 margin-top-lg-0">
-                <img src="/static/images/CABI01.jpg" alt="Pessoas se ajudando" class="img-fluid rounded sombra-lg">
+            <div class="col-lg-6 col-md-12">
+                <img src="/static/images/CABI01.jpg" alt="Pessoas se ajudando" class="img-fluid rounded shadow-lg">
+            </div>
+            </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Números e Impacto -->
-<section class="padding-y-5 bg-light">
-    <div class="container">
-        <div class="impact-stats-container text-center">
-            <div class="col-4 margin-bottom-4 margin-bottom-md-0">
-                <div class="cartao-impacto padding-4 h-100">
-                    <i class="fas fa-users fa-3x text-primary margin-bottom-3"></i>
-                    <h2 class="numero-impacto font-bold">50+</h2>
-                    <p class="texto-destaque">Crianças Beneficiadas</p>
+<section class="py-5">
+    <div class="container-fluid">
+
+        <div class="cards-container">
+            <div class="row text-center g-4">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h2 class="display-5 fw-bold text-primary">50+</h2>
+                        <p class="card-text text-muted">Crianças Beneficiadas</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-4 margin-bottom-4 margin-bottom-md-0">
-                <div class="cartao-impacto padding-4 h-100">
-                    <i class="fas fa-hands-helping fa-3x text-primary margin-bottom-3"></i>
-                    <h2 class="numero-impacto font-bold">10+</h2>
-                    <p class="texto-destaque">Projetos Realizados</p>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <i class="fas fa-hands-helping fa-3x text-primary mb-3"></i>
+                        <h2 class="display-5 fw-bold text-primary">8+</h2>
+                        <p class="card-text text-muted">Projetos Realizados</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="cartao-impacto padding-4 h-100">
-                    <i class="fas fa-heart fa-3x text-primary margin-bottom-3"></i>
-                    <h2 class="numero-impacto font-bold">30+</h2>
-                    <p class="texto-destaque">Voluntários Ativos</p>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <i class="fas fa-heart fa-3x text-primary mb-3"></i>
+                        <h2 class="display-5 fw-bold text-primary">15+</h2>
+                        <p class="card-text text-muted">Voluntários Ativos</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,88 +66,131 @@
 </section>
 
 <!-- Projetos em Destaque -->
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container">
-        <div class="flex-row margin-bottom-5">
-            <div class="col-12 text-center">
-                <h2 class="titulo-secao">Projetos em Destaque</h2>
-                <p class="subtitulo-secao">Conheça algumas de nossas iniciativas que estão transformando vidas</p>
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-primary mb-3">Projetos em Destaque</h2>
+                <p class="lead text-muted">Conheça algumas de nossas iniciativas que estão transformando vidas</p>
             </div>
         </div>
-        <div class="featured-projects-container">
+        <div class="cards-container">
+            <div class="row g-4">
             {% if projetos %}
                 {% for projeto in projetos %}
-                <div class="col-4 margin-bottom-4">
-                    <div class="cartao h-100 cartao-projeto">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm">
                         {% if projeto.imagem %}
-                        <img src="{{ projeto.imagem.url }}" class="cartao-img-topo" alt="{{ projeto.titulo }}">
+                        <img src="{{ projeto.imagem.url }}" class="card-img-top" alt="{{ projeto.titulo }}" style="height: 200px; object-fit: cover;">
                         {% else %}
-                        <img src="/static/images/projeto-placeholder.svg" class="cartao-img-topo" alt="{{ projeto.titulo }}">
-                        {% endif %}
-                        <div class="cartao-corpo">
-                            <h5 class="cartao-titulo">{{ projeto.titulo }}</h5>
-                            <p class="cartao-texto">{{ projeto.descricao|truncatewords:20 }}</p>
+                        <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height: 200px;">
+                            <i class="fas fa-image text-muted" style="font-size: 3rem;"></i>
                         </div>
-                        <div class="cartao-rodape bg-transparent border-0">
-                            <a href="{% url 'projetos' %}" class="botao botao-outline-primario">Saiba mais</a>
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-3">{{ projeto.titulo }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ projeto.descricao|truncatewords:20 }}</p>
+                            <div class="mt-auto">
+                                <a href="{% url 'projetos' %}" class="btn btn-outline-primary">
+                                    Saiba mais <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             {% else %}
-                <div class="col-12 text-center">
-                    <p>Não há projetos cadastrados no momento.</p>
+                <div class="col-12 text-center py-5">
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open text-muted mb-3" style="font-size: 4rem;"></i>
+                        <h4 class="text-muted">Não há projetos cadastrados no momento</h4>
+                        <p class="text-muted">Em breve teremos novos projetos para compartilhar com você!</p>
+                    </div>
                 </div>
             {% endif %}
-        </div>
-        <div class="flex-row margin-top-4">
-            <div class="col-12 text-center">
-                <a href="{% url 'projetos' %}" class="botao botao-primario">Ver Todos os Projetos</a>
             </div>
         </div>
+        {% if projetos %}
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="{% url 'projetos' %}" class="btn btn-primary btn-lg px-5">
+                    Ver Todos os Projetos <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
 
 <!-- Como Ajudar -->
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container">
-        <div class="flex-row margin-bottom-5">
-            <div class="col-12 text-center">
-                <h2 class="titulo-secao">Como Você Pode Ajudar</h2>
-                <p class="subtitulo-secao">Existem várias maneiras de fazer a diferença</p>
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-primary mb-3">Como Você Pode Ajudar</h2>
+                <p class="lead text-muted">Existem várias maneiras de fazer a diferença na vida de quem precisa</p>
             </div>
         </div>
-        <div class="help-cards-container">
-            <div class="col-4 margin-bottom-4">
-                <div class="cartao h-100 help-card">
-                    <div class="cartao-corpo text-center">
-                        <i class="fas fa-hand-holding-heart fa-4x text-primary margin-bottom-3"></i>
-                        <h4 class="cartao-titulo">Faça uma Doação</h4>
-                        <p class="cartao-texto">Sua contribuição financeira ajuda a manter nossos projetos e alcançar mais pessoas necessitadas.</p>
-                        <a href="{% url 'doacoes' %}" class="botao botao-outline-primario margin-top-3">Doar Agora</a>
+        <div class="cards-container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-4">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                <i class="fas fa-hand-holding-heart text-primary" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Faça uma Doação</h4>
+                        <p class="card-text text-muted mb-4">Sua contribuição financeira ajuda a manter nossos projetos e alcançar mais pessoas necessitadas em nossa comunidade.</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'doacoes' %}" class="btn btn-primary">
+                                <i class="fas fa-heart me-2"></i>Doar Agora
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4 margin-bottom-4">
-                <div class="cartao h-100 help-card">
-                    <div class="cartao-corpo text-center">
-                        <i class="fas fa-user-friends fa-4x text-primary margin-bottom-3"></i>
-                        <h4 class="cartao-titulo">Seja Voluntário</h4>
-                        <p class="cartao-texto">Doe seu tempo e habilidades. Temos diversas áreas onde você pode contribuir e fazer a diferença.</p>
-                        <a href="{% url 'area_voluntarios' %}" class="botao botao-outline-primario margin-top-3">Cadastre-se</a>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-4">
+                            <div class="bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                <i class="fas fa-user-friends text-success" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Seja Voluntário</h4>
+                        <p class="card-text text-muted mb-4">Doe seu tempo e habilidades. Temos diversas áreas onde você pode contribuir e fazer a diferença na vida das pessoas.</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'area_voluntarios' %}" class="btn btn-success">
+                                <i class="fas fa-hands-helping me-2"></i>Cadastre-se
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4 margin-bottom-4">
-                <div class="cartao h-100 help-card">
-                    <div class="cartao-corpo text-center">
-                        <i class="fas fa-bullhorn fa-4x text-primary margin-bottom-3"></i>
-                        <h4 class="cartao-titulo">Divulgue Nosso Trabalho</h4>
-                        <p class="cartao-texto">Compartilhe nossas ações nas redes sociais e ajude a ampliar nosso alcance e impacto social.</p>
-                        <div class="social-share margin-top-3">
-                            <a href="#" class="botao botao-outline-primario"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="botao botao-outline-primario margin-x-2"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="botao botao-outline-primario"><i class="fab fa-instagram"></i></a>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-4">
+                            <div class="bg-info bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                <i class="fas fa-bullhorn text-info" style="font-size: 2.5rem;"></i>
+                            </div>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Divulgue Nosso Trabalho</h4>
+                        <p class="card-text text-muted mb-4">Compartilhe nossas ações nas redes sociais e ajude a ampliar nosso alcance e impacto social na comunidade.</p>
+                        <div class="mt-auto">
+                            <div class="d-flex gap-2 justify-content-center">
+                                <a href="https://www.facebook.com/casadeampar/" class="btn btn-outline-primary btn-sm rounded-circle" style="width: 40px; height: 40px;">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-info btn-sm rounded-circle" style="width: 40px; height: 40px;">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.instagram.com/accounts/login/?next=%2F_casadeamparo%2F&source=omni_redirect" class="btn btn-outline-danger btn-sm rounded-circle" style="width: 40px; height: 40px;">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,56 +200,59 @@
 </section>
 
 <!-- Depoimentos -->
-<section class="testimonials-section padding-y-5">
+<section class="py-5 bg-light">
     <div class="container">
-        <div class="testimonials-header text-center margin-bottom-5">
-            <h2 class="titulo-secao">Depoimentos</h2>
-            <p class="subtitulo-secao">O que dizem sobre nosso trabalho</p>
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-primary mb-3">Depoimentos</h2>
+                <p class="lead text-muted">O que dizem sobre nosso trabalho</p>
+            </div>
         </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-item">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"O CABI transformou minha vida. Graças ao projeto, posso deixar meus filhos em um lugar seguro, onde aprendem e são bem cuidados, enquanto eu trabalho."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">
+        <div class="cards-container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <p class="card-text text-muted mb-4">"O CABI transformou minha vida. Graças ao projeto, posso deixar meus filhos em um lugar seguro, onde aprendem e são bem cuidados, enquanto eu trabalho."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
                                 <i class="fas fa-user-circle fa-3x text-primary"></i>
                             </div>
-                            <div class="author-info">
-                                <h5 class="author-name">Maria Silva</h5>
-                                <small class="author-role text-muted">Beneficiária</small>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Maria Silva</h6>
+                                <small class="text-muted">Beneficiária</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-item">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"Ser voluntário no CABI é uma experiência incrível. Cada sorriso que ajudamos a proporcionar é uma recompensa que não tem preço."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <p class="card-text text-muted mb-4">"Ser voluntário no CABI é uma experiência incrível. Cada sorriso que ajudamos a proporcionar é uma recompensa que não tem preço."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
                                 <i class="fas fa-user-circle fa-3x text-primary"></i>
                             </div>
-                            <div class="author-info">
-                                <h5 class="author-name">Rone Bastos</h5>
-                                <small class="author-role text-muted">Voluntário</small>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Rone Bastos</h6>
+                                <small class="text-muted">Voluntário</small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-item">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"Nossa empresa tem orgulho de apoiar o CABI. O trabalho sério e transparente que realizam faz toda a diferença na comunidade."</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <p class="card-text text-muted mb-4">"Nossa empresa tem orgulho de apoiar o CABI. O trabalho sério e transparente que realizam faz toda a diferença na comunidade."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
                                 <i class="fas fa-user-circle fa-3x text-primary"></i>
                             </div>
-                            <div class="author-info">
-                                <h5 class="author-name">Ana Oliveira</h5>
-                                <small class="author-role text-muted">Parceira</small>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Ana Oliveira</h6>
+                                <small class="text-muted">Parceira</small>
                             </div>
                         </div>
                     </div>
@@ -203,20 +263,20 @@
 </section>
 
 <!-- Newsletter -->
-<section class="padding-y-5 bg-primary text-white">
+<section class="py-5 bg-primary text-white">
     <div class="container">
-        <div class="flex-row align-center">
-            <div class="col-6 margin-bottom-4 margin-bottom-lg-0">
-                <h2 class="margin-bottom-3">Fique por dentro das nossas ações</h2>
-                <p class="texto-destaque margin-bottom-4"> Receba novidades sobre nossos projetos e eventos. Preencha o e-mail no campo ao lado. </p>
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                <h2 class="display-6 fw-bold mb-3">Fique por dentro das nossas ações</h2>
+                <p class="lead mb-0">Receba novidades sobre nossos projetos e eventos. Preencha o e-mail no campo ao lado.</p>
             </div>
-            <div class="col-6">
-                <form class="flex-row gap-3">
-                    <div class="col-7 margin-bottom-3 margin-bottom-md-0">
-                        <input type="email" class="campo-formulario campo-formulario-lg" placeholder="Seu e-mail" required>
+            <div class="col-lg-6 col-md-12">
+                <form class="row g-3 g-sm-4">
+                    <div class="col-md-8 col-sm-12 mb-3 mb-md-0">
+                        <input type="email" class="form-control form-control-lg" placeholder="Seu e-mail" required>
                     </div>
-                    <div class="col-5 text-right">
-                        <button type="submit" class="botao botao-light botao-grande width-100">Assinar</button>
+                    <div class="col-md-4 col-sm-12">
+                        <button type="submit" class="btn btn-light btn-lg w-100" style="background-color: #ffffff !important; border-color: #ffffff !important; color: #000 !important;">Assinar</button>
                     </div>
                 </form>
             </div>

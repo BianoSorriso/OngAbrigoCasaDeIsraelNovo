@@ -414,9 +414,9 @@ select.form-control {
 }
 
 .btn-light {
-    color: #000;
-    background-color: var(--light-color);
-    border-color: var(--light-color);
+    color: #000 !important;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
 }
 
 .btn-light:hover {

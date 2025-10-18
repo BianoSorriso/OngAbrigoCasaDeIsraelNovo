@@ -381,6 +381,7 @@ img {
 
 .row.equal-height .card {
     height: 100%;
+    flex: 1;
 }
 
 /* Estilo para os botões */
@@ -910,5 +911,67 @@ img {
     
     .page-banner:before {
         display: none;
+    }
+}
+
+/* ========================================
+   ESTILOS ESPECÍFICOS PARA IMAGEM VOLUNTÁRIO
+   ======================================== */
+
+.voluntario-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5/4; /* Mantém a proporção 500x400 (5:4) */
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço mantendo a proporção */
+    object-position: center; /* Centraliza a imagem */
+}
+
+/* Responsividade para a imagem do voluntário */
+@media (max-width: 768px) {
+    .voluntario-img {
+        max-height: 300px; /* Limita a altura em dispositivos móveis */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .voluntario-img {
+        max-height: 350px; /* Altura intermediária para tablets */
+    }
+}
+
+@media (min-width: 1025px) {
+    .voluntario-img {
+        max-height: 400px; /* Altura máxima para desktop, igual ao SVG original */
+    }
+}
+
+/* ========================================
+   ESTILOS ESPECÍFICOS PARA IMAGENS DOS CARDS DE VOLUNTÁRIO
+   ======================================== */
+
+.card-voluntario-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8/5; /* Mantém a proporção 800x500 (8:5) das imagens originais SVG */
+    object-fit: cover; /* Garante que a imagem cubra todo o espaço mantendo a proporção */
+    object-position: center; /* Centraliza a imagem */
+}
+
+/* Responsividade para as imagens dos cards */
+@media (max-width: 768px) {
+    .card-voluntario-img {
+        max-height: 200px; /* Altura menor em dispositivos móveis */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card-voluntario-img {
+        max-height: 250px; /* Altura intermediária para tablets */
+    }
+}
+
+@media (min-width: 1025px) {
+    .card-voluntario-img {
+        max-height: 300px; /* Altura para desktop, proporcional aos cards */
     }
 }

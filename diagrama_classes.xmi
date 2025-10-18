@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:xmi="http://www.omg.org/XMI">
+  <uml:Model xmi:id="model" name="Sistema CABI">
+    
+    <!-- Classe Administrador -->
+    <packagedElement xmi:type="uml:Class" xmi:id="Administrador" name="Administrador">
+      <ownedAttribute xmi:id="admin_nome" name="nome" type="String"/>
+      <ownedAttribute xmi:id="admin_email" name="email" type="String"/>
+      <ownedAttribute xmi:id="admin_senha" name="senha" type="String"/>
+      <ownedOperation xmi:id="admin_op1" name="gerenciarVoluntarios"/>
+      <ownedOperation xmi:id="admin_op2" name="gerenciarDoadores"/>
+      <ownedOperation xmi:id="admin_op3" name="gerarRelatorio"/>
+      <ownedOperation xmi:id="admin_op4" name="configurarSistema"/>
+    </packagedElement>
+    
+    <!-- Classe Voluntário -->
+    <packagedElement xmi:type="uml:Class" xmi:id="Voluntario" name="Voluntario">
+      <ownedAttribute xmi:id="vol_nome" name="nome" type="String"/>
+      <ownedAttribute xmi:id="vol_idade" name="idade" type="Integer"/>
+      <ownedAttribute xmi:id="vol_email" name="email" type="String"/>
+      <ownedAttribute xmi:id="vol_telefone" name="telefone" type="String"/>
+      <ownedAttribute xmi:id="vol_area" name="areaInteresse" type="String"/>
+      <ownedAttribute xmi:id="vol_disponibilidade" name="disponibilidade" type="String"/>
+      <ownedAttribute xmi:id="vol_aprovado" name="aprovado" type="Boolean"/>
+      <ownedOperation xmi:id="vol_op1" name="cadastrarSe"/>
+      <ownedOperation xmi:id="vol_op2" name="atualizarPerfil"/>
+      <ownedOperation xmi:id="vol_op3" name="participarAtividade"/>
+    </packagedElement>
+    
+    <!-- Classe Doador -->
+    <packagedElement xmi:type="uml:Class" xmi:id="Doador" name="Doador">
+      <ownedAttribute xmi:id="doador_nome" name="nome" type="String"/>
+      <ownedAttribute xmi:id="doador_email" name="email" type="String"/>
+      <ownedAttribute xmi:id="doador_telefone" name="telefone" type="String"/>
+      <ownedAttribute xmi:id="doador_endereco" name="endereco" type="String"/>
+      <ownedOperation xmi:id="doador_op1" name="fazerDoacao"/>
+      <ownedOperation xmi:id="doador_op2" name="consultarHistorico"/>
+      <ownedOperation xmi:id="doador_op3" name="atualizarDados"/>
+    </packagedElement>
+    
+    <!-- Classe Doacao -->
+    <packagedElement xmi:type="uml:Class" xmi:id="Doacao" name="Doacao">
+      <ownedAttribute xmi:id="doacao_id" name="id" type="Integer"/>
+      <ownedAttribute xmi:id="doacao_tipo" name="tipo" type="String"/>
+      <ownedAttribute xmi:id="doacao_valor" name="valor" type="Decimal"/>
+      <ownedAttribute xmi:id="doacao_data" name="dataDoacao" type="Date"/>
+      <ownedAttribute xmi:id="doacao_descricao" name="descricao" type="String"/>
+      <ownedOperation xmi:id="doacao_op1" name="registrarDoacao"/>
+      <ownedOperation xmi:id="doacao_op2" name="gerarRecibo"/>
+      <ownedOperation xmi:id="doacao_op3" name="validarDoacao"/>
+    </packagedElement>
+    
+    <!-- Classe Atividade -->
+    <packagedElement xmi:type="uml:Class" xmi:id="Atividade" name="Atividade">
+      <ownedAttribute xmi:id="ativ_id" name="id" type="Integer"/>
+      <ownedAttribute xmi:id="ativ_nome" name="nome" type="String"/>
+      <ownedAttribute xmi:id="ativ_descricao" name="descricao" type="String"/>
+      <ownedAttribute xmi:id="ativ_data" name="dataAtividade" type="Date"/>
+      <ownedAttribute xmi:id="ativ_local" name="local" type="String"/>
+      <ownedAttribute xmi:id="ativ_responsavel" name="responsavel" type="String"/>
+      <ownedOperation xmi:id="ativ_op1" name="criarAtividade"/>
+      <ownedOperation xmi:id="ativ_op2" name="editarAtividade"/>
+      <ownedOperation xmi:id="ativ_op3" name="cancelarAtividade"/>
+      <ownedOperation xmi:id="ativ_op4" name="adicionarVoluntario"/>
+    </packagedElement>
+    
+    <!-- Relacionamentos -->
+    
+    <!-- Administrador gerencia Voluntários (1:N) -->
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_voluntario_assoc" name="gerencia">
+      <memberEnd xmi:idref="admin_voluntario_end1"/>
+      <memberEnd xmi:idref="admin_voluntario_end2"/>
+      <ownedEnd xmi:id="admin_voluntario_end1" name="administrador" type="Administrador">
+        <lowerValue xmi:type="uml:LiteralInteger" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="admin_voluntario_end2" name="voluntarios" type="Voluntario">
+        <lowerValue xmi:type="uml:LiteralInteger" value="0"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    
+    <!-- Administrador gerencia Doadores (1:N) -->
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_doador_assoc" name="gerencia">
+      <memberEnd xmi:idref="admin_doador_end1"/>
+      <memberEnd xmi:idref="admin_doador_end2"/>
+      <ownedEnd xmi:id="admin_doador_end1" name="administrador" type="Administrador">
+        <lowerValue xmi:type="uml:LiteralInteger" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="admin_doador_end2" name="doadores" type="Doador">
+        <lowerValue xmi:type="uml:LiteralInteger" value="0"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    
+    <!-- Doador faz Doações (1:N) -->
+    <packagedElement xmi:type="uml:Association" xmi:id="doador_doacao_assoc" name="faz">
+      <memberEnd xmi:idref="doador_doacao_end1"/>
+      <memberEnd xmi:idref="doador_doacao_end2"/>
+      <ownedEnd xmi:id="doador_doacao_end1" name="doador" type="Doador">
+        <lowerValue xmi:type="uml:LiteralInteger" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="doador_doacao_end2" name="doacoes" type="Doacao">
+        <lowerValue xmi:type="uml:LiteralInteger" value="0"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    
+    <!-- Voluntário participa de Atividades (N:M) -->
+    <packagedElement xmi:type="uml:Association" xmi:id="voluntario_atividade_assoc" name="participa">
+      <memberEnd xmi:idref="voluntario_atividade_end1"/>
+      <memberEnd xmi:idref="voluntario_atividade_end2"/>
+      <ownedEnd xmi:id="voluntario_atividade_end1" name="voluntarios" type="Voluntario">
+        <lowerValue xmi:type="uml:LiteralInteger" value="0"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="voluntario_atividade_end2" name="atividades" type="Atividade">
+        <lowerValue xmi:type="uml:LiteralInteger" value="0"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    
+    <!-- Administrador gerencia Atividades (1:N) -->
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_atividade_assoc" name="gerencia">
+      <memberEnd xmi:idref="admin_atividade_end1"/>
+      <memberEnd xmi:idref="admin_atividade_end2"/>
+      <ownedEnd xmi:id="admin_atividade_end1" name="administrador" type="Administrador">
+        <lowerValue xmi:type="uml:LiteralInteger" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="admin_atividade_end2" name="atividades" type="Atividade">
+        <lowerValue xmi:type="uml:LiteralInteger" value="0"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    
+  </uml:Model>
+</xmi:XMI>
