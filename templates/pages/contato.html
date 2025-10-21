@@ -1,0 +1,210 @@
+{% extends 'base/base.html' %}
+
+{% block title %}CABI - Contato{% endblock %}
+
+{% block content %}
+<!-- Banner da página -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold text-primary mb-3">Contato</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary text-decoration-none">Início</a></li>
+                        <li class="breadcrumb-item active text-muted" aria-current="page">Contato</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Informações de Contato e Formulário -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 mb-4">
+                <h2 class="h3 fw-bold text-primary mb-4">Entre em Contato</h2>
+                <p class="mb-4">Estamos à disposição para esclarecer dúvidas, receber sugestões ou conversar sobre possíveis parcerias. Preencha o formulário ao lado ou utilize um dos canais abaixo:</p>
+                
+                <div class="contact-info">
+                    <div class="d-flex mb-4">
+                        <div class="me-3">
+                            <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Endereço</h5>
+                            <p class="mb-0">Estrada da Cachoeira, 466<br>Nova Iguaçu, Rio de Janeiro, CEP 26063-590</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-3">
+                            <i class="fas fa-phone-alt fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Telefone</h5>
+                            <p class="mb-0">+55 (21) 98251-0664 - Maria José Brandão<br>(21) 96966-5146 - Bárbara José Brandão</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-3">
+                            <i class="fas fa-envelope fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">E-mail</h5>
+                            <p class="mb-0">contato@abrigocabi.org<br>contato@abrigocabi.org</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="me-3">
+                            <i class="fas fa-clock fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Horário de Atendimento</h5>
+                            <p class="mb-0">Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 12h</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h5 class="mb-3">Redes Sociais</h5>
+                    <div class="d-flex gap-3">
+                        <a href="https://www.facebook.com/casadeampar/" class="text-primary" target="_blank"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a href="https://www.instagram.com/accounts/login/?next=%2F_casadeamparo%2F&source=omni_redirect" class="text-primary" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-7 col-md-12">
+                <div class="card border-0 shadow-sm p-4">
+                    <h3 class="h4 fw-bold text-primary mb-4">Envie sua mensagem</h3>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_nome" class="form-label">Nome</label>
+                                <input type="text" name="nome" class="form-control" id="id_nome" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_email" class="form-label">E-mail</label>
+                                <input type="email" name="email" class="form-control" id="id_email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_assunto" class="form-label">Assunto</label>
+                            <input type="text" name="assunto" class="form-control" id="id_assunto" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_mensagem" class="form-label">Mensagem</label>
+                            <textarea name="mensagem" class="form-control" id="id_mensagem" rows="5" required></textarea>
+                        </div>
+                        
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary btn-lg px-4">Enviar Mensagem</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mapa -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="h3 fw-bold text-primary mb-3">Nossa Localização</h2>
+                <p class="lead text-muted">Venha nos visitar e conhecer nosso trabalho</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <!-- Mapa do Google Maps com o endereço específico -->
+                    <div class="ratio ratio-21x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.0701012861687!2d-43.5142646!3d-22.7929825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9967a7a460a8bd%3A0x8b2f4a4fefcb67d0!2sEstr.%20da%20Cachoeira%2C%20466%20-%20Nova%20Igua%C3%A7u%2C%20RJ%2C%2026063-590!5e0!3m2!1spt-BR!2sbr!4v1652345678901!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="h3 fw-bold text-primary mb-3">Perguntas Frequentes</h2>
+                <p class="lead text-muted">Respostas para as dúvidas mais comuns</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button fw-semibold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Como posso me tornar um voluntário?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Para se tornar um voluntário, basta acessar a seção "Voluntários" em nosso site, preencher o formulário de cadastro e aguardar nosso contato. Realizamos um breve processo de seleção para identificar a área mais adequada ao seu perfil e disponibilidade.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Quais tipos de doações vocês aceitam?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Aceitamos diversos tipos de doações, incluindo dinheiro, alimentos não perecíveis, roupas em bom estado, material escolar, brinquedos e móveis. Para doações financeiras, disponibilizamos opções de transferência bancária, PIX e cartão de crédito.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Como minha empresa pode se tornar parceira da ONG?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Empresas podem se tornar parceiras de diversas formas: patrocinando projetos específicos, realizando doações regulares, promovendo voluntariado corporativo ou oferecendo produtos e serviços. Entre em contato conosco para discutirmos a melhor forma de parceria para sua empresa.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item border-0 shadow-sm mb-3">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Como posso receber ajuda da ONG?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Para receber ajuda, você pode entrar em contato conosco por telefone, e-mail ou pessoalmente em nossa sede. Realizamos uma avaliação inicial para entender suas necessidades e verificar como podemos ajudar, direcionando para os projetos e serviços mais adequados.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

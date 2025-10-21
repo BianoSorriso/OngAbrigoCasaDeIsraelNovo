@@ -1,0 +1,129 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10"/>
+  
+  <!-- Sun -->
+  <circle cx="700" cy="100" r="50" fill="#FFC107"/>
+  <g transform="translate(700, 100)">
+    <path d="M0,-70 L0,-60" stroke="#FFC107" stroke-width="4"/>
+    <path d="M0,70 L0,60" stroke="#FFC107" stroke-width="4"/>
+    <path d="M-70,0 L-60,0" stroke="#FFC107" stroke-width="4"/>
+    <path d="M70,0 L60,0" stroke="#FFC107" stroke-width="4"/>
+    <path d="M-49,-49 L-42,-42" stroke="#FFC107" stroke-width="4"/>
+    <path d="M49,49 L42,42" stroke="#FFC107" stroke-width="4"/>
+    <path d="M-49,49 L-42,42" stroke="#FFC107" stroke-width="4"/>
+    <path d="M49,-49 L42,-42" stroke="#FFC107" stroke-width="4"/>
+  </g>
+  
+  <!-- Ground -->
+  <path d="M0,400 Q400,350 800,400 L800,500 L0,500 Z" fill="#28a745"/>
+  
+  <!-- People helping each other -->
+  <!-- Person 1 (helping) -->
+  <g transform="translate(250, 300)">
+    <!-- Body -->
+    <circle cx="0" cy="-80" r="30" fill="#0d6efd"/>
+    <path d="M0,-50 L0,20" stroke="#0d6efd" stroke-width="10"/>
+    <path d="M0,-20 L-40,10" stroke="#0d6efd" stroke-width="8"/>
+    <path d="M0,-20 L40,-10" stroke="#0d6efd" stroke-width="8"/>
+    <path d="M0,20 L-20,80" stroke="#0d6efd" stroke-width="8"/>
+    <path d="M0,20 L20,80" stroke="#0d6efd" stroke-width="8"/>
+    
+    <!-- Face -->
+    <circle cx="-10" cy="-85" r="5" fill="white"/>
+    <circle cx="10" cy="-85" r="5" fill="white"/>
+    <circle cx="-10" cy="-85" r="2" fill="black"/>
+    <circle cx="10" cy="-85" r="2" fill="black"/>
+    <path d="M-10,-70 Q0,-65 10,-70" stroke="black" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Person 2 (being helped up) -->
+  <g transform="translate(350, 330)">
+    <!-- Body -->
+    <circle cx="0" cy="-80" r="30" fill="#dc3545"/>
+    <path d="M0,-50 L0,20" stroke="#dc3545" stroke-width="10"/>
+    <path d="M0,-20 L-40,0" stroke="#dc3545" stroke-width="8"/>
+    <path d="M0,-20 L30,-30" stroke="#dc3545" stroke-width="8"/>
+    <path d="M0,20 L-20,80" stroke="#dc3545" stroke-width="8"/>
+    <path d="M0,20 L20,60" stroke="#dc3545" stroke-width="8"/>
+    
+    <!-- Face -->
+    <circle cx="-10" cy="-85" r="5" fill="white"/>
+    <circle cx="10" cy="-85" r="5" fill="white"/>
+    <circle cx="-10" cy="-85" r="2" fill="black"/>
+    <circle cx="10" cy="-85" r="2" fill="black"/>
+    <path d="M-10,-70 Q0,-65 10,-70" stroke="black" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Helping hands connection -->
+  <path d="M290,290 Q320,270 310,300" stroke="#0d6efd" stroke-width="8" fill="none"/>
+  <path d="M310,300 Q315,310 320,300" stroke="#dc3545" stroke-width="8" fill="none"/>
+  
+  <!-- Person 3 (helping another) -->
+  <g transform="translate(500, 320)">
+    <!-- Body -->
+    <circle cx="0" cy="-80" r="30" fill="#6610f2"/>
+    <path d="M0,-50 L0,20" stroke="#6610f2" stroke-width="10"/>
+    <path d="M0,-20 L-40,0" stroke="#6610f2" stroke-width="8"/>
+    <path d="M0,-20 L40,-10" stroke="#6610f2" stroke-width="8"/>
+    <path d="M0,20 L-20,80" stroke="#6610f2" stroke-width="8"/>
+    <path d="M0,20 L20,80" stroke="#6610f2" stroke-width="8"/>
+    
+    <!-- Face -->
+    <circle cx="-10" cy="-85" r="5" fill="white"/>
+    <circle cx="10" cy="-85" r="5" fill="white"/>
+    <circle cx="-10" cy="-85" r="2" fill="black"/>
+    <circle cx="10" cy="-85" r="2" fill="black"/>
+    <path d="M-10,-70 Q0,-65 10,-70" stroke="black" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Person 4 (child being helped) -->
+  <g transform="translate(580, 330)" scale="0.8">
+    <!-- Body -->
+    <circle cx="0" cy="-80" r="30" fill="#FFC107"/>
+    <path d="M0,-50 L0,20" stroke="#FFC107" stroke-width="10"/>
+    <path d="M0,-20 L-30,0" stroke="#FFC107" stroke-width="8"/>
+    <path d="M0,-20 L30,-10" stroke="#FFC107" stroke-width="8"/>
+    <path d="M0,20 L-20,80" stroke="#FFC107" stroke-width="8"/>
+    <path d="M0,20 L20,60" stroke="#FFC107" stroke-width="8"/>
+    
+    <!-- Face -->
+    <circle cx="-10" cy="-85" r="5" fill="white"/>
+    <circle cx="10" cy="-85" r="5" fill="white"/>
+    <circle cx="-10" cy="-85" r="2" fill="black"/>
+    <circle cx="10" cy="-85" r="2" fill="black"/>
+    <path d="M-10,-70 Q0,-65 10,-70" stroke="black" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Helping hands connection -->
+  <path d="M540,310 Q560,300 550,320" stroke="#6610f2" stroke-width="8" fill="none"/>
+  <path d="M550,320 Q555,330 560,320" stroke="#FFC107" stroke-width="6" fill="none"/>
+  
+  <!-- Community building -->
+  <g transform="translate(150, 200)">
+    <!-- House -->
+    <path d="M0,100 L100,30 L200,100" fill="none" stroke="#343a40" stroke-width="5"/>
+    <rect x="20" y="100" width="160" height="100" fill="#6c757d"/>
+    
+    <!-- Door -->
+    <rect x="80" y="150" width="40" height="50" fill="#343a40"/>
+    <circle cx="110" cy="175" r="3" fill="#FFC107"/>
+    
+    <!-- Windows -->
+    <rect x="40" y="120" width="30" height="30" fill="#f8f9fa"/>
+    <path d="M40,135 L70,135" stroke="#343a40" stroke-width="2"/>
+    <path d="M55,120 L55,150" stroke="#343a40" stroke-width="2"/>
+    
+    <rect x="130" y="120" width="30" height="30" fill="#f8f9fa"/>
+    <path d="M130,135 L160,135" stroke="#343a40" stroke-width="2"/>
+    <path d="M145,120 L145,150" stroke="#343a40" stroke-width="2"/>
+  </g>
+  
+  <!-- Heart symbol -->
+  <g transform="translate(400, 150)">
+    <path d="M0,30 C0,-10 40,-10 40,10 C40,30 20,40 0,60 C-20,40 -40,30 -40,10 C-40,-10 0,-10 0,30 Z" fill="#dc3545"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Comic Sans MS, Comic Sans, cursive" font-size="24" font-weight="bold" fill="#343a40" text-anchor="middle">Pessoas se Ajudando</text>
+</svg>

@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Login | CABI{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <h2 class="text-center mb-4">Entrar</h2>
+                        
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
+                            </div>
+                            {% endif %}
+                            
+                            {% if next %}
+                                <input type="hidden" name="next" value="{{ next }}">
+                            {% endif %}
+                            
+                            <div class="mb-3">
+                                <label for="id_username" class="form-label">Nome de usuário</label>
+                                <input type="text" name="username" id="id_username" class="form-control" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="id_password" class="form-label">Senha</label>
+                                <input type="password" name="password" id="id_password" class="form-control" required>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+                            </div>
+                        </form>
+                        
+                        <div class="mt-4 text-center">
+                            <p>Área destinada  a administração da ONG.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% endblock %}

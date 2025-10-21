@@ -1,0 +1,600 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Casa de Amparo Beneficente de Israel - Doações{% endblock %}
+
+{% block extra_js %}
+<script>
+// SCRIPT FUNCIONAL PARA O MODAL PIX
+console.log('🔥 Carregando modal PIX - VERSÃO QUE FUNCIONA!');
+
+function configurarModalPIX() {
+    // Encontrar elementos
+    const btnDoacao = document.querySelector('[data-target="#modalQRCodePIX"]');
+    const modalElement = document.getElementById('modalQRCodePIX');
+    
+    console.log('Botão encontrado:', !!btnDoacao);
+    console.log('Modal encontrado:', !!modalElement);
+    
+    if (btnDoacao && modalElement) {
+        console.log('✅ Elementos encontrados! Configurando...');
+        
+        // Remover eventos anteriores
+        btnDoacao.removeAttribute('data-toggle');
+        btnDoacao.removeAttribute('data-target');
+        
+        // Configurar evento de clique
+        btnDoacao.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('🚀 ABRINDO MODAL PIX!');
+            
+            // Forçar modal aparecer
+            modalElement.style.display = 'block';
+            modalElement.style.opacity = '1';
+            modalElement.style.visibility = 'visible';
+            modalElement.style.zIndex = '9999';
+            modalElement.classList.add('show');
+            modalElement.setAttribute('aria-hidden', 'false');
+            
+            // Adicionar backdrop
+            let backdrop = document.querySelector('.modal-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                backdrop.style.zIndex = '9998';
+                backdrop.style.position = 'fixed';
+                backdrop.style.top = '0';
+                backdrop.style.left = '0';
+                backdrop.style.width = '100%';
+                backdrop.style.height = '100%';
+                backdrop.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                document.body.appendChild(backdrop);
+            }
+            
+            // Fechar modal
+            const botoesFechar = modalElement.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
+            botoesFechar.forEach(btnClose => {
+                btnClose.onclick = function(e) {
+                    e.preventDefault();
+                    console.log('🔒 Fechando modal...');
+                    modalElement.style.display = 'none';
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    if (backdrop && backdrop.parentNode) {
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
+                };
+            });
+            
+            // Fechar clicando no backdrop
+            if (backdrop) {
+                backdrop.onclick = function() {
+                    console.log('🔒 Fechando modal via backdrop...');
+                    modalElement.style.display = 'none';
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    if (backdrop && backdrop.parentNode) {
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
+                };
+            }
+            
+            console.log('✅ MODAL ABERTO COM SUCESSO!');
+            return false;
+        };
+        
+        console.log('✅ Modal configurado com sucesso!');
+    } else {
+        console.log('❌ Botão ou modal não encontrado');
+    }
+}
+
+// Executar quando DOM carregar
+document.addEventListener('DOMContentLoaded', configurarModalPIX);
+
+// Executar também após um tempo para garantir
+setTimeout(configurarModalPIX, 500);
+setTimeout(configurarModalPIX, 1000);
+
+console.log('🔥 Script do modal PIX carregado!');
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Banner da página -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold text-primary mb-3">Faça uma Doação para o CABI</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary text-decoration-none">Início</a></li>
+                        <li class="breadcrumb-item active text-muted" aria-current="page">Doações</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Impacto -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                <h2 class="h3 fw-bold text-primary mb-4">Seu Apoio Transforma Vidas</h2>
+                <p class="lead text-primary mb-3">Cada contribuição faz a diferença na vida de quem mais precisa.</p>
+                <p class="mb-4">Na Casa de Amparo Beneficente de Israel, trabalhamos incansavelmente para transformar a realidade de crianças e adolescentes através de projetos de educação, cultura, saúde e cidadania. Sua doação, independente do valor, é fundamental para mantermos e expandirmos nossas ações.</p>
+                <div class="mt-4">
+                    <div class="row g-3">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow-sm text-center p-3">
+                                <h3 class="h4 fw-bold text-primary mb-2">+50</h3>
+                                <p class="mb-0 small">Crianças atendidas mensalmente</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow-sm text-center p-3">
+                                <h3 class="h4 fw-bold text-primary mb-2">4</h3>
+                                <p class="mb-0 small">Projetos ativos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card border-0 shadow-sm text-center p-3">
+                                <h3 class="h4 fw-bold text-primary mb-2">95%</h3>
+                                <p class="mb-0 small">Dos recursos aplicados diretamente nos projetos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 text-center">
+                <img src="/static/images/DOACOES.jpg" alt="Doação" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- Formas de Doação -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="h3 fw-bold text-primary mb-3">Como Doar</h2>
+                <p class="lead text-muted">Escolha a forma que melhor se adapta a você</p>
+            </div>
+        </div>
+        
+        <div class="cards-container">
+            <div class="row g-4">
+                <!-- Doação Financeira -->
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h3 class="h5 mb-0"><i class="fas fa-hand-holding-usd me-2"></i> Doação Financeira</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="mb-4">Contribua com qualquer valor para ajudar a manter nossos projetos. Você pode fazer uma doação única ou tornar-se um doador recorrente.</p>
+                        
+                        <div class="mb-4">
+                            <p>Faça sua doação diretamente via PIX para o CABI. Basta escanear o QR Code abaixo com o aplicativo do seu banco.</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="h6 fw-semibold mb-3">Forma de Pagamento</h5>
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="me-2"><i class="fab fa-pix fa-2x text-primary"></i></span>
+                                <span>PIX - Forma de pagamento instantânea</span>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="card border-0 bg-light p-3 mb-3">
+                                    <h6 class="mb-3">Escaneie o QR Code para fazer sua doação</h6>
+                                    <div class="mx-auto mb-3">
+                                        {% if config and config.qr_code_pix %}
+                                            <img src="{{ config.qr_code_pix.url }}" alt="QR Code PIX CABI" class="img-fluid" style="max-width: 250px;">
+                                        {% else %}
+                                            <img src="/static/images/qrcode-placeholder.svg" alt="QR Code PIX" class="img-fluid" style="max-width: 250px;">
+                                            <p class="text-danger">QR Code ainda não configurado. Por favor, contate o administrador.</p>
+                                        {% endif %}
+                                    </div>
+                                    {% if config %}
+                                        <p class="mb-2"><strong>Chave PIX:</strong> {{ config.chave_pix }}</p>
+                                        <p class="mb-0"><strong>Beneficiário:</strong> {{ config.nome_beneficiario }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <div class="text-center">
+                            <p class="mb-3">Sua contribuição é muito importante para nós!</p>
+                            <p class="small">Após realizar a doação, se desejar um recibo, entre em contato conosco.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doação de Materiais -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-success text-white text-center py-3">
+                        <h3 class="mb-0"><i class="fas fa-box-open me-2"></i> Doação de Materiais</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="mb-4">Você pode doar materiais que são essenciais para nossos projetos. Confira abaixo os itens que estamos precisando atualmente:</p>
+                        
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Material escolar</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Livros infantis e juvenis</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Brinquedos educativos</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Equipamentos de informática</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Instrumentos musicais</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Materiais para oficinas de arte</li>
+                        </ul>
+                        
+                        <div class="mb-4">
+                            <h5 class="fw-bold">Pontos de Entrega</h5>
+                            <p class="mb-2"><i class="fas fa-map-marker-alt text-danger me-2"></i> Sede da CABI: Estrada da Cachoeira, 466 - Nova Iguaçu, RJ</p>
+                            <p class="mb-0"><i class="fas fa-clock text-primary me-2"></i> Segunda a sexta, das 9h às 18h</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <a href="{% url 'contato' %}" class="btn btn-success btn-lg w-100">Entrar em Contato</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doação de Tempo -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-header bg-info text-white text-center py-3">
+                        <h3 class="mb-0"><i class="fas fa-clock me-2"></i> Doação de Tempo</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="mb-4">Seu tempo e habilidades são valiosos! Torne-se um voluntário e contribua diretamente com nossas atividades e projetos.</p>
+                        
+                        <div class="mb-4">
+                            <h5 class="fw-bold">Áreas para Voluntariado</h5>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="list-unstyled d-flex flex-wrap">
+                                        <li class="mb-2 me-4"><i class="fas fa-user-graduate text-info me-2"></i><span style="font-size: 0.9rem; white-space: nowrap;">Educação</span></li>
+                                        <li class="mb-2 me-4"><i class="fas fa-laptop-code text-info me-2"></i><span style="font-size: 0.9rem; white-space: nowrap;">Tecnologia</span></li>
+                                        <li class="mb-2 me-4"><i class="fas fa-palette text-info me-2"></i><span style="font-size: 0.9rem; white-space: nowrap;">Cultura</span></li>
+                                        <li class="mb-2 me-4"><i class="fas fa-bullhorn text-info me-2"></i><span style="font-size: 0.9rem; white-space: nowrap;">Comunicação</span></li>
+                                        <li class="mb-2 me-4"><i class="fas fa-heartbeat text-info me-2"></i><span style="font-size: 0.9rem; white-space: nowrap;">Saúde</span></li>
+                                        <li class="mb-2 me-4"><i class="fas fa-hands-helping text-info me-2"></i><span style="font-size: 0.9rem; white-space: nowrap;">Assistência</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="fw-bold">Benefícios</h5>
+                            <p class="mb-0">Além de ajudar quem precisa, você terá a oportunidade de desenvolver novas habilidades, conhecer pessoas e receber certificado de voluntariado.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <a href="{% url 'area_voluntarios' %}" class="btn btn-info btn-lg w-100">Seja Voluntário</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulário de Doação -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h3 class="mb-0">Formulário de Doação</h3>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <p class="lead text-center mb-4">Preencha o formulário abaixo para registrar sua intenção de doação. Nossa equipe entrará em contato para fornecer mais informações.</p>
+                        
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                                                     
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-4">
+                                    <label for="{{ form.nome_doador.id_for_label }}" class="form-label mb-2">Nome completo</label>
+                                    {{ form.nome_doador }}
+                                    {% for error in form.nome_doador.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="{{ form.email_doador.id_for_label }}" class="form-label mb-2">E-mail</label>
+                                    {{ form.email_doador }}
+                                    {% for error in form.email_doador.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="{{ form.tipo.id_for_label }}" class="form-label mb-2">Tipo de doação</label>
+                                    {{ form.tipo }}
+                                    {% for error in form.tipo.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="{{ form.valor.id_for_label }}" class="form-label mb-2">Valor (se aplicável)</label>
+                                    {{ form.valor }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="{{ form.descricao.id_for_label }}" class="form-label mb-2">Mensagem (opcional)</label>
+                                {{ form.descricao }}
+                                <div class="form-text">Descreva detalhes sobre sua doação ou tire dúvidas.</div>
+                            </div>
+                            
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="receberNoticias">
+                                <label class="form-check-label" for="receberNoticias">
+                                    Desejo receber notícias sobre os projetos e ações da ONG
+                                </label>
+                            </div>
+                            
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary btn-lg">Registrar Doação</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prestação de Contas -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-primary mb-3">Transparência</h2>
+                <p class="lead text-muted">Saiba como utilizamos os recursos</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="card-title mb-4"><i class="fas fa-chart-pie text-primary me-2"></i> Distribuição dos Recursos</h4>
+                        <div class="resource-distribution">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span>Projetos Sociais</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-primary">70%</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span>Infraestrutura</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-success">15%</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span>Administrativo</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-info">10%</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>Captação</span>
+                                <div class="progress flex-grow-1 mx-3" style="height: 10px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="badge bg-warning">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h4 class="card-title mb-4"><i class="fas fa-file-alt text-primary me-2"></i> Relatórios e Documentos</h4>
+                        <p class="mb-4">Disponibilizamos todos os nossos relatórios financeiros e de atividades para consulta pública, reforçando nosso compromisso com a transparência.</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Relatório Anual 2025</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Balanço Financeiro 2025</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Estatuto da ONG</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-file-pdf text-danger me-2"></i> Certificações e Registros</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Depoimentos de Doadores -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-primary mb-3">Depoimentos de Doadores</h2>
+                <p class="lead text-muted">O que dizem nossos apoiadores</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <p class="mb-3">"Contribuir mensalmente com a CABI me dá a certeza de que estou fazendo a diferença. Os relatórios de prestação de contas são transparentes e mostram exatamente como minha doação é utilizada."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Rayanne Alves</h5>
+                                <small class="text-muted">Doadora mensal há 3 anos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <p class="mb-3">"Nossa empresa escolheu o CABI como parceira social pelos resultados concretos que apresentam. É gratificante ver o impacto positivo que nosso apoio gera na comunidade."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="fas fa-building fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Mercado Dois Irmãos</h5>
+                                <small class="text-muted">Parceira há 2 anos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <p class="mb-3">"Faço doações de materiais regularmente e sempre sou recebido com muito carinho. É emocionante visitar os projetos e ver como pequenas contribuições transformam as vidas das famílias."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Ivan</h5>
+                                <small class="text-muted">Doador há 1 ano</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-12 mb-4 mb-lg-0">
+                <h2 class="display-6 fw-bold text-primary mb-3">Faça parte desta transformação</h2>
+                <p class="lead">Cada contribuição, independente do valor ou forma, faz diferença na vida de muitas famílias.</p>
+            </div>
+            <div class="col-lg-4 col-md-12 text-lg-end text-center">
+                <button type="button" class="btn btn-primary btn-lg me-2 mb-2" data-toggle="modal" data-target="#modalQRCodePIX">
+                    <i class="fas fa-qrcode me-2"></i>Fazer Doação
+                </button>
+                <a href="{% url 'area_voluntarios' %}" class="btn btn-light btn-lg mb-2">
+                    <i class="fas fa-hands-helping me-2"></i>Seja Voluntário
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal QR Code PIX -->
+<div class="modal fade" id="modalQRCodePIX" tabindex="-1" aria-labelledby="modalQRCodePIXLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="modalQRCodePIXLabel">
+                    <i class="fas fa-qrcode me-2"></i>Doação via PIX
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 text-center mb-4 mb-lg-0">
+                        <div class="qr-code-container p-3 bg-light rounded">
+                            <img src="/media/qr_codes/qr_pix_1.png" alt="QR Code PIX Casa de Amparo Beneficente de Israel" class="img-fluid" style="max-width: 250px; height: auto;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <h4 class="fw-bold text-primary mb-3">Como doar via PIX:</h4>
+                        <ol class="list-group list-group-numbered list-group-flush">
+                            <li class="list-group-item border-0 px-0">
+                                <strong>Abra o app do seu banco</strong><br>
+                                <small class="text-muted">Acesse a área PIX do aplicativo</small>
+                            </li>
+                            <li class="list-group-item border-0 px-0">
+                                <strong>Escaneie o QR Code</strong><br>
+                                <small class="text-muted">Use a câmera para ler o código</small>
+                            </li>
+                            <li class="list-group-item border-0 px-0">
+                                <strong>Confirme os dados</strong><br>
+                                <small class="text-muted">Verifique o beneficiário e valor</small>
+                            </li>
+                            <li class="list-group-item border-0 px-0">
+                                <strong>Finalize a doação</strong><br>
+                                <small class="text-muted">Confirme a transação</small>
+                            </li>
+                        </ol>
+                        
+                        <div class="mt-4 p-3 bg-light rounded">
+                            <h6 class="fw-bold mb-2">
+                                <i class="fas fa-info-circle text-primary me-2"></i>Informações da Doação
+                            </h6>
+                            <p class="mb-1"><strong>Chave PIX:</strong> luanapyetro0213@gmail.com</p>
+                            <p class="mb-1"><strong>Beneficiário:</strong> Casa de Amparo Beneficente de Israel</p>
+                            <p class="mb-0"><strong>Cidade:</strong> Nova Iguaçu - RJ</p>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-shield-alt me-1"></i>
+                                Transação segura e criptografada. Sua doação chegará diretamente à Casa de Amparo Beneficente de Israel.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-light">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <small class="text-muted">
+                        <i class="fas fa-heart text-danger me-1"></i>
+                        Obrigado por apoiar a Casa de Amparo Beneficente de Israel!
+                    </small>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <a href="#form-doacao" class="btn btn-outline-primary" data-dismiss="modal">
+                            <i class="fas fa-edit me-2"></i>Preencher Formulário
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

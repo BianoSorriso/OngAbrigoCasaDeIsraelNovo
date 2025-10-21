@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400" viewBox="0 0 500 400">
+  <style>
+    .primary { fill: #4e73df; }
+    .secondary { fill: #1cc88a; }
+    .accent { fill: #f6c23e; }
+    .dark { fill: #5a5c69; }
+    .light { fill: #f8f9fc; }
+  </style>
+  
+  <!-- Fundo -->
+  <rect width="500" height="400" fill="#f8f9fc" rx="10" ry="10"/>
+  
+  <!-- Mão doando -->
+  <g transform="translate(100, 100)">
+    <!-- Mão -->
+    <path class="light" d="M50,200 C30,180 20,150 20,120 C20,90 30,70 50,50 C70,30 100,20 130,20 C160,20 190,30 210,50 L210,200 Z" stroke="#5a5c69" stroke-width="3" />
+    
+    <!-- Dedos -->
+    <path class="light" d="M210,50 C230,30 260,20 290,20 C320,20 340,30 360,50 C380,70 390,90 390,120 C390,150 380,180 360,200 L210,200 Z" stroke="#5a5c69" stroke-width="3" />
+    
+    <!-- Moeda 1 -->
+    <circle cx="150" cy="100" r="40" class="accent" opacity="0.9" stroke="#5a5c69" stroke-width="2" />
+    <circle cx="150" cy="100" r="30" class="accent" opacity="1" />
+    <text x="150" y="105" font-family="Comic Sans MS, Comic Sans, cursive" font-size="16" font-weight="bold" fill="white" text-anchor="middle">$</text>
+    
+    <!-- Moeda 2 (parcialmente visível) -->
+    <circle cx="190" cy="130" r="40" class="primary" opacity="0.9" stroke="#5a5c69" stroke-width="2" />
+    <circle cx="190" cy="130" r="30" class="primary" opacity="1" />
+    <text x="190" y="135" font-family="Comic Sans MS, Comic Sans, cursive" font-size="16" font-weight="bold" fill="white" text-anchor="middle">$</text>
+    
+    <!-- Moeda 3 (caindo) -->
+    <circle cx="230" cy="80" r="35" class="secondary" opacity="0.9" stroke="#5a5c69" stroke-width="2" />
+    <circle cx="230" cy="80" r="25" class="secondary" opacity="1" />
+    <text x="230" y="85" font-family="Comic Sans MS, Comic Sans, cursive" font-size="14" font-weight="bold" fill="white" text-anchor="middle">$</text>
+  </g>
+  
+  <!-- Coração (símbolo de doação) -->
+  <g transform="translate(320, 80)">
+    <path class="primary" d="M25,0 C11.2,0 0,11.2 0,25 C0,45 25,70 50,90 C75,70 100,45 100,25 C100,11.2 88.8,0 75,0 C65.8,0 57.6,4.8 50,12.2 C42.4,4.8 34.2,0 25,0 Z" opacity="0.7" />
+  </g>
+  
+  <!-- Texto "Doações" -->
+  <g transform="translate(150, 320)">
+    <rect width="200" height="40" rx="20" ry="20" class="secondary" opacity="0.9"/>
+    <text x="100" y="27" font-family="Comic Sans MS, Comic Sans, cursive" font-size="20" font-weight="bold" fill="white" text-anchor="middle">DOAÇÕES</text>
+  </g>
+</svg>

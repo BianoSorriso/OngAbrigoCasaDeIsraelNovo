@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:xmi="http://www.omg.org/XMI">
+  <uml:Model xmi:id="model" name="Sistema CABI - Casos de Uso">
+    
+    <!-- Atores -->
+    <packagedElement xmi:type="uml:Actor" xmi:id="Visitante" name="Visitante"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="Voluntario" name="Voluntário"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="Doador" name="Doador"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="Administrador" name="Administrador"/>
+    
+    <!-- Casos de Uso -->
+    <packagedElement xmi:type="uml:UseCase" xmi:id="VerProjetos" name="Ver Projetos">
+      <ownedComment xmi:type="uml:Comment" body="Visualizar informações sobre os projetos da ONG"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="VerInformacoes" name="Ver Informações da ONG">
+      <ownedComment xmi:type="uml:Comment" body="Acessar informações gerais sobre a organização"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="EnviarContato" name="Enviar Mensagem de Contato">
+      <ownedComment xmi:type="uml:Comment" body="Enviar mensagem através do formulário de contato"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="CadastrarVoluntario" name="Cadastrar-se como Voluntário">
+      <ownedComment xmi:type="uml:Comment" body="Preencher formulário para se tornar voluntário"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="AtualizarPerfil" name="Atualizar Perfil">
+      <ownedComment xmi:type="uml:Comment" body="Atualizar informações pessoais do voluntário"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="ParticiparAtividades" name="Participar de Atividades">
+      <ownedComment xmi:type="uml:Comment" body="Participar das atividades e projetos da ONG"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="FazerDoacao" name="Fazer Doação">
+      <ownedComment xmi:type="uml:Comment" body="Realizar doação monetária ou de materiais"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="GerarQRPix" name="Gerar QR Code PIX">
+      <ownedComment xmi:type="uml:Comment" body="Gerar código PIX para doação"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="ConsultarHistorico" name="Consultar Histórico de Doações">
+      <ownedComment xmi:type="uml:Comment" body="Visualizar histórico de doações realizadas"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="GerenciarVoluntarios" name="Gerenciar Voluntários">
+      <ownedComment xmi:type="uml:Comment" body="Aprovar, rejeitar e gerenciar voluntários"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="GerenciarDoadores" name="Gerenciar Doadores">
+      <ownedComment xmi:type="uml:Comment" body="Gerenciar informações dos doadores"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="GerenciarProjetos" name="Gerenciar Projetos">
+      <ownedComment xmi:type="uml:Comment" body="Criar, editar e gerenciar projetos da ONG"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="GerarRelatorio" name="Gerar Relatórios">
+      <ownedComment xmi:type="uml:Comment" body="Gerar relatórios de atividades e doações"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="ConfigurarSistema" name="Configurar Sistema">
+      <ownedComment xmi:type="uml:Comment" body="Configurar parâmetros do sistema"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:UseCase" xmi:id="GerenciarAtividades" name="Gerenciar Atividades">
+      <ownedComment xmi:type="uml:Comment" body="Criar e gerenciar atividades da ONG"/>
+    </packagedElement>
+    
+    <!-- Associações entre Atores e Casos de Uso -->
+    
+    <!-- Visitante -->
+    <packagedElement xmi:type="uml:Association" xmi:id="visitante_ver_projetos">
+      <memberEnd xmi:idref="visitante_end1"/>
+      <memberEnd xmi:idref="ver_projetos_end1"/>
+      <ownedEnd xmi:id="visitante_end1" name="" type="Visitante"/>
+      <ownedEnd xmi:id="ver_projetos_end1" name="" type="VerProjetos"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="visitante_ver_info">
+      <memberEnd xmi:idref="visitante_end2"/>
+      <memberEnd xmi:idref="ver_info_end1"/>
+      <ownedEnd xmi:id="visitante_end2" name="" type="Visitante"/>
+      <ownedEnd xmi:id="ver_info_end1" name="" type="VerInformacoes"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="visitante_contato">
+      <memberEnd xmi:idref="visitante_end3"/>
+      <memberEnd xmi:idref="contato_end1"/>
+      <ownedEnd xmi:id="visitante_end3" name="" type="Visitante"/>
+      <ownedEnd xmi:id="contato_end1" name="" type="EnviarContato"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="visitante_cadastrar">
+      <memberEnd xmi:idref="visitante_end4"/>
+      <memberEnd xmi:idref="cadastrar_end1"/>
+      <ownedEnd xmi:id="visitante_end4" name="" type="Visitante"/>
+      <ownedEnd xmi:id="cadastrar_end1" name="" type="CadastrarVoluntario"/>
+    </packagedElement>
+    
+    <!-- Voluntário -->
+    <packagedElement xmi:type="uml:Association" xmi:id="voluntario_atualizar">
+      <memberEnd xmi:idref="voluntario_end1"/>
+      <memberEnd xmi:idref="atualizar_end1"/>
+      <ownedEnd xmi:id="voluntario_end1" name="" type="Voluntario"/>
+      <ownedEnd xmi:id="atualizar_end1" name="" type="AtualizarPerfil"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="voluntario_participar">
+      <memberEnd xmi:idref="voluntario_end2"/>
+      <memberEnd xmi:idref="participar_end1"/>
+      <ownedEnd xmi:id="voluntario_end2" name="" type="Voluntario"/>
+      <ownedEnd xmi:id="participar_end1" name="" type="ParticiparAtividades"/>
+    </packagedElement>
+    
+    <!-- Doador -->
+    <packagedElement xmi:type="uml:Association" xmi:id="doador_doar">
+      <memberEnd xmi:idref="doador_end1"/>
+      <memberEnd xmi:idref="doar_end1"/>
+      <ownedEnd xmi:id="doador_end1" name="" type="Doador"/>
+      <ownedEnd xmi:id="doar_end1" name="" type="FazerDoacao"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="doador_qr">
+      <memberEnd xmi:idref="doador_end2"/>
+      <memberEnd xmi:idref="qr_end1"/>
+      <ownedEnd xmi:id="doador_end2" name="" type="Doador"/>
+      <ownedEnd xmi:id="qr_end1" name="" type="GerarQRPix"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="doador_historico">
+      <memberEnd xmi:idref="doador_end3"/>
+      <memberEnd xmi:idref="historico_end1"/>
+      <ownedEnd xmi:id="doador_end3" name="" type="Doador"/>
+      <ownedEnd xmi:id="historico_end1" name="" type="ConsultarHistorico"/>
+    </packagedElement>
+    
+    <!-- Administrador -->
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_voluntarios">
+      <memberEnd xmi:idref="admin_end1"/>
+      <memberEnd xmi:idref="ger_vol_end1"/>
+      <ownedEnd xmi:id="admin_end1" name="" type="Administrador"/>
+      <ownedEnd xmi:id="ger_vol_end1" name="" type="GerenciarVoluntarios"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_doadores">
+      <memberEnd xmi:idref="admin_end2"/>
+      <memberEnd xmi:idref="ger_doadores_end1"/>
+      <ownedEnd xmi:id="admin_end2" name="" type="Administrador"/>
+      <ownedEnd xmi:id="ger_doadores_end1" name="" type="GerenciarDoadores"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_projetos">
+      <memberEnd xmi:idref="admin_end3"/>
+      <memberEnd xmi:idref="ger_proj_end1"/>
+      <ownedEnd xmi:id="admin_end3" name="" type="Administrador"/>
+      <ownedEnd xmi:id="ger_proj_end1" name="" type="GerenciarProjetos"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_relatorio">
+      <memberEnd xmi:idref="admin_end4"/>
+      <memberEnd xmi:idref="relatorio_end1"/>
+      <ownedEnd xmi:id="admin_end4" name="" type="Administrador"/>
+      <ownedEnd xmi:id="relatorio_end1" name="" type="GerarRelatorio"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_config">
+      <memberEnd xmi:idref="admin_end5"/>
+      <memberEnd xmi:idref="config_end1"/>
+      <ownedEnd xmi:id="admin_end5" name="" type="Administrador"/>
+      <ownedEnd xmi:id="config_end1" name="" type="ConfigurarSistema"/>
+    </packagedElement>
+    
+    <packagedElement xmi:type="uml:Association" xmi:id="admin_atividades">
+      <memberEnd xmi:idref="admin_end6"/>
+      <memberEnd xmi:idref="ger_ativ_end1"/>
+      <ownedEnd xmi:id="admin_end6" name="" type="Administrador"/>
+      <ownedEnd xmi:id="ger_ativ_end1" name="" type="GerenciarAtividades"/>
+    </packagedElement>
+    
+    <!-- Relacionamentos Include/Extend -->
+    
+    <!-- Fazer Doação inclui Gerar QR PIX -->
+    <packagedElement xmi:type="uml:Include" xmi:id="doacao_include_qr">
+      <includingCase xmi:idref="FazerDoacao"/>
+      <addition xmi:idref="GerarQRPix"/>
+    </packagedElement>
+    
+    <!-- Gerenciar Voluntários inclui Atualizar Perfil -->
+    <packagedElement xmi:type="uml:Include" xmi:id="ger_vol_include_atualizar">
+      <includingCase xmi:idref="GerenciarVoluntarios"/>
+      <addition xmi:idref="AtualizarPerfil"/>
+    </packagedElement>
+    
+  </uml:Model>
+</xmi:XMI>

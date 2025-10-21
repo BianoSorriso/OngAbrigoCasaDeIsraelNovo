@@ -1,0 +1,220 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}CABI - Quem Somos{% endblock %}
+
+{% block content %}
+<!-- Banner da página -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold text-primary mb-3">Quem Somos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-primary">Início</a></li>
+                        <li class="breadcrumb-item active text-muted" aria-current="page">Quem Somos</li>
+                    </ol>
+                </nav>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nossa História -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                <img src="{% static 'images/HISTORIA.jpg' %}" alt="Nossa História" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6 col-md-12">
+                
+                <h2 class="display-5 fw-bold text-primary mb-4">Nossa História</h2>
+                <p class="lead text-muted mb-4">
+                    A Casa de Amparo Beneficente de Israel, situada a Estrada da Cachoeira nº 466 - Jardim Montevidéo, é uma entidade sem fins lucrativos, legalizada e com C.N.P.J. N. 07.179.376/0001-54, apresenta-se como um espaço destinado ao desenvolvimento de programas sócioeducativo, a partir do trabalho voluntário da Sra. Maria José Brandão, carinhosamente conhecida como <b> Dona Fafá</b>, sensibilizada com as desigualdades sociais existentes a sua volta, e com a ajuda de diversos voluntários e colaboradores. Estamos desenvolvendo um trabalho na intenção de alfabetizar crianças, jovens e adultos de nossa comunidade.
+                </p>
+                <p class="text-muted mb-4">
+                    Atualmente estamos com 38 crianças em atividades.
+                    Turno da tarde:  1 turma de reforço com 20 crianças e 1  turma pré-escolar com 18 crianças.
+                </p>
+                <p class="text-muted">
+                    Nosso principal objetivo é atender as necessidades emergenciais de formação e assistência para a população de Jardim Montevidéo (Nova Iguaçu) e proximidades, que não são supridas pelo poder público.
+                     Você também pode ser um colaborador, ajude-nos.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Missão, Visão e Valores -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-primary mb-3">Missão, Visão e Valores</h2>
+                <p class="lead text-muted">Os pilares que guiam nosso trabalho</p>
+            </div>
+        </div>
+        <div class="cards-container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                <i class="fas fa-bullseye fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title fw-bold mb-3">Missão</h3>
+                        <p class="card-text text-muted">Promover a transformação social através de ações que desenvolvam o potencial humano, garantindo dignidade e oportunidades para todos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                <i class="fas fa-eye fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title fw-bold mb-3">Visão</h3>
+                        <p class="card-text text-muted">Ser reconhecida como uma organização de referência em projetos sociais transformadores, ampliando continuamente nosso impacto positivo na sociedade.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-4">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 80px; height: 80px;">
+                                <i class="fas fa-heart fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title fw-bold mb-3">Valores</h3>
+                        <ul class="list-unstyled text-start">
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Solidariedade</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Respeito à diversidade</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Transparência</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Compromisso social</li>
+                            <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Ética</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Nossa Equipe -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-primary mb-3">Nossa Equipe</h2>
+                <p class="lead text-muted">Conheça as pessoas que fazem a diferença</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center g-4">
+            <!-- Maria José -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-4">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 100px; height: 100px;">
+                                <i class="fas fa-user-circle fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                        <h4 class="card-title fw-bold mb-2">Maria José Brandão</h4>
+                        <p class="text-muted mb-3">Diretora</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="https://wa.me/5521982510664" target="_blank" class="text-success fs-5" title="WhatsApp Maria José"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="text-primary fs-5"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Bárbara -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                    <div class="card-body p-4">
+                        <div class="mb-4">
+                            <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 100px; height: 100px;">
+                                <i class="fas fa-user-circle fa-4x text-primary"></i>
+                            </div>
+                        </div>
+                        <h4 class="card-title fw-bold mb-2">Bárbara José Brandão</h4>
+                        <p class="text-muted mb-3">Coordenadora</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="https://wa.me/5521969665146" target="_blank" class="text-success fs-5" title="WhatsApp Bárbara"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="text-primary fs-5"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Parceiros -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-primary mb-3">Nossos Parceiros</h2>
+                <p class="lead text-muted">Empresas e instituições que acreditam em nosso trabalho</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
+                    <div class="partner-logo text-center">
+                        <img src="/static/images/CRASLOGO.png" alt="CRAS" class="img-fluid" style="max-height: 80px; filter: grayscale(50%); transition: filter 0.3s;">
+                    </div>
+                    <div class="partner-logo text-center">
+                        <img src="/static/images/LOGOFELICIDADE.png" alt="FELICIDADE" class="img-fluid" style="max-height: 80px; filter: grayscale(50%); transition: filter 0.3s;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p class="mb-0">Quer ser nosso parceiro? <a href="{% url 'contato' %}" class="text-primary text-decoration-none fw-bold">Entre em contato</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transparência -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 order-2 order-lg-2 mb-4 mb-lg-0">
+                <img src="/static/images/QUEMSOMOS1.jpg" alt="Transparência" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6 col-md-12 order-1 order-lg-1">
+                <h2 class="display-5 fw-bold text-primary mb-4">Transparência</h2>
+                <p class="text-muted mb-4">No CABI, acreditamos que a transparência é fundamental para construir e manter a confiança de nossos apoiadores, parceiros e beneficiários.</p>
+                <p class="text-muted mb-4">Por isso, disponibilizamos regularmente relatórios de atividades e prestação de contas, detalhando como os recursos são utilizados e os resultados alcançados em cada projeto.</p>
+                <p class="text-muted mb-4">Nossos relatórios anuais e demonstrativos financeiros são auditados por empresa independente e podem ser acessados por qualquer pessoa interessada.</p>
+                <a href="#" class="btn btn-primary btn-lg px-4">Acessar Relatórios</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,666 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CABI{% endblock %}</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Framework Customizado -->
+    <link rel="stylesheet" href="{% static 'css/framework.css' %}">
+    
+    <!-- CSS Básico -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards-responsive.css' %}">
+    
+    <style>
+        :root {
+            /* Paleta de cores profissional para ONG */
+            --primary-color: #2c5aa0;
+            --primary-light: #4a7bc8;
+            --primary-dark: #1e3f73;
+            --secondary-color: #e8f4fd;
+            --accent-color: #ff6b35;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-muted: #6c757d;
+            
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            
+            /* Sombras */
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+            
+            /* Bordas */
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+        
+        body {
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 80vh;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .min-vh-75 {
+            min-height: 75vh;
+        }
+        
+        .text-gradient-light {
+            background: linear-gradient(135deg, #ffffff 0%, #e8f4fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+        
+        /* Seções */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Cards modernos */
+        .project-image {
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        /* Navbar melhorada */
+        .navbar {
+            background: var(--gradient-primary) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            padding: 0.5rem 0 !important;
+            min-height: 85px !important;
+            position: relative;
+            overflow: visible;
+            z-index: 1050 !important; /* Garantir que navbar fique acima de tudo */
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .navbar-brand img {
+            height: 75px;
+            margin-right: 12px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            position: relative;
+            top: -3px;
+        }
+        
+        /* Ajustar logo apenas no desktop */
+        @media (min-width: 992px) {
+            .navbar-brand img {
+                top: 5px; /* Baixa a logo apenas no desktop */
+            }
+        }
+        
+        /* FORÇAR HAMBÚRGUER À DIREITA COM FLEXBOX */
+        .navbar .container {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+        
+        .navbar-toggler {
+            margin-left: auto !important;
+            order: 3 !important;
+        }
+        
+        .navbar-brand {
+            order: 1 !important;
+        }
+        
+        .navbar-collapse {
+            order: 2 !important;
+        }
+        
+        .navbar-collapse {
+            /* Removido order: 2 para evitar conflitos */
+        }
+        
+        .navbar-nav {
+            align-items: center;
+        }
+        
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: rgba(255,255,255,0.9) !important;
+            margin: 0 4px;
+            padding: 2px 12px !important;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
+            top: -15px;
+        }
+        
+        /* Menu hambúrguer responsivo simples */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                position: absolute !important;
+                top: 100% !important;
+                left: auto !important;
+                right: 0 !important;
+                width: 250px !important;
+                background: var(--primary-color) !important;
+                border-radius: 0 0 8px 8px !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+                z-index: 1000 !important;
+                padding: 10px 0 !important;
+                border: 2px solid rgba(255,255,255,0.2) !important;
+            }
+            
+            .navbar-nav {
+                flex-direction: column !important;
+            }
+            
+            .navbar-nav .nav-link {
+                color: white !important;
+                padding: 12px 20px !important;
+                border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+                font-weight: 500 !important;
+            }
+            
+            .navbar-nav .nav-link:hover {
+                background: rgba(255,255,255,0.2) !important;
+                transform: translateX(5px) !important;
+            }
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            background: rgba(255,255,255,0.15);
+            color: white !important;
+            transform: translateY(-1px);
+        }
+        
+        /* Dropdown do usuário customizado */
+        .dropdown-toggle::after {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-toggle[aria-expanded="true"]::after {
+            transform: rotate(180deg);
+        }
+        
+        .dropdown-menu {
+            background: rgba(255, 255, 255, 0.98) !important; /* Fundo mais opaco */
+            backdrop-filter: blur(10px);
+            border: 2px solid #007bff !important; /* Borda azul mais forte */
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.15) !important; /* Sombra azul */
+            padding: 12px 0; /* Mais padding */
+            margin-top: 5px;
+            min-width: 180px;
+            max-height: none !important; /* Remove altura máxima */
+            overflow: visible !important; /* Remove barra de rolagem */
+            animation: dropdownFadeIn 0.2s ease-out;
+            opacity: 1 !important;
+            z-index: 99999 !important;
+            position: absolute !important;
+        }
+        
+        /* Forçar z-index alto para mobile */
+        @media (max-width: 991.98px) {
+            .dropdown-menu {
+                z-index: 99999 !important;
+                position: absolute !important; /* Mudança: de fixed para absolute */
+                top: 100% !important; /* Posicionar logo abaixo do botão */
+                left: auto !important;
+                right: 0 !important; /* Alinhar à direita do container pai */
+                margin-top: 2px !important;
+                min-width: 160px;
+                transform: none !important; /* Remover transformações que podem causar sobreposição */
+            }
+            
+            .navbar-collapse.show {
+                z-index: 99998 !important;
+                position: relative !important;
+            }
+            
+            .navbar-nav .nav-link {
+                z-index: 99997 !important;
+                position: relative !important;
+                pointer-events: auto !important;
+            }
+            
+            /* Garantir que o dropdown não sobreponha o conteúdo da página */
+            .dropdown {
+                position: relative !important;
+            }
+        }
+        
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .dropdown-item {
+            color: #007bff !important; /* Azul destacado */
+            font-weight: 600 !important; /* Mais negrito */
+            padding: 12px 20px; /* Mais padding */
+            border-radius: 6px;
+            margin: 3px 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 123, 255, 0.05) !important; /* Fundo azul claro */
+            font-size: 15px; /* Ligeiramente maior */
+            font-family: inherit;
+            border: 1px solid rgba(0, 123, 255, 0.1); /* Borda sutil */
+            text-decoration: none !important;
+            position: relative;
+        }
+        
+        /* Separador visual entre itens */
+        .dropdown-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 15px;
+            right: 15px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.2), transparent);
+        }
+        
+        .dropdown-item:hover {
+            background: #007bff !important; /* Fundo azul sólido no hover */
+            color: white !important; /* Texto branco no hover */
+            transform: translateX(3px); /* Leve movimento */
+            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3); /* Sombra azul */
+            border-color: #007bff !important;
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dropdown-divider {
+            margin: 8px 16px;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilo especial para o nome do usuário */
+        #userDropdown {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 8px 16px !important;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        #userDropdown:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #userDropdown i {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        /* Mobile bottom navigation melhorada */
+        @media (max-width: 991px) {
+            .bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--gradient-hero);
+                z-index: 1000;
+                padding: 12px 0;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+                backdrop-filter: blur(10px);
+            }
+            
+            .bottom-nav .nav-link {
+                color: rgba(255,255,255,0.8);
+                text-align: center;
+                font-size: 11px;
+                font-weight: 500;
+                padding: 8px 4px;
+                text-decoration: none;
+                border-radius: var(--border-radius);
+                transition: all 0.3s ease;
+            }
+            
+            .bottom-nav .nav-link.active,
+            .bottom-nav .nav-link:hover {
+                color: white;
+                background: rgba(255,255,255,0.2);
+                transform: translateY(-2px);
+            }
+            
+            .bottom-nav i {
+                font-size: 20px;
+                display: block;
+                margin-bottom: 4px;
+                filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+            }
+            
+            body {
+                padding-bottom: 80px;
+            }
+        }
+        
+        /* Desktop - esconder bottom nav */
+        @media (min-width: 992px) {
+            .bottom-nav {
+                display: none !important;
+            }
+        }
+        
+        /* Utilitários globais */
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-modern {
+            background: var(--gradient-card);
+            border: none;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-modern {
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            padding: 12px 24px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary-modern {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .btn-primary-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .display-4 {
+                font-size: 2rem !important;
+            }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar  -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo-cabi.svg' %}" alt="Logo Casa de Amparo Beneficente de Israel" style="height: 75px;">
+            </a>
+            
+            <!-- BOTÃO HAMBÚRGUER À DIREITA -->
+            <button class="navbar-toggler ms-auto" 
+                    type="button" 
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'sobre' in request.path %}active{% endif %}" href="{% url 'sobre' %}">Quem Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'projetos' in request.path %}active{% endif %}" href="{% url 'projetos' %}">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'voluntarios' in request.path %}active{% endif %}" href="{% url 'area_voluntarios' %}">Voluntários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'doacoes' in request.path %}active{% endif %}" href="{% url 'doacoes' %}">Doações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'contato' in request.path %}active{% endif %}" href="{% url 'contato' %}">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle me-1"></i>{{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="/admin/"><i class="fas fa-cog me-2"></i>Portal do Admin</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/">Entrar</a>
+                        </li>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation para Mobile -->
+    <nav class="bottom-nav d-lg-none">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                        <i class="fas fa-home"></i>
+                        <div>Início</div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'sobre' %}" class="nav-link {% if 'sobre' in request.path %}active{% endif %}">
+                        <i class="fas fa-info-circle"></i>
+                        <div>Sobre</div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'projetos' %}" class="nav-link {% if 'projetos' in request.path %}active{% endif %}">
+                        <i class="fas fa-project-diagram"></i>
+                        <div>Projetos</div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'contato' %}" class="nav-link {% if 'contato' in request.path %}active{% endif %}">
+                        <i class="fas fa-envelope"></i>
+                        <div>Contato</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mensagens de alerta -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Conteúdo principal -->
+    <main style="margin-top: 100px; padding-top: 20px;"> <!-- Aumentar margem para evitar sobreposição -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="cards-container">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Casa de Amparo Beneficente de Israel</h5>
+                    <p>Transformando vidas através da solidariedade e do amor ao próximo.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt"></i> <span> Estrada da Cachoeira, 466 - Nova Iguaçu, RJ</span></li>
+                        <li><i class="fas fa-phone"></i> <span>(21) 96966-5146 (Barbara Brandão)</span></li>
+                        <li><i class="fas fa-phone"></i> <span>(21) 98251-0664 (Maria José Brandão) </span></li>
+                        <li><i class="fas fa-phone"></i> <span>(21) 96991-1678 (Glaucia Brandão)</span></li>
+                        <li><i class="fas fa-phone"></i> <span>(21) 969428960  (Daiana Brandão de Sá)</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>luanapyetro0213@gmail.com</span></li>
+
+                        
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-light">Início</a></li>
+                        <li><a href="{% url 'sobre' %}" class="text-light">Quem Somos</a></li>
+                        <li><a href="{% url 'projetos' %}" class="text-light">Projetos</a></li>
+                        <li><a href="{% url 'contato' %}" class="text-light">Contato</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/custom-framework.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- <script src="{% static 'js/modal.js' %}"></script> REMOVIDO - CAUSAVA CONFLITOS -->
+    <script src="{% static 'js/accordion.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

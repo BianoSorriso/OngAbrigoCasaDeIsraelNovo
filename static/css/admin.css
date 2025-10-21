@@ -1,0 +1,200 @@
+/* Estilos para o Admin do Django */
+:root {
+    --primary-color: #4e9af1; /* Azul mais claro e vibrante */
+    --secondary-color: #ff6b6b; /* Vermelho mais vibrante */
+    --accent-color: #ffcf4a; /* Amarelo mais vibrante */
+    --dark-color: #5a5c69;
+    --light-color: #f8f4ff; /* Fundo lilás bem claro */
+    --purple-color: #9c6ade; /* Roxo para elementos infantis */
+    --green-color: #63d471; /* Verde vibrante */
+    --background-pattern: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+body {
+    background-color: var(--light-color);
+    background-image: var(--background-pattern), 
+                    radial-gradient(circle at 10% 20%, rgba(255, 207, 74, 0.05) 0%, rgba(78, 154, 241, 0.05) 90%);
+    background-attachment: fixed;
+    background-size: 200px, cover;
+    background-repeat: repeat, no-repeat;
+    background-blend-mode: overlay;
+}
+
+/* Cabeçalho */
+#header {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Links no cabeçalho */
+#header a:link, #header a:visited {
+    color: white;
+}
+
+/* Hover nos links do cabeçalho */
+#header a:hover {
+    color: var(--accent-color);
+}
+
+/* Barra lateral */
+.module h2, .module caption, .inline-group h2 {
+    background: var(--purple-color);
+    border-radius: 4px 4px 0 0;
+}
+
+/* Botões de ação */
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: var(--purple-color);
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease;
+}
+
+/* Botões de ação - hover */
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background: var(--primary-color);
+}
+
+/* Botão de exclusão */
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: var(--secondary-color);
+}
+
+/* Botão de exclusão - hover */
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+    background: #ff4f4f;
+}
+
+/* Links */
+a:link, a:visited {
+    color: blue;
+}
+
+/* Links - hover */
+a:hover {
+    color: blue;
+}
+
+/* Fontes */
+body, button, input, select, textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, #header #site-name a {
+    font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive;
+}
+
+/* Breadcrumbs */
+div.breadcrumbs {
+    background: var(--purple-color);
+    padding: 12px 15px;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Mensagens */
+.messagelist li.success {
+    background: var(--green-color);
+    color: white;
+    border-radius: 4px;
+}
+
+.messagelist li.error {
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 4px;
+}
+
+.messagelist li.warning {
+    background: var(--accent-color);
+    color: var(--dark-color);
+    border-radius: 4px;
+}
+
+/* Tabelas */
+table thead th {
+    background: var(--light-color);
+    color: var(--dark-color);
+}
+
+/* Linhas alternadas nas tabelas */
+.row1 {
+    background: #f8f8ff;
+}
+
+.row2 {
+    background: #f0f0ff;
+}
+
+/* Seletor de data */
+.calendarbox, .clockbox {
+    background: white;
+    border: 1px solid var(--primary-color);
+}
+
+.calendar caption, .calendarbox h2 {
+    background: var(--primary-color);
+}
+
+/* Paginação */
+.paginator {
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+.paginator a:link, .paginator a:visited {
+    padding: 5px 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: var(--primary-color);
+}
+
+.paginator a:hover {
+    background: var(--light-color);
+    border-color: var(--primary-color);
+}
+
+.paginator .this-page {
+    padding: 5px 10px;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Dashboard */
+.dashboard .module {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.dashboard .module table th {
+    width: 100%;
+}
+
+.dashboard .module table td {
+    white-space: nowrap;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 767px) {
+    #header {
+        padding: 10px 15px;
+    }
+    
+    #header #site-name {
+        font-size: 1.2em;
+    }
+    
+    .dashboard .colMS {
+        margin-right: 0;
+    }
+}

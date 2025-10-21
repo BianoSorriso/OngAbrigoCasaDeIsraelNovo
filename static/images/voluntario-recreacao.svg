@@ -1,0 +1,63 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo colorido -->
+  <rect width="800" height="500" fill="#FFF0F9"/>
+  
+  <!-- Sol -->
+  <circle cx="100" cy="100" r="60" fill="#FFDE59"/>
+  <circle cx="100" cy="100" r="45" fill="#FFE980"/>
+  
+  <!-- Grama -->
+  <path d="M0 400 L800 400 L800 500 L0 500 Z" fill="#63D471"/>
+  
+  <!-- Brinquedos -->
+  <!-- Escorregador -->
+  <polygon points="200,300 250,200 300,300" fill="#FF70A6" stroke="#9C6ADE" stroke-width="3"/>
+  <rect x="220" y="300" width="60" height="10" fill="#FF70A6" stroke="#9C6ADE" stroke-width="3"/>
+  
+  <!-- Balanço -->
+  <line x1="400" y1="150" x2="350" y2="300" stroke="#8B4513" stroke-width="5"/>
+  <line x1="400" y1="150" x2="450" y2="300" stroke="#8B4513" stroke-width="5"/>
+  <line x1="400" y1="150" x2="400" y2="250" stroke="#8B4513" stroke-width="5"/>
+  <rect x="375" y="250" width="50" height="10" fill="#4E9AF1"/>
+  
+  <!-- Gangorra -->
+  <rect x="550" y="290" width="20" height="20" fill="#8B4513"/>
+  <rect x="500" y="280" width="120" height="10" fill="#FF5757" rx="5" ry="5"/>
+  
+  <!-- Bola -->
+  <circle cx="650" cy="350" r="30" fill="#4E9AF1" stroke="#FFFFFF" stroke-width="5"/>
+  
+  <!-- Voluntário (adulto) -->
+  <circle cx="150" cy="250" r="35" fill="#FFD699"/>
+  <rect x="135" y="285" width="30" height="70" fill="#9C6ADE"/>
+  <rect x="120" y="295" width="15" height="50" fill="#9C6ADE"/>
+  <rect x="165" y="295" width="15" height="50" fill="#9C6ADE"/>
+  
+  <!-- Crianças brincando -->
+  <!-- Criança 1 no escorregador -->
+  <circle cx="250" cy="230" r="25" fill="#FFD699"/>
+  <rect x="240" y="255" width="20" height="50" fill="#FF70A6"/>
+  
+  <!-- Criança 2 no balanço -->
+  <circle cx="400" cy="220" r="25" fill="#FFD699"/>
+  <rect x="390" y="245" width="20" height="50" fill="#63D471"/>
+  
+  <!-- Criança 3 na gangorra -->
+  <circle cx="520" cy="250" r="25" fill="#FFD699"/>
+  <rect x="510" y="275" width="20" height="50" fill="#4E9AF1"/>
+  
+  <!-- Título -->
+  <text x="400" y="50" font-family="Arial" font-size="30" font-weight="bold" text-anchor="middle" fill="#4E9AF1">Voluntariado: Recreação e Diversão</text>
+  
+  <!-- Árvore -->
+  <rect x="700" y="300" width="20" height="100" fill="#8B4513"/>
+  <circle cx="710" cy="250" r="50" fill="#63D471"/>
+  
+  <!-- Nuvens -->
+  <ellipse cx="200" cy="100" rx="50" ry="30" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="250" cy="90" rx="40" ry="25" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="300" cy="100" rx="45" ry="20" fill="#FFFFFF" opacity="0.8"/>
+  
+  <ellipse cx="600" cy="120" rx="60" ry="25" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="650" cy="110" rx="50" ry="30" fill="#FFFFFF" opacity="0.8"/>
+</svg>
