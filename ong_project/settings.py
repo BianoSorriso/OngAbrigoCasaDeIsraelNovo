@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-p2067qf7^1cm!p)amqng^cs)&z+u5oal%-!e$9$c=&5=#5%q=^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'abrigocabi.pythonanywhere.com',
+    'www.abrigocabi.pythonanywhere.com',  # opcional
+    'localhost',  # útil se você testar localmente
+    '127.0.0.1',  # útil se você testar localmente
+]
 
 
 # Application definition

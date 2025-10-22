@@ -1,7 +1,7 @@
 """
 Configurações de produção para PythonAnywhere
 """
-import os
+
 from .settings import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -9,13 +9,13 @@ DEBUG = False
 
 # Hosts permitidos no PythonAnywhere
 ALLOWED_HOSTS = [
-    'seuusuario.pythonanywhere.com',  # Substitua 'seuusuario' pelo seu username
+    'abrigocabi.pythonanywhere.com',  # seu domínio real
     'localhost',
     '127.0.0.1',
 ]
 
 # Configuração de arquivos estáticos para produção
-STATIC_ROOT = '/home/seuusuario/mysite/static'  # Substitua 'seuusuario' pelo seu username
+STATIC_ROOT = '/home/AbrigoCABI/mysite/static'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -23,7 +23,7 @@ STATICFILES_DIRS = [
 ]
 
 # Configuração de arquivos de mídia
-MEDIA_ROOT = '/home/seuusuario/mysite/media'  # Substitua 'seuusuario' pelo seu username
+MEDIA_ROOT = '/home/AbrigoCABI/mysite/media'
 MEDIA_URL = '/media/'
 
 # Middleware para servir arquivos estáticos
@@ -59,7 +59,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': '/home/seuusuario/mysite/django.log',  # Substitua 'seuusuario'
+            'filename': '/home/AbrigoCABI/mysite/django.log',
         },
     },
     'loggers': {
