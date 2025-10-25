@@ -4,29 +4,27 @@
 
 {% block content %}
 <!-- Banner Principal -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
-                <h1 class="display-4 fw-bold mb-4 text-primary hero-title">Casa de Amparo Beneficente de Israel</h1>
-                <p class="lead mb-4 text-muted">Transformando vidas através da solidariedade e do amor ao próximo.</p>
-                <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
-                    <a href="{% url 'doacoes' %}" class="btn btn-primary btn-lg">
-                        <i class="fas fa-heart me-2"></i>Faça uma Doação
-                    </a>
-                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary btn-lg">
-                        <i class="fas fa-hands-helping me-2"></i>Seja Voluntário
-                    </a>
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                        <h1 class="display-4 fw-bold mb-4 text-primary hero-title">Casa de Amparo Beneficente de Israel</h1>
+                        <p class="lead mb-4 text-muted">Transformando vidas através da solidariedade e do amor ao próximo.</p>
+                        <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+                            <a href="{% url 'doacoes' %}" class="btn btn-primary btn-lg">
+                                <i class="fas fa-heart me-2"></i>Faça uma Doação
+                            </a>
+                            <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-hands-helping me-2"></i>Seja Voluntário
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <img id="carrossel-img" src="/static/images/CARROSSEL00.jpeg" alt="Casa de Amparo Beneficente de Israel" class="img-fluid rounded shadow-lg">
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-                <img src="/static/images/CABI01.jpg" alt="Pessoas se ajudando" class="img-fluid rounded shadow-lg">
-            </div>
-            </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
 <!-- Números e Impacto -->
 <section class="py-5">
@@ -280,4 +278,27 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const img = document.getElementById('carrossel-img');
+    const images = [
+        '/static/images/CARROSSEL00.jpeg',
+        '/static/images/CARROSSEL01.jpg',
+        '/static/images/CARROSSEL02.jpeg',
+        '/static/images/CARROSSEL03.jpeg',
+        '/static/images/CARROSSEL04.jpeg',
+        '/static/images/CARROSSEL05.jpeg',
+        '/static/images/CARROSSEL06.jpeg'
+    ];
+    let currentIndex = 0;
+    
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        img.src = images[currentIndex];
+    }
+    
+    setInterval(changeImage, 3000); // Troca a cada 3 segundos
+});
+</script>
 {% endblock %}
