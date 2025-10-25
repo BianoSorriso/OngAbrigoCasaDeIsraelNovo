@@ -503,13 +503,17 @@
                 font-size: 2rem !important;
             }
         }
-    /* Alinhamento à direita quando usar dropdown-menu-end */
-    .dropdown-menu-end {
-        right: 0 !important;
-        left: auto !important;
-    }
-    </style>
-    
+        /* Alinhamento à direita quando usar dropdown-menu-end */
+        .dropdown-menu-end {
+            right: 0 !important;
+            left: auto !important;
+        }
+        /* Forçar comportamento de toggle por clique no dropdown */
+        .dropdown .dropdown-menu { display: none !important; }
+        .dropdown .dropdown-menu.show { display: block !important; }
+        .dropdown:hover .dropdown-menu { display: none !important; }
+        .dropdown:hover .dropdown-menu.show { display: block !important; }
+        </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>

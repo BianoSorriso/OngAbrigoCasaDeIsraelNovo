@@ -809,7 +809,6 @@
     .impact-stats-container {
         flex-direction: column;
         gap: 2rem;
-        padding: 0 1rem;
     }
     
     .impact-stats-container .col-4 {
@@ -818,18 +817,11 @@
     }
 }
 
-/* Responsivo para mobile - centralização perfeita */
+/* Responsivo para mobile */
 @media (max-width: 768px) {
     .impact-stats-container {
         gap: 1.5rem;
-        padding: 0 0.75rem;
-        margin: 0 auto;
-    }
-    
-    /* Garantir centralização dos cards de impacto */
-    .impact-card {
-        margin: 0 auto;
-        text-align: center;
+        padding: 0 0.5rem;
     }
 }
 
@@ -1404,7 +1396,7 @@
     list-style: none;
 }
 
-.carousel-indicators [data-target] {
+.carousel-indicators [data-bs-target] {
     box-sizing: content-box;
     flex: 0 1 auto;
     width: 30px;
@@ -1488,9 +1480,8 @@
 @media (max-width: 480px) {
     .card {
         padding: 1rem;
-        margin: 0 auto 1rem auto;
+        margin-bottom: 1rem;
         border-radius: 8px;
-        text-align: center;
     }
     
     .card-title {
@@ -1501,8 +1492,7 @@
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
         width: 100%;
-        margin: 0 auto 0.5rem auto;
-        display: block;
+        margin-bottom: 0.5rem;
     }
     
     .btn-lg {
@@ -1527,12 +1517,6 @@
     .p-3 { padding: 0.75rem; }
     .p-4 { padding: 1rem; }
     .p-5 { padding: 2rem; }
-    
-    /* Centralização global para mobile */
-    .container, .row, .col-12, .col-md-6, .col-lg-4 {
-        margin-left: auto !important;
-        margin-right: auto !important;
-    }
 }
 
 /* Mobile grande - 481px até 768px */
