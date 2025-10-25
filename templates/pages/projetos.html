@@ -337,50 +337,61 @@ console.log('🔥 Script dos modais de projetos carregado!');
             <div class="col-lg-6 col-md-12 text-center text-lg-start">
                 <h2 class="display-5 fw-bold text-primary mb-3">Como Participar</h2>
                 <p class="lead text-muted mb-4">Existem várias maneiras de contribuir com nossos projetos:</p>
-                <ul class="list-unstyled">
-                    <li class="mb-3">
-                        <div class="d-flex">
-                            <div class="me-3">
-                                <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px;">
-                                    <i class="fas fa-hand-holding-heart text-primary"></i>
+                
+                <div class="row g-3">
+                    <!-- Card Doações -->
+                    <div class="col-lg-12 col-md-4 col-12">
+                        <div class="d-flex align-items-center text-start h-100 p-3 bg-white rounded-3 shadow-sm border">
+                            <div class="me-3 flex-shrink-0">
+                                <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-hand-holding-heart text-primary" style="font-size: 1.5rem;"></i>
                                 </div>
                             </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Doações</h5>
-                                <p class="text-muted mb-0">Contribua financeiramente ou com doações de materiais, alimentos e roupas.</p>
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-2 text-dark">Doações</h5>
+                                <p class="text-muted mb-0 small lh-base">Contribua financeiramente com valores ou doe materiais essenciais como alimentos, roupas e produtos de higiene.</p>
                             </div>
                         </div>
-                    </li>
-                    <li class="mb-3">
-                        <div class="d-flex">
-                            <div class="me-3">
-                                <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px;">
-                                    <i class="fas fa-hands-helping text-primary"></i>
+                    </div>
+                    
+                    <!-- Card Voluntariado -->
+                    <div class="col-lg-12 col-md-4 col-12">
+                        <div class="d-flex align-items-center text-start h-100 p-3 bg-white rounded-3 shadow-sm border">
+                            <div class="me-3 flex-shrink-0">
+                                <div class="bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-hands-helping text-success" style="font-size: 1.5rem;"></i>
                                 </div>
                             </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Voluntariado</h5>
-                                <p class="text-muted mb-0">Doe seu tempo e habilidades para ajudar em nossos projetos e atividades.</p>
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-2 text-dark">Voluntariado</h5>
+                                <p class="text-muted mb-0 small lh-base">Doe seu tempo e compartilhe suas habilidades conosco. Participe de nossas atividades educacionais e recreativas.</p>
                             </div>
                         </div>
-                    </li>
-                    <li class="mb-4">
-                        <div class="d-flex">
-                            <div class="me-3">
-                                <div class="bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 50px; height: 50px;">
-                                    <i class="fas fa-building text-primary"></i>
+                    </div>
+                    
+                    <!-- Card Parcerias -->
+                    <div class="col-lg-12 col-md-4 col-12">
+                        <div class="d-flex align-items-center text-start h-100 p-3 bg-white rounded-3 shadow-sm border">
+                            <div class="me-3 flex-shrink-0">
+                                <div class="bg-info bg-opacity-10 d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-building text-info" style="font-size: 1.5rem;"></i>
                                 </div>
                             </div>
-                            <div>
-                                <h5 class="fw-bold mb-2">Parcerias</h5>
-                                <p class="text-muted mb-0">Empresas e instituições podem se tornar parceiras e apoiar nossas iniciativas.</p>
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-2 text-dark">Parcerias</h5>
+                                <p class="text-muted mb-0 small lh-base">Empresas e instituições podem estabelecer parcerias estratégicas conosco para ampliar o impacto de nossas iniciativas.</p>
                             </div>
                         </div>
-                    </li>
-                </ul>
-                <div class="d-flex flex-column flex-sm-row gap-3">
-                    <a href="{% url 'doacoes' %}" class="btn btn-primary btn-lg">Fazer Doação</a>
-                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary btn-lg">Ser Voluntário</a>
+                    </div>
+                </div>
+                
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start mt-4">
+                    <a href="{% url 'doacoes' %}" class="btn btn-primary btn-lg px-4">
+                        <i class="fas fa-heart me-2"></i>Fazer Doação
+                    </a>
+                    <a href="{% url 'area_voluntarios' %}" class="btn btn-outline-primary btn-lg px-4">
+                        <i class="fas fa-hands-helping me-2"></i>Ser Voluntário
+                    </a>
                 </div>
             </div>
         </div>

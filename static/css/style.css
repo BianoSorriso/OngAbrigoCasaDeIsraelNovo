@@ -984,3 +984,34 @@ img {
     scroll-margin-top: 85px; /* aproximado da altura da navbar */
   }
 }
+
+/* ========================================
+   CORREÇÃO DE ALINHAMENTO MOBILE
+   ======================================== */
+
+/* Correção para centralização perfeita em dispositivos móveis */
+@media (max-width: 768px) {
+  .container, .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  /* Garantir centralização de textos e elementos */
+  .text-center {
+    text-align: center !important;
+  }
+  
+  /* Correção específica para cards e seções */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .col-12, .col-sm-12, .col-md-12, .col-lg-12,
+  .col-lg-4, .col-md-4, .col-sm-12 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
