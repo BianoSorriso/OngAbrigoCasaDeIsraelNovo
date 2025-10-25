@@ -596,11 +596,16 @@
                     </a>
                 </div>
                 {% if user.is_authenticated %}
-                <div class="col">
-                    <a href="/admin/" class="nav-link">
+                <div class="col dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="mobileUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user-cog"></i>
-                        <div>Admin</div>
+                        <div>{{ user.username }}</div>
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="mobileUserDropdown">
+                        <li><a class="dropdown-item" href="/admin/"><i class="fas fa-cog me-2"></i>Portal do Admin</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                    </ul>
                 </div>
                 {% else %}
                 <div class="col">
