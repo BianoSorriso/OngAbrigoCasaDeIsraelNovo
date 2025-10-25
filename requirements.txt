@@ -88,4 +88,3 @@ whitenoise==6.8.2
 
 
 
-crispy-bootstrap5==2024.2

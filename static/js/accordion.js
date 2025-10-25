@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const isOpen = content.classList.toggle('show');
       trigger.classList.toggle('collapsed', !isOpen);
+      trigger.setAttribute('aria-expanded', isOpen);
 
       // Se fizer parte de um accordion, fecha os demais
       const accordion = trigger.closest('.accordion');
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         buttons.forEach(function(btn) {
           if (btn !== trigger) {
             btn.classList.add('collapsed');
+            btn.setAttribute('aria-expanded', 'false');
           }
         });
       }
