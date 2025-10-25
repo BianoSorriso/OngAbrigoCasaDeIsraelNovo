@@ -1,6 +1,120 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
-{% block title %}CABI - Projetos{% endblock %}
+{% block title %}Casa de Amparo Beneficente de Israel - Projetos{% endblock %}
+
+{% block extra_js %}
+<script>
+// SCRIPT FUNCIONAL PARA OS MODAIS DOS PROJETOS 
+console.log('🔥 Carregando modais de projetos - VERSÃO CUSTOMIZADA!');
+
+function configurarModaisProjetos() {
+    // Encontrar todos os botões "Saiba mais"
+    const botoesModal = document.querySelectorAll('[data-target^="#projetoModal"]');
+    
+    console.log('Botões encontrados:', botoesModal.length);
+    
+    botoesModal.forEach(function(botao) {
+        const targetId = botao.getAttribute('data-target');
+        const modalElement = document.querySelector(targetId);
+        
+        if (modalElement) {
+            console.log('✅ Configurando modal:', targetId);
+            
+            
+            botao.removeAttribute('data-bs-toggle');
+            botao.removeAttribute('data-bs-target');
+            
+            // Configurar evento de clique
+            botao.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('🚀 ABRINDO MODAL:', targetId);
+                
+                // Forçar modal aparecer
+                modalElement.style.display = 'block';
+                modalElement.style.opacity = '1';
+                modalElement.style.visibility = 'visible';
+                modalElement.style.zIndex = '9999';
+                modalElement.classList.add('show');
+                modalElement.setAttribute('aria-hidden', 'false');
+                
+                // Adicionar backdrop
+                let backdrop = document.querySelector('.modal-backdrop');
+                if (!backdrop) {
+                    backdrop = document.createElement('div');
+                    backdrop.className = 'modal-backdrop fade show';
+                    backdrop.style.zIndex = '9998';
+                    backdrop.style.position = 'fixed';
+                    backdrop.style.top = '0';
+                    backdrop.style.left = '0';
+                    backdrop.style.width = '100%';
+                    backdrop.style.height = '100%';
+                    backdrop.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                    document.body.appendChild(backdrop);
+                }
+                
+                // Fechar modal
+                const botoesFechar = modalElement.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
+                botoesFechar.forEach(btnClose => {
+                    btnClose.onclick = function(e) {
+                        e.preventDefault();
+                        console.log('🔒 Fechando modal...');
+                        modalElement.style.display = 'none';
+                        modalElement.classList.remove('show');
+                        modalElement.setAttribute('aria-hidden', 'true');
+                        if (backdrop && backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                        }
+                    };
+                });
+                
+                // Fechar clicando no backdrop
+                if (backdrop) {
+                    backdrop.onclick = function() {
+                        console.log('🔒 Fechando modal via backdrop...');
+                        modalElement.style.display = 'none';
+                        modalElement.classList.remove('show');
+                        modalElement.setAttribute('aria-hidden', 'true');
+                        if (backdrop && backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                        }
+                    };
+                }
+                
+                // Fechar com ESC
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        console.log('🔒 Fechando modal via ESC...');
+                        modalElement.style.display = 'none';
+                        modalElement.classList.remove('show');
+                        modalElement.setAttribute('aria-hidden', 'true');
+                        if (backdrop && backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                        }
+                    }
+                });
+                
+                console.log('✅ MODAL ABERTO COM SUCESSO!');
+                return false;
+            };
+        }
+    });
+    
+    console.log('✅ Todos os modais configurados!');
+}
+
+// Executar quando DOM carregar
+document.addEventListener('DOMContentLoaded', configurarModaisProjetos);
+
+// Executar também após um tempo para garantir
+setTimeout(configurarModaisProjetos, 500);
+setTimeout(configurarModaisProjetos, 1000);
+
+console.log('🔥 Script dos modais de projetos carregado!');
+</script>
+{% endblock %}
 
 {% block content %}
 <!-- Banner da página -->
@@ -109,7 +223,7 @@
                         <p class="card-text text-muted flex-grow-1">{{ projeto.descricao|truncatewords:30 }}</p>
                         <p class="text-secondary mb-3"><i class="far fa-calendar-alt me-2"></i>Início: {{ projeto.data_inicio|date:"d/m/Y" }}</p>
                         <div class="mt-auto">
-                            <button type="button" class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#projetoModal{{ projeto.id }}">
+                            <button type="button" class="btn btn-outline-primary w-100" data-target="#projetoModal{{ projeto.id }}">
                                 Saiba mais
                             </button>
                         </div>
@@ -123,11 +237,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title fw-bold" id="projetoModalLabel{{ projeto.id }}">{{ projeto.titulo }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             {% if projeto.imagem %}
-                            <img src="{{ projeto.imagem }}" class="img-fluid rounded mb-3" alt="{{ projeto.titulo }}">
+                            <img src="{{ projeto.imagem.url }}" class="img-fluid rounded mb-3" alt="{{ projeto.titulo }}">
                             {% else %}
                             <img src="/static/images/projeto-placeholder.svg" class="img-fluid rounded mb-3" alt="{{ projeto.titulo }}">
                             {% endif %}
@@ -135,7 +249,7 @@
                             <p class="text-muted">{{ projeto.descricao }}</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                             <a href="{% url 'doacoes' %}" class="btn btn-primary">Apoiar este projeto</a>
                         </div>
                     </div>
