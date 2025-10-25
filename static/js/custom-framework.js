@@ -109,12 +109,14 @@ class CustomDropdown {
 
     show() {
         this.isOpen = true;
+        this.menu.classList.add('show');
         this.menu.style.display = 'block';
         this.dropdown.setAttribute('aria-expanded', 'true');
     }
 
     hide() {
         this.isOpen = false;
+        this.menu.classList.remove('show');
         this.menu.style.display = 'none';
         this.dropdown.setAttribute('aria-expanded', 'false');
     }
