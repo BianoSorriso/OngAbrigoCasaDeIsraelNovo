@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block title %}Casa de Amparo Beneficente de Israel - Doações{% endblock %}
 
@@ -156,7 +157,6 @@ console.log('🔥 Script do modal PIX carregado!');
         </div>
     </div>
 </section>
-
 
 
 
@@ -414,16 +414,16 @@ console.log('🔥 Script do modal PIX carregado!');
             <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="card-body p-4">
-                        <h4 class="card-title mb-4"><i class="fas fa-file-alt text-primary me-2"></i> Relatórios e Documentos</h4>
+                        <h4 id="relatorios" class="card-title mb-4"><i class="fas fa-file-alt text-primary me-2"></i> Relatórios e Documentos</h4>
                         <p class="mb-4">Disponibilizamos todos os nossos relatórios financeiros e de atividades para consulta pública, reforçando nosso compromisso com a transparência.</p>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span><i class="fas fa-file-pdf text-danger me-2"></i> Relatório Anual 2025</span>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                                <a href="{% static 'docs/Relatorio_Anual_2025_Demo.pdf' %}" class="btn btn-sm btn-outline-primary" download>Download</a>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span><i class="fas fa-file-pdf text-danger me-2"></i> Balanço Financeiro 2025</span>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                                <a href="{% static 'docs/Balanco_Contabil_2025_Demo.pdf' %}" class="btn btn-sm btn-outline-primary" download>Download</a>
                             </li>
                             
                             </li>

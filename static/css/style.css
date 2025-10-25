@@ -975,3 +975,12 @@ img {
         max-height: 300px; /* Altura para desktop, proporcional aos cards */
     }
 }
+#relatorios {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 991.98px) {
+  #relatorios {
+    scroll-margin-top: 85px; /* aproximado da altura da navbar */
+  }
+}

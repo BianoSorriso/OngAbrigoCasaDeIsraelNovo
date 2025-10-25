@@ -326,4 +326,15 @@ mainNavLinks.forEach(link => {
         checkAndAnimateNumbers();
         window.addEventListener('scroll', checkAndAnimateNumbers);
     }
+    // Ajuste de rolagem suave para âncoras com navbar fixa
+    const hash = window.location.hash;
+    if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+            const navbar = document.querySelector('.navbar.fixed-top');
+            const offset = navbar ? navbar.offsetHeight + 10 : 0;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    }
 });
