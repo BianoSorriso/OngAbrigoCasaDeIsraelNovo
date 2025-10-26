@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
 ]
 
 # Configuração de arquivos estáticos para produção
-STATIC_ROOT = '/home/AbrigoCABI/mysite/static'
+STATIC_ROOT = '/home/AbrigoCABI/OngAbrigoCasaDeIsraelNovo/staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -23,7 +23,7 @@ STATICFILES_DIRS = [
 ]
 
 # Configuração de arquivos de mídia
-MEDIA_ROOT = '/home/AbrigoCABI/mysite/media'
+MEDIA_ROOT = '/home/AbrigoCABI/OngAbrigoCasaDeIsraelNovo/media'
 MEDIA_URL = '/media/'
 
 # Middleware para servir arquivos estáticos
@@ -59,7 +59,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': '/home/AbrigoCABI/mysite/django.log',
+            'filename': '/home/AbrigoCABI/OngAbrigoCasaDeIsraelNovo/django.log',
         },
     },
     'loggers': {
