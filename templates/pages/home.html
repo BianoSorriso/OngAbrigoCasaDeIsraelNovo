@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <img id="carrossel-img" src="/static/images/CARROSSEL01.jpeg" alt="Casa de Amparo Beneficente de Israel" class="img-fluid rounded shadow-lg">
+                        <img id="carrossel-img" src="/static/images/CARROSSEL01.jpg" alt="Casa de Amparo Beneficente de Israel" class="img-fluid rounded shadow-lg">
                     </div>
                 </div>
             </div>
@@ -291,16 +291,43 @@ document.addEventListener('DOMContentLoaded', function() {
         '/static/images/CARROSSEL06.jpeg'
     ];
     let currentIndex = 0;
+    let preloadedImages = [];
 
-   if (img.src !== window.location.origin + images[currentIndex]) {
+    // Preload todas as imagens para evitar delay
+    function preloadImages() {
+        images.forEach((src, index) => {
+            const imgElement = new Image();
+            imgElement.src = src;
+            preloadedImages[index] = imgElement;
+        });
+    }
+
+    // Adiciona estilo de transição suave
+    img.style.transition = 'opacity 0.5s ease-in-out';
+
+    // Define a primeira imagem se necessário
+    if (img.src !== window.location.origin + images[currentIndex]) {
         img.src = images[currentIndex];
     }
 
     function changeImage() {
-        currentIndex = (currentIndex + 1) % images.length;
-        img.src = images[currentIndex];
+        // Fade out
+        img.style.opacity = '0';
+        
+        setTimeout(() => {
+            // Muda a imagem durante o fade
+            currentIndex = (currentIndex + 1) % images.length;
+            img.src = images[currentIndex];
+            
+            // Fade in
+            img.style.opacity = '1';
+        }, 250); // Metade da duração da transição
     }
 
+    // Preload das imagens
+    preloadImages();
+
+    // Inicia o carrossel
     setInterval(changeImage, 3000); // Troca a cada 3 segundos
 });
 </script>
