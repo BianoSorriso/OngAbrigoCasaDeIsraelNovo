@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <img id="carrossel-img" src="/static/images/CARROSSEL00.jpeg" alt="Casa de Amparo Beneficente de Israel" class="img-fluid rounded shadow-lg">
+                        <img id="carrossel-img" src="/static/images/CARROSSEL01.jpeg" alt="Casa de Amparo Beneficente de Israel" class="img-fluid rounded shadow-lg">
                     </div>
                 </div>
             </div>
@@ -283,7 +283,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const img = document.getElementById('carrossel-img');
     const images = [
-        '/static/images/CARROSSEL00.jpeg',
         '/static/images/CARROSSEL01.jpg',
         '/static/images/CARROSSEL02.jpeg',
         '/static/images/CARROSSEL03.jpeg',
@@ -292,12 +291,16 @@ document.addEventListener('DOMContentLoaded', function() {
         '/static/images/CARROSSEL06.jpeg'
     ];
     let currentIndex = 0;
-    
+
+   if (img.src !== window.location.origin + images[currentIndex]) {
+        img.src = images[currentIndex];
+    }
+
     function changeImage() {
         currentIndex = (currentIndex + 1) % images.length;
         img.src = images[currentIndex];
     }
-    
+
     setInterval(changeImage, 3000); // Troca a cada 3 segundos
 });
 </script>
