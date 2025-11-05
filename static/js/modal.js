@@ -53,6 +53,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Fechar modal e navegar para o formulário de doação
+    const goToFormLinks = document.querySelectorAll('[data-action="go-to-form"]');
+    console.log(`🔗 Links para ir ao formulário encontrados: ${goToFormLinks.length}`);
+    goToFormLinks.forEach(function(link) {
+        if (link.hasAttribute('data-modal-initialized')) return;
+        link.setAttribute('data-modal-initialized', 'true');
+
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('➡️ Ir para formulário: fechando modal e navegando');
+
+            const href = this.getAttribute('href');
+            const modal = this.closest('.modal');
+            if (modal) {
+                closeModal(modal);
+            }
+
+            // Navega após pequeno delay para garantir fechamento visual do modal
+            if (href) {
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 50);
+            }
+        });
+    });
+
     // Fechar modal ao clicar fora dele (no backdrop)
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('modal-backdrop')) {
