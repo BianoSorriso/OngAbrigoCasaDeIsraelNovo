@@ -293,7 +293,7 @@ console.log('🔥 Script do modal PIX carregado!');
 </section>
 
 <!-- Formulário de Doação -->
-<section class="py-5">
+<section class="py-5" id="form-doacao">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10 col-sm-12">
@@ -581,7 +581,7 @@ console.log('🔥 Script do modal PIX carregado!');
                     </small>
                     <div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <a href="#form-doacao" class="btn btn-outline-primary" data-dismiss="modal">
+                        <a href="{% url 'doacoes' %}#form-doacao" class="btn btn-outline-primary">
                             <i class="fas fa-edit me-2"></i>Preencher Formulário
                         </a>
                     </div>
