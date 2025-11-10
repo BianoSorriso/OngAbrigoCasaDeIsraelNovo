@@ -147,3 +147,16 @@ class Doacao(models.Model):
     
     def __str__(self):
         return f"{self.nome_doador} - {self.tipo}"
+
+# Assinantes da newsletter
+class NewsletterSubscriber(models.Model):
+    email = models.EmailField(unique=True)
+    active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Assinante da Newsletter'
+        verbose_name_plural = 'Assinantes da Newsletter'
+
+    def __str__(self):
+        return self.email

@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 from .models import Projeto, Contato, Doacao, Voluntario, ConfiguracaoSite
 from .forms import ContatoForm, DoacaoForm, VoluntarioForm
+from .models import NewsletterSubscriber
 
 def home(request):
     projetos = Projeto.objects.filter(ativo=True).order_by('-data_criacao')[:3]
@@ -64,3 +68,26 @@ def doacoes(request):
         'form': form,
         'config': config
     })
+
+def subscribe_newsletter(request):
+    if request.method != 'POST':
+        return redirect('home')
+
+    email = request.POST.get('email', '').strip()
+    if not email:
+        messages.error(request, 'Informe um e-mail válido.')
+        return redirect('home')
+
+    try:
+        validate_email(email)
+    except ValidationError:
+        messages.error(request, 'E-mail inválido. Verifique e tente novamente.')
+        return redirect('home')
+
+    try:
+        NewsletterSubscriber.objects.create(email=email)
+        messages.success(request, 'Obrigado por se inscrever! Você receberá notícias e atualizações.')
+    except IntegrityError:
+        messages.info(request, 'Esse e-mail já está cadastrado. Obrigado por acompanhar!')
+
+    return redirect('home')

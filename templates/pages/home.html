@@ -266,9 +266,10 @@
                 <p class="lead mb-0">Receba novidades sobre nossos projetos e eventos. Preencha o e-mail no campo ao lado.</p>
             </div>
             <div class="col-lg-6 col-md-12">
-                <form class="row g-3 g-sm-4">
+                <form class="row g-3 g-sm-4" method="post" action="{% url 'subscribe_newsletter' %}">
+                    {% csrf_token %}
                     <div class="col-md-8 col-sm-12 mb-3 mb-md-0">
-                        <input type="email" class="form-control form-control-lg" placeholder="Seu e-mail" required>
+                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Seu e-mail" required>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <button type="submit" class="btn btn-light btn-lg w-100" style="background-color: #ffffff !important; border-color: #ffffff !important; color: #000 !important;">Assinar</button>

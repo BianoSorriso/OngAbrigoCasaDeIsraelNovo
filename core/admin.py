@@ -3,7 +3,7 @@ from django.utils.html import format_html
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from .models import Projeto, Voluntario, Contato, Doacao, ConfiguracaoSite
+from .models import Projeto, Voluntario, Contato, Doacao, ConfiguracaoSite, NewsletterSubscriber
 
 @admin.register(Projeto)
 class ProjetoAdmin(admin.ModelAdmin):
@@ -94,3 +94,9 @@ class ConfiguracaoSiteAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         # Não permitir exclusão
         return False
+
+@admin.register(NewsletterSubscriber)
+class NewsletterSubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email', 'active', 'created_at')
+    list_filter = ('active', 'created_at')
+    search_fields = ('email',)
