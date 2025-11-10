@@ -82,6 +82,24 @@ python manage.py runserver
 ### 7. Acesse o Sistema
 Abra seu navegador e acesse: `http://127.0.0.1:8000`
 
+## ✉️ Configuração de E-mail
+
+Para enviar o e-mail de boas-vindas na inscrição da newsletter:
+
+- Desenvolvimento (local): já está configurado para usar `django.core.mail.backends.console.EmailBackend`. Os e-mails aparecem no terminal onde você executa o `runserver`.
+- Produção (PythonAnywhere): defina variáveis de ambiente na sua app web em “Environment Variables”. Valores típicos:
+  - `EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend`
+  - `EMAIL_HOST` (ex.: `smtp.gmail.com`, `smtp.sendgrid.net`)
+  - `EMAIL_PORT` (ex.: `587` para TLS)
+  - `EMAIL_USE_TLS=true` (ou `EMAIL_USE_SSL=true` se usar SSL)
+  - `EMAIL_HOST_USER` (usuário SMTP)
+  - `EMAIL_HOST_PASSWORD` (senha/App Password/token SMTP)
+  - `DEFAULT_FROM_EMAIL` (ex.: `no-reply@seu-dominio.org`)
+
+Após configurar, recarregue a aplicação (botão “Reload” no PythonAnywhere).
+
+Observação para Gmail: use “App Password” com 2FA habilitado. Para provedores como SendGrid/Mailgun, use o usuário e a API key/token conforme instruções do provedor.
+
 ## 📁 Estrutura do Projeto
 
 ```

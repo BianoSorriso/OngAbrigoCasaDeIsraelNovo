@@ -2,6 +2,9 @@ import qrcode
 from io import BytesIO
 from django.core.files.base import ContentFile
 import base64
+import logging
+from django.core.mail import send_mail
+from django.conf import settings
 
 def gerar_qr_code_pix(chave_pix, nome_beneficiario, valor=None, cidade="São Paulo"):
     """
@@ -155,3 +158,24 @@ def gerar_qr_code_simples(texto, nome_arquivo="qr_code"):
     buffer.seek(0)
     
     return ContentFile(buffer.read(), name=f'{nome_arquivo}.png')
+
+logger = logging.getLogger(__name__)
+
+def send_newsletter_welcome(recipient_email: str) -> bool:
+    subject = "Bem-vindo à Newsletter da CABI"
+    message = (
+        "Obrigado por se inscrever. Você receberá notícias e atualizações.\n\n"
+        "Se quiser cancelar a inscrição no futuro, responda a este e‑mail."
+    )
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [recipient_email],
+            fail_silently=False,
+        )
+        return True
+    except Exception:
+        logger.exception("Falha ao enviar e‑mail de boas‑vindas para %s", recipient_email)
+        return False

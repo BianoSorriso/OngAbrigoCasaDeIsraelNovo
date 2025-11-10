@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from .models import Projeto, Contato, Doacao, Voluntario, ConfiguracaoSite
 from .forms import ContatoForm, DoacaoForm, VoluntarioForm
 from .models import NewsletterSubscriber
+from .utils import send_newsletter_welcome
 
 def home(request):
     projetos = Projeto.objects.filter(ativo=True).order_by('-data_criacao')[:3]
@@ -86,7 +87,11 @@ def subscribe_newsletter(request):
 
     try:
         NewsletterSubscriber.objects.create(email=email)
-        messages.success(request, 'Obrigado por se inscrever! Você receberá notícias e atualizações.')
+        sent = send_newsletter_welcome(email)
+        if sent:
+            messages.success(request, 'Obrigado por se inscrever! Você receberá notícias e atualizações por e-mail.')
+        else:
+            messages.info(request, 'Inscrição registrada, mas não foi possível enviar o e-mail de boas-vindas agora.')
     except IntegrityError:
         messages.info(request, 'Esse e-mail já está cadastrado. Obrigado por acompanhar!')
 
