@@ -207,9 +207,7 @@
             order: 2 !important;
         }
         
-        .navbar-collapse {
-            /* Removido order: 2 para evitar conflitos */
-        }
+        
         
         .navbar-nav {
             align-items: center;
@@ -670,7 +668,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4 mt-5">
+    <footer class="footer bg-dark text-light py-4 mt-5">
         <div class="container">
             <div class="cards-container">
                 <div class="row g-4">
@@ -680,7 +678,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <h5>Contato</h5>
-                    <ul class="list-unstyled">
+                    <ul class="footer-contact">
                         <li><i class="fas fa-map-marker-alt"></i> <span> Estrada da Cachoeira, 466 - Nova Iguaçu, RJ</span></li>
                         <li><i class="fas fa-phone"></i> <span>(21) 96966-5146 (Barbara Brandão)</span></li>
                         <li><i class="fas fa-phone"></i> <span>(21) 98251-0664 (Maria José Brandão) </span></li>
@@ -693,7 +691,7 @@
                 </div>
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <h5>Links Rápidos</h5>
-                    <ul class="list-unstyled">
+                    <ul class="footer-links">
                         <li><a href="{% url 'home' %}" class="text-light">Início</a></li>
                         <li><a href="{% url 'sobre' %}" class="text-light">Quem Somos</a></li>
                         <li><a href="{% url 'projetos' %}" class="text-light">Projetos</a></li>

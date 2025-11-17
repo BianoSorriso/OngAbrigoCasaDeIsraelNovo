@@ -1556,3 +1556,46 @@
         transform: translateY(-4px);
     }
 }
+/* ========================================
+   SCROLL REVEAL UTILITIES
+   ======================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 600ms ease, transform 600ms ease;
+    will-change: opacity, transform;
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Variantes para cards */
+.reveal.reveal-zoom {
+    transform: translateY(15px) scale(0.98);
+}
+.reveal.visible.reveal-zoom {
+    transform: none;
+}
+
+/* Variantes laterais para cards e conteúdo */
+.reveal.reveal-left {
+    transform: translateX(-18px);
+}
+.reveal.reveal-right {
+    transform: translateX(18px);
+}
+.reveal.visible.reveal-left,
+.reveal.visible.reveal-right {
+    transform: none;
+}

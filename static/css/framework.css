@@ -590,6 +590,21 @@
     padding-bottom: 0;
 }
 
+/* Fixar header no topo em telas pequenas */
+@media (max-width: 991.98px) {
+    .navbar.fixed-top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1050;
+    }
+    body.with-fixed-navbar {
+        padding-top: var(--navbar-height, 85px);
+    }
+}
+
 .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;

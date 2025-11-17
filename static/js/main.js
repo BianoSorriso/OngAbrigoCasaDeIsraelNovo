@@ -76,6 +76,23 @@ mainNavLinks.forEach(link => {
         }, 100 * index);
     });
 
+    // Ajusta padding-top quando a navbar está fixa no mobile
+    const fixedNavbar = document.querySelector('.navbar.fixed-top');
+    const applyNavbarPadding = () => {
+        const vw = window.innerWidth;
+        if (fixedNavbar && vw < 992) {
+            document.body.classList.add('with-fixed-navbar');
+            const h = fixedNavbar.offsetHeight || 85;
+            document.body.style.setProperty('--navbar-height', h + 'px');
+        } else {
+            document.body.classList.remove('with-fixed-navbar');
+            document.body.style.removeProperty('--navbar-height');
+        }
+    };
+    applyNavbarPadding();
+    window.addEventListener('resize', applyNavbarPadding);
+    window.addEventListener('orientationchange', applyNavbarPadding);
+
     // Botões de valor de doação
     const donationButtons = document.querySelectorAll('.donation-amount-btn');
     if (donationButtons.length > 0) {
@@ -339,6 +356,61 @@ mainNavLinks.forEach(link => {
             const offset = navbar ? navbar.offsetHeight + 10 : 0;
             const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
             window.scrollTo({ top, behavior: 'smooth' });
+        }
+    }
+
+    // Scroll reveal: seções, cards (laterais) e imagens de páginas (exceto banners/hero)
+    const baseTargets = Array.from(document.querySelectorAll('main section, .reveal, .card'));
+    const imageCandidates = Array.from(document.querySelectorAll('main img'))
+        .filter(img => !img.classList.contains('no-reveal') &&
+                        !img.classList.contains('hero-image') &&
+                        !img.closest('.page-banner') &&
+                        !img.closest('.hero') &&
+                        !img.closest('.carousel'));
+    const revealTargets = [...baseTargets, ...imageCandidates];
+
+    if (revealTargets.length > 0) {
+        // Alterna direção lateral em cards; aplica zoom leve em imagens
+        let cardIndex = 0;
+        let imgIndex = 0;
+        revealTargets.forEach((el) => {
+            if (!el.classList.contains('reveal')) el.classList.add('reveal');
+            if (el.classList.contains('card')) {
+                const useLeft = (cardIndex % 2 === 0);
+                el.classList.add(useLeft ? 'reveal-left' : 'reveal-right');
+                const delayMs = Math.min(cardIndex * 80, 400);
+                el.style.setProperty('--reveal-delay', delayMs + 'ms');
+                cardIndex++;
+            } else if (el.tagName === 'IMG') {
+                el.classList.add('reveal-zoom');
+                const delayMs = Math.min(imgIndex * 60, 300);
+                el.style.setProperty('--reveal-delay', delayMs + 'ms');
+                imgIndex++;
+            }
+        });
+
+        let lastScrollY = window.scrollY;
+        let scrollingUp = false;
+        window.addEventListener('scroll', () => {
+            const currentY = window.scrollY;
+            scrollingUp = currentY < lastScrollY;
+            lastScrollY = currentY;
+        }, { passive: true });
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    } else if (scrollingUp) {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { root: null, threshold: 0.15 });
+            revealTargets.forEach(el => io.observe(el));
+        } else {
+            // Fallback: sem IO, apenas revela tudo
+            revealTargets.forEach(el => el.classList.add('visible'));
         }
     }
 });
