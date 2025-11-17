@@ -234,10 +234,14 @@
             .navbar-collapse {
                 position: absolute !important;
                 top: 100% !important;
-                left: auto !important;
-                right: 0 !important;
-                width: 250px !important;
-                background: var(--primary-color) !important;
+                left: 50% !important; /* centralizado horizontalmente */
+                right: auto !important;
+                transform: translateX(-50%) !important; /* ajustar para o centro */
+                width: 90vw !important; /* largura responsiva no mobile */
+                max-width: 340px !important; /* limite para não ficar muito grande */
+                /* Fundo semitransparente mais opaco */
+                background: rgba(0, 123, 255, 0.55) !important; /* azul 55% */
+                backdrop-filter: none !important; /* sem blur para manter visível */
                 border-radius: 0 0 8px 8px !important;
                 box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
                 z-index: 1000 !important;
@@ -245,12 +249,13 @@
                 border: 2px solid rgba(255,255,255,0.2) !important;
             }
 
-            /* Evita empurrar conteúdo durante a animação do Bootstrap */
+           
             .navbar-collapse.collapsing {
                 position: absolute !important;
                 top: 100% !important;
-                left: auto !important;
-                right: 0 !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
                 height: auto !important;
                 transition: none !important;
             }
@@ -261,8 +266,9 @@
                 display: block !important;
                 position: absolute !important;
                 top: 100% !important;
-                left: auto !important;
-                right: 0 !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
             }
 
             .navbar-nav {
@@ -275,13 +281,16 @@
                 padding: 12px 20px !important;
                 border-bottom: 1px solid rgba(255,255,255,0.1) !important;
                 font-weight: 500 !important;
+                background: transparent !important; /* evitar caixas sólidas sobre o conteúdo */
             }
 
             .navbar-nav .nav-link:hover {
-                background: rgba(255,255,255,0.2) !important;
+                background: rgba(255,255,255,0.15) !important; /* leve destaque sem ocultar */
                 transform: translateX(5px) !important;
             }
         }
+
+        
         
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
