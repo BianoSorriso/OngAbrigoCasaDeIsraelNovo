@@ -274,55 +274,59 @@ mainNavLinks.forEach(link => {
     // Animação de números de impacto
     const impactNumbers = document.querySelectorAll('.impact-number');
     if (impactNumbers.length > 0) {
-        const animateNumber = (element, target) => {
+        const animateNumber = (element, target, opts) => {
             let current = 0;
-            const increment = target / 100;
+            const intervalMs = 50; // ticks estáveis
+            const durationMs = 6500; // duração alvo ~6.5s
+            const steps = Math.max(1, Math.floor(durationMs / intervalMs));
+            const increment = target / steps;
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
                     clearInterval(timer);
                     current = target;
                 }
-                // Formata o número com + se começar com +
-                if (element.textContent.startsWith('+')) {
-                    element.textContent = '+' + Math.floor(current);
-                } else if (element.textContent.endsWith('%')) {
-                    element.textContent = Math.floor(current) + '%';
+                const value = Math.floor(current);
+                if (opts.prefixPlus) {
+                    element.textContent = '+' + value;
+                } else if (opts.suffixPlus) {
+                    element.textContent = value + '+';
+                } else if (opts.suffixPercent) {
+                    element.textContent = value + '%';
                 } else {
-                    element.textContent = Math.floor(current);
+                    element.textContent = String(value);
                 }
-            }, 10);
+            }, intervalMs);
         };
 
-        // Função para verificar se o elemento está visível na tela
         const isElementInViewport = (el) => {
             const rect = el.getBoundingClientRect();
             return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom > 0
             );
         };
 
-        // Verifica e anima os números quando estiverem visíveis
+        const parseTarget = (text) => {
+            const raw = text.trim();
+            const prefixPlus = raw.startsWith('+');
+            const suffixPlus = raw.endsWith('+');
+            const suffixPercent = raw.endsWith('%');
+            const digits = raw.replace(/[^0-9]/g, '');
+            const target = parseInt(digits || '0', 10);
+            return { target, prefixPlus, suffixPlus, suffixPercent };
+        };
+
         const checkAndAnimateNumbers = () => {
             impactNumbers.forEach(number => {
                 if (isElementInViewport(number) && !number.classList.contains('animated')) {
                     number.classList.add('animated');
-                    let targetValue = number.textContent;
-                    if (targetValue.startsWith('+')) {
-                        targetValue = targetValue.substring(1);
-                    }
-                    if (targetValue.endsWith('%')) {
-                        targetValue = targetValue.substring(0, targetValue.length - 1);
-                    }
-                    animateNumber(number, parseInt(targetValue, 10));
+                    const { target, prefixPlus, suffixPlus, suffixPercent } = parseTarget(number.textContent);
+                    animateNumber(number, target, { prefixPlus, suffixPlus, suffixPercent });
                 }
             });
         };
 
-        // Verifica ao carregar a página e ao rolar
         checkAndAnimateNumbers();
         window.addEventListener('scroll', checkAndAnimateNumbers);
     }
