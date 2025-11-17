@@ -23,6 +23,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# Usa storage com hash e compressão para cache busting de CSS/JS
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Configuração de arquivos de mídia
 MEDIA_ROOT = '/home/AbrigoCABI/OngAbrigoCasaDeIsraelNovo/media'
 MEDIA_URL = '/media/'

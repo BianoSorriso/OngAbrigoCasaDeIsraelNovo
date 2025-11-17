@@ -601,7 +601,8 @@
         z-index: 1050;
     }
     body.with-fixed-navbar {
-        padding-top: var(--navbar-height, 85px);
+        /* Colar o conteúdo no header no mobile (mais agressivo) */
+        padding-top: calc(var(--navbar-height, 85px) - 18px) !important;
     }
 }
 

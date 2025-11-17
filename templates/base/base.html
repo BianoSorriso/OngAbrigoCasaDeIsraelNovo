@@ -154,6 +154,11 @@
             overflow: visible;
             z-index: 1050 !important; /* Garantir que navbar fique acima de tudo */
         }
+
+        /* No mobile, remover a sombra para eliminar qualquer vão visual */
+        @media (max-width: 991.98px) {
+            .navbar { box-shadow: none !important; border-bottom: 0 !important; }
+        }
         
         .navbar .container {
             display: flex;
