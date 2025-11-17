@@ -230,15 +230,20 @@
         
         /* Menu hambúrguer responsivo simples */
         @media (max-width: 991.98px) {
+            /* Remover padding lateral para o dropdown encostar nas bordas */
+            .navbar .container {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
             /* Sobrepõe abaixo da navbar, sem empurrar o conteúdo */
             .navbar-collapse {
                 position: absolute !important;
                 top: 100% !important;
-                left: 50% !important; /* centralizado horizontalmente */
-                right: auto !important;
-                transform: translateX(-50%) !important; /* ajustar para o centro */
-                width: 90vw !important; /* largura responsiva no mobile */
-                max-width: 340px !important; /* limite para não ficar muito grande */
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                width: 100% !important; /* ocupar toda a largura disponível */
+                max-width: none !important;
                 /* Fundo azul escuro original */
                 background: var(--primary-color) !important;
                 border-radius: 0 0 8px 8px !important;
@@ -252,9 +257,9 @@
             .navbar-collapse.collapsing {
                 position: absolute !important;
                 top: 100% !important;
-                left: 50% !important;
-                right: auto !important;
-                transform: translateX(-50%) !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
                 height: auto !important;
                 transition: none !important;
             }
@@ -265,9 +270,9 @@
                 display: block !important;
                 position: absolute !important;
                 top: 100% !important;
-                left: 50% !important;
-                right: auto !important;
-                transform: translateX(-50%) !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
             }
 
             .navbar-nav {
