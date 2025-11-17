@@ -230,6 +230,7 @@
         
         /* Menu hambúrguer responsivo simples */
         @media (max-width: 991.98px) {
+            /* Sobrepõe abaixo da navbar, sem empurrar o conteúdo */
             .navbar-collapse {
                 position: absolute !important;
                 top: 100% !important;
@@ -243,18 +244,39 @@
                 padding: 10px 0 !important;
                 border: 2px solid rgba(255,255,255,0.2) !important;
             }
-            
+
+            /* Evita empurrar conteúdo durante a animação do Bootstrap */
+            .navbar-collapse.collapsing {
+                position: absolute !important;
+                top: 100% !important;
+                left: auto !important;
+                right: 0 !important;
+                height: auto !important;
+                transition: none !important;
+            }
+
+            /* Mantém fora do fluxo mesmo quando visível */
+            .navbar-collapse.collapse { display: none !important; }
+            .navbar-collapse.collapse.show {
+                display: block !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: auto !important;
+                right: 0 !important;
+            }
+
             .navbar-nav {
                 flex-direction: column !important;
             }
-            
+
+            /* Mantém estilo dos links no mobile sem alterar o offset global */
             .navbar-nav .nav-link {
                 color: white !important;
                 padding: 12px 20px !important;
                 border-bottom: 1px solid rgba(255,255,255,0.1) !important;
                 font-weight: 500 !important;
             }
-            
+
             .navbar-nav .nav-link:hover {
                 background: rgba(255,255,255,0.2) !important;
                 transform: translateX(5px) !important;
@@ -310,7 +332,10 @@
             
             .navbar-collapse.show {
                 z-index: 99998 !important;
-                position: relative !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: auto !important;
+                right: 0 !important;
             }
             
             .navbar-nav .nav-link {
