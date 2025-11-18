@@ -5,114 +5,132 @@
 
 {% block extra_js %}
 <script>
-// SCRIPT FUNCIONAL PARA OS MODAIS DOS PROJETOS 
-console.log('🔥 Carregando modais de projetos - VERSÃO CUSTOMIZADA!');
+// SCRIPT DOS MODAIS DE PROJETOS (mesma lógica do modal PIX)
+console.log('🔥 Configurando modais dos projetos (padrão PIX)');
 
-function configurarModaisProjetos() {
-    // Encontrar todos os botões "Saiba mais"
+function configurarModaisProjetosPIX() {
+    // Seleciona todos os gatilhos dos modais de projetos
     const botoesModal = document.querySelectorAll('[data-target^="#projetoModal"]');
-    
-    console.log('Botões encontrados:', botoesModal.length);
-    
+    console.log('📋 Botões de projeto encontrados:', botoesModal.length);
+
     botoesModal.forEach(function(botao) {
         const targetId = botao.getAttribute('data-target');
         const modalElement = document.querySelector(targetId);
         
-        if (modalElement) {
-            console.log('✅ Configurando modal:', targetId);
-            
-            
-            botao.removeAttribute('data-bs-toggle');
-            botao.removeAttribute('data-bs-target');
-            
-            // Configurar evento de clique
-            botao.onclick = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                console.log('🚀 ABRINDO MODAL:', targetId);
-                
-                // Forçar modal aparecer
-                modalElement.style.display = 'block';
-                modalElement.style.opacity = '1';
-                modalElement.style.visibility = 'visible';
-                modalElement.style.zIndex = '9999';
-                modalElement.classList.add('show');
-                modalElement.setAttribute('aria-hidden', 'false');
-                
-                // Adicionar backdrop
-                let backdrop = document.querySelector('.modal-backdrop');
-                if (!backdrop) {
-                    backdrop = document.createElement('div');
-                    backdrop.className = 'modal-backdrop fade show';
-                    backdrop.style.zIndex = '9998';
-                    backdrop.style.position = 'fixed';
-                    backdrop.style.top = '0';
-                    backdrop.style.left = '0';
-                    backdrop.style.width = '100%';
-                    backdrop.style.height = '100%';
-                    backdrop.style.backgroundColor = 'rgba(0,0,0,0.5)';
-                    document.body.appendChild(backdrop);
-                }
-                
-                // Fechar modal
-                const botoesFechar = modalElement.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
-                botoesFechar.forEach(btnClose => {
-                    btnClose.onclick = function(e) {
-                        e.preventDefault();
-                        console.log('🔒 Fechando modal...');
-                        modalElement.style.display = 'none';
-                        modalElement.classList.remove('show');
-                        modalElement.setAttribute('aria-hidden', 'true');
-                        if (backdrop && backdrop.parentNode) {
-                            backdrop.parentNode.removeChild(backdrop);
-                        }
-                    };
-                });
-                
-                // Fechar clicando no backdrop
-                if (backdrop) {
-                    backdrop.onclick = function() {
-                        console.log('🔒 Fechando modal via backdrop...');
-                        modalElement.style.display = 'none';
-                        modalElement.classList.remove('show');
-                        modalElement.setAttribute('aria-hidden', 'true');
-                        if (backdrop && backdrop.parentNode) {
-                            backdrop.parentNode.removeChild(backdrop);
-                        }
-                    };
-                }
-                
-                // Fechar com ESC
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        console.log('🔒 Fechando modal via ESC...');
-                        modalElement.style.display = 'none';
-                        modalElement.classList.remove('show');
-                        modalElement.setAttribute('aria-hidden', 'true');
-                        if (backdrop && backdrop.parentNode) {
-                            backdrop.parentNode.removeChild(backdrop);
-                        }
-                    }
-                });
-                
-                console.log('✅ MODAL ABERTO COM SUCESSO!');
-                return false;
-            };
+        if (!modalElement) {
+            console.log('❌ Modal não encontrado para', targetId);
+            return;
         }
+
+        // Evita comportamento de outros scripts
+        botao.removeAttribute('data-toggle');
+        botao.removeAttribute('data-bs-toggle');
+        botao.removeAttribute('data-bs-target');
+
+        botao.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🚀 Abrindo modal de projeto:', targetId);
+
+            // Mover modal para o body para evitar stacking contexts de pais
+            if (modalElement.parentNode !== document.body) {
+                document.body.appendChild(modalElement);
+            }
+
+            // Força exibição do modal
+            modalElement.style.display = 'flex';
+            modalElement.style.opacity = '1';
+            modalElement.style.visibility = 'visible';
+            modalElement.style.zIndex = '20000';
+            modalElement.style.pointerEvents = 'auto';
+            modalElement.classList.add('show');
+            modalElement.setAttribute('aria-hidden', 'false');
+
+            // Cria backdrop
+            let backdrop = document.querySelector('.modal-backdrop');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fade show';
+                backdrop.style.zIndex = '19999';
+                backdrop.style.position = 'fixed';
+                backdrop.style.top = '0';
+                backdrop.style.left = '0';
+                backdrop.style.width = '100%';
+                backdrop.style.height = '100%';
+                backdrop.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                backdrop.style.pointerEvents = 'auto';
+                document.body.appendChild(backdrop);
+            }
+
+            // Botões de fechar
+            const botoesFechar = modalElement.querySelectorAll('[data-dismiss="modal"], .btn-close, .btn-secondary');
+            botoesFechar.forEach(btnClose => {
+                btnClose.onclick = function(e) {
+                    e.preventDefault();
+                    console.log('🔒 Fechando modal de projeto...');
+                    modalElement.style.display = 'none';
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+                };
+            });
+
+            // Handler dedicado para "Apoiar este projeto" (fecha modal e navega)
+            const apoiarBtn = modalElement.querySelector('[data-action="go-to-form"]');
+            if (apoiarBtn) {
+                apoiarBtn.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('➡️ Apoiar este projeto: fechar modal e navegar');
+
+                    const href = apoiarBtn.getAttribute('href');
+
+                    // Fecha modal e remove backdrop
+                    modalElement.style.display = 'none';
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+
+                    // Navega após pequeno delay para garantir fechamento visual
+                    if (href) {
+                        setTimeout(function() {
+                            window.location.href = href;
+                        }, 50);
+                    }
+                };
+            }
+
+            // Fechar clicando no backdrop
+            if (backdrop) {
+                backdrop.onclick = function() {
+                    console.log('🔒 Fechando modal via backdrop...');
+                    modalElement.style.display = 'none';
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+                };
+            }
+
+            // Fechar com ESC
+            document.addEventListener('keydown', function escHandler(e) {
+                if (e.key === 'Escape') {
+                    console.log('🔒 Fechando modal via ESC...');
+                    modalElement.style.display = 'none';
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            });
+        };
     });
-    
-    console.log('✅ Todos os modais configurados!');
 }
 
-// Executar quando DOM carregar
-document.addEventListener('DOMContentLoaded', configurarModaisProjetos);
+document.addEventListener('DOMContentLoaded', configurarModaisProjetosPIX);
+setTimeout(configurarModaisProjetosPIX, 500);
+setTimeout(configurarModaisProjetosPIX, 1000);
 
-// Executar também após um tempo para garantir
-setTimeout(configurarModaisProjetos, 500);
-setTimeout(configurarModaisProjetos, 1000);
-
-console.log('🔥 Script dos modais de projetos carregado!');
+console.log('✅ Script dos modais de projetos pronto (padrão PIX)');
 </script>
 {% endblock %}
 
@@ -250,7 +268,7 @@ console.log('🔥 Script dos modais de projetos carregado!');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <a href="{% url 'doacoes' %}" class="btn btn-primary">Apoiar este projeto</a>
+                            <a href="{% url 'doacoes' %}" class="btn btn-primary" data-action="go-to-form">Apoiar este projeto</a>
                         </div>
                     </div>
                 </div>
